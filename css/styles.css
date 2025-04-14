@@ -5,13 +5,24 @@
     box-sizing: border-box;
   }
   
-  body {
-    font-family: 'Arial', sans-serif;
-    background: #fff9f9;
+/* Fuente y colores generales */
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: #fff9f8;
     color: #333;
-    line-height: 1.6;
+    margin: 0;
+    padding: 0;
   }
-  
+  /* Encabezado moderno */
+.main-header {
+    background-color: #ffdef0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
   /* Header */
   header {
     background-color: #ffb6c1;
@@ -19,36 +30,42 @@
     padding: 1.5rem;
     text-align: center;
   }
-  
+  .logo-area {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #4b0082;
+  }
   header h1 {
     font-size: 2.2rem;
     margin-bottom: 0.5rem;
   }
   
   nav ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     list-style: none;
+    display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
+    padding-left: 0;
   }
   
   nav a {
     text-decoration: none;
     color: #4b0082;
-    font-weight: bold;
-    padding: 0.5rem;
+    font-weight: 600;
   }
   
   nav a:hover {
     text-decoration: underline;
   }
   
-  /* Hero */
-  .hero {
-    text-align: center;
-    padding: 3rem 1rem;
-    background-color: #fff0f5;
+/* Hero con fondo */
+.hero {
+    position: relative;
+    background: url('../assets/images/hero-bg.jpg') center/cover no-repeat;
+    height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .hero h2 {
@@ -56,32 +73,45 @@
     color: #4b0082;
     margin-bottom: 1rem;
   }
+  .hero-overlay {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 20px;
+    max-width: 600px;
+  }
+  .hero-overlay h2 {
+    color: #4b0082;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
   
   .cta-button {
-    display: inline-block;
-    padding: 0.8rem 2rem;
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
     background-color: #4b0082;
     color: white;
-    border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    margin-top: 1.5rem;
+    border-radius: 10px;
+    transition: background 0.3s ease-in-out;
   }
   
   .cta-button:hover {
     background-color: #6a0dad;
   }
   
-  /* Highlights */
-  .highlights {
-    padding: 2rem 1rem;
-    background-color: #fafafa;
+/* Highlights como tarjetas */
+.highlights {
+    padding: 3rem 2rem;
+    background-color: #fdf2f8;
     text-align: center;
   }
   
   .highlights h3 {
     color: #4b0082;
-    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
   }
   
   .highlights ul {
@@ -93,10 +123,25 @@
     padding: 0.5rem 0;
     font-size: 1.1rem;
   }
-  
-  /* Footer */
-  footer {
-    background-color: #ffb6c1;
+  .highlight-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-size: 1rem;
+    color: #333;
+  }
+  .card p {
+    margin-top: 0.5rem;
+  }
+/* Footer */
+footer {
+    background-color: #ffdef0;
     text-align: center;
     padding: 1rem;
     color: #4b0082;
