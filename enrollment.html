@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enrollment – Butterfly Child Care</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Butterfly Child Care</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="program.html">Program</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="enrollment.html">Enrollment</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="enrollment-content">
+    <section>
+      <h2>Enrollment Form</h2>
+      <p>Please fill out the form below and we will contact you to schedule a tour or enrollment meeting.</p>
+    </section>
+
+    <form action="https://formspree.io/f/your-form-id" method="POST" class="enrollment-form">
+      <label for="parentName">Parent's Full Name</label>
+      <input type="text" id="parentName" name="parentName" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="_replyto" required />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="childName">Child's Name</label>
+      <input type="text" id="childName" name="childName" required />
+
+      <label for="childAge">Child's Age</label>
+      <input type="number" id="childAge" name="childAge" min="0" max="5" required />
+
+      <label for="message">Message or Special Notes</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+
+      <button type="submit">Submit Enrollment Request</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Butterfly Child Care | San Rafael, CA | License #XXXXXXX</p>
+  </footer>
+
+</body>
+</html>
