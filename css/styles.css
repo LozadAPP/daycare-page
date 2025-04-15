@@ -151,8 +151,8 @@ footer {
     padding: 2rem 1.5rem;
     max-width: 800px;
     margin: auto;
+    line-height: 1.7;
   }
-  
   .about-content section {
     margin-bottom: 2rem;
   }
@@ -160,9 +160,22 @@ footer {
   .about-content h2,
   .about-content h3 {
     color: #4b0082;
+    margin-bottom: 1rem;
+  }
+  .highlight-block {
+    background-color: #fff0f7;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
+  .highlight-block ul {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+  .highlight-block li {
     margin-bottom: 0.5rem;
   }
-  
+
   .about-content p {
     margin-bottom: 1rem;
     font-size: 1.05rem;
@@ -263,16 +276,16 @@ footer {
     margin-bottom: 1rem;
   }
   
-  .contact-info-box {
-    background-color: #fef1f5;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
+.contact-info-box {
+  background-color: #fef1f5;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 1.6;
+}
   
-  .contact-info-box a {
+.contact-info-box a {
     color: #4b0082;
     text-decoration: none;
   }
