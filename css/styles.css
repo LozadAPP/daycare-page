@@ -148,11 +148,14 @@ footer {
     font-size: 0.9rem;
   }
   .about-content {
-    padding: 2rem 1.5rem;
+    padding: 3rem 2rem;
     max-width: 800px;
     margin: auto;
-    line-height: 1.7;
+    background-color: #fff9f9;
+    color: #333;
+    line-height: 1.8;
   }
+  
   .about-content section {
     margin-bottom: 2rem;
   }
@@ -177,8 +180,8 @@ footer {
   }
 
   .about-content p {
-    margin-bottom: 1rem;
     font-size: 1.05rem;
+    margin-bottom: 1rem;
   }
   
   .contact-info a {
