@@ -7,12 +7,15 @@
   
 /* Fuente y colores generales */
 body {
-    font-family: 'Quicksand', sans-serif;
-    background: #fff9f8;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
+  font-family: 'Quicksand', sans-serif;
+  background: #fff9f8;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  font-size: 18px; /* antes probablemente estaba en 16px */
+  line-height: 1.7;
+}
+
   /* Encabezado moderno */
   .main-header {
     background-color: #ffdef0;
