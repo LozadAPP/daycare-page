@@ -36,24 +36,21 @@ body {
   }
   .logo-area {
     display: flex;
-    align-items: flex-end; /* ✅ Alinea el texto abajo */
-    align-items: center;
-    text-align: center;
+    align-items: flex-end; /* ✅ Esto ahora sí funciona correctamente */
+    gap: 0.6rem;
     color: #4b0082;
+    font-weight: 800;
   }
   
   .logo-area .logo-img {
-    height: 110px;         /* 📈 Aumentamos el tamaño del logo */
-    max-height: 110px;    /* Opcional: para que no se estire demasiado */
+    height: 110px;
+    max-height: 110px;
     object-fit: contain;
-    margin-top: -10px;     /* 💡 OPCIONAL: levanta el logo un poco para que no haga crecer el header */
   }
   .logo-area span {
     font-size: 2rem;
-    padding-bottom: 4px; /* 🔽 Baja un poquito el texto */
-    margin-top: 0.3rem;    /* 🔽 Espacio entre imagen y texto */
-    line-height: 1.2;
-    font-weight: 800;
+    line-height: 1.1;
+    padding-bottom: 4px; /* 🔽 baja el texto aún más si hace falta */
   }
   header h1 {
     font-size: 2.2rem;
