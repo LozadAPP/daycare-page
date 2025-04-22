@@ -126,16 +126,18 @@ body {
   .cta-button {
     margin-top: 1.5rem;
     padding: 1rem 2rem;
-    background-color: #4b0082;
+    background: linear-gradient(45deg, #6a0dad, #b266ff);
     color: white;
-    text-decoration: none;
+    font-size: 1.1rem;
     font-weight: bold;
     border-radius: 10px;
-    transition: background 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
   }
   
   .cta-button:hover {
-    background-color: #6a0dad;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
   }
   
 /* Highlights como tarjetas */
