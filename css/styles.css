@@ -64,13 +64,13 @@ body {
   }
   
   nav a {
-    text-decoration: none;
-    color: #4b0082;
+    font-size: 1.3rem;
     font-weight: 700;
-    font-size: 1.3rem; /* ¡Aquí subimos el tamaño real! */
+    color: #4b0082;
+    text-decoration: none;
     padding: 0.8rem 1.2rem;
     border-radius: 6px;
-    transition: all 0.25s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   
   
