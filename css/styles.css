@@ -48,9 +48,10 @@ body {
     object-fit: contain;
   }
   .logo-area span {
-    font-size: 2rem;
+    font-size: 2.4rem;   /* 🔺 Antes: 2rem → subimos para que se vea más destacado */
+    padding-bottom: 4px; 
     line-height: 1.1;
-    padding-bottom: 4px; /* 🔽 baja el texto aún más si hace falta */
+    font-weight: 800;
   }
   header h1 {
     font-size: 2.2rem;
