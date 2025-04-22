@@ -22,7 +22,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.8rem 3rem;
+    padding: 2.2rem 3rem;  /* 🔺 Antes: 1.8rem – más altura vertical */
     flex-wrap: wrap;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     font-size: 1.2rem;
