@@ -42,7 +42,10 @@ body {
     font-weight: 800;
     color: #4b0082;
   }
-  
+  .logo-area img {
+    height: 48px; /* antes quizás era 64px o más */
+    margin-right: 0.5rem;
+  }
   .logo-area .logo-img {
     width: 70px;
     height: auto;
