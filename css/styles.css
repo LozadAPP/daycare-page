@@ -565,21 +565,22 @@ footer {
   .cert-badge {
     bottom: 12px;
     left: 12px;
-    max-width: 120px;
-    padding: 0.4rem 0.6rem;
-    flex-direction: column;
+    max-width: 180px;
+    padding: 0.5rem 0.8rem;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
+    gap: 0.6rem;
   }
 
   .cert-badge img {
-    width: 38px;
-    margin: 0 0 0.3rem 0;
+    width: 50px;
+    margin: 0;
   }
 
   .cert-text {
-    font-size: 0.85rem;
-    line-height: 1.2;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    text-align: left;
   }
 
   .cert-text span {
