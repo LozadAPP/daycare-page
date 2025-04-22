@@ -44,8 +44,8 @@ body {
   }
   
   .logo-area .logo-img {
-    height: 120px;         /* 📈 Aumentamos el tamaño del logo */
-    max-height: 120px;    /* Opcional: para que no se estire demasiado */
+    height: 110px;         /* 📈 Aumentamos el tamaño del logo */
+    max-height: 110px;    /* Opcional: para que no se estire demasiado */
     object-fit: contain;
     margin-top: -10px;     /* 💡 OPCIONAL: levanta el logo un poco para que no haga crecer el header */
   }
