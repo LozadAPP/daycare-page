@@ -22,7 +22,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2.2rem 3rem;  /* 🔺 Antes: 1.8rem – más altura vertical */
+    padding: 1.2rem 3rem;  /* ✅ menos alto, pero sigue centrado */
     flex-wrap: wrap;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     font-size: 1.2rem;
@@ -44,10 +44,16 @@ body {
   }
   
   .logo-area .logo-img {
-    width: auto;
-    height: 100px;         /* 🔺 Subimos de 90px a 100px */
-    max-height: 100px;
+    height: 90px;
+    max-height: 90px;
     object-fit: contain;
+  }
+  .logo-area img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
   }
   header h1 {
     font-size: 2.2rem;
