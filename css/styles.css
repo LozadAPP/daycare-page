@@ -94,18 +94,18 @@ body {
   }
 
   .cert-badge img {
-    width: 60px;
+    width: 70px;
     height: auto;
   }
   .cert-text {
     font-family: 'Poppins', sans-serif;
     color: #4b0082;
     line-height: 1.2;
-    font-size: 1.1rem;
+    font-size: 1.2rem;   /* 🔼 Más legible */
     font-weight: 700;
   }
   .cert-text span {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 400;
     color: #333;
   }
@@ -569,8 +569,8 @@ footer {
     padding: 1rem 1.6rem;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;              /* 🔼 Separación interna */
-
+    gap: 1rem;
+  }
 
   .cert-badge img {
     width: 50px;
