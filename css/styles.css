@@ -80,7 +80,7 @@ body {
   .cert-badge {
     position: absolute;
     bottom: 20px;
-    left: 20px;
+    right: 20px; /* ✅ lo movemos a la derecha */
     background: #fff;
     padding: 0.8rem 1.2rem;
     border-radius: 16px;
@@ -564,7 +564,7 @@ footer {
   /* 🔹 Certificado flotante adaptado */
   .cert-badge {
     bottom: 12px;
-    left: 12px;
+    right: 12px; 
     max-width: 180px;
     padding: 0.5rem 0.8rem;
     flex-direction: row;
