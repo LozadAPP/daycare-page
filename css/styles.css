@@ -36,7 +36,7 @@ body {
   }
   .logo-area {
     display: flex;
-    flex-direction: column;  /* 🔁 Cambia de fila a columna */
+    align-items: flex-end; /* ✅ Alinea el texto abajo */
     align-items: center;
     text-align: center;
     color: #4b0082;
@@ -50,6 +50,7 @@ body {
   }
   .logo-area span {
     font-size: 2rem;
+    padding-bottom: 4px; /* 🔽 Baja un poquito el texto */
     margin-top: 0.3rem;    /* 🔽 Espacio entre imagen y texto */
     line-height: 1.2;
     font-weight: 800;
