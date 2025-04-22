@@ -77,7 +77,30 @@ body {
     transition: all 0.3s ease-in-out;
   }
   
+  .cert-badge {
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.7rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 150px;
+    transition: transform 0.3s ease;
+  }
+  .cert-badge img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
   
+  .cert-badge:hover {
+    transform: scale(1.03);
+  }
   nav a:hover {
     background-color: rgba(75, 0, 130, 0.08);
   }
@@ -437,13 +460,24 @@ footer {
   margin: 0;
   list-style: none;
 }
+.highlight-cards .card {
+  background: white;
+  padding: 1.8rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.highlight-cards .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
 @media (max-width: 768px) {
   .logo-area .logo-img {
     height: 80px;         /* Antes era 70px o menos */
     max-height: 80px;
   }
-  
+
   .logo-area {
     font-size: 1.6rem;     /* El texto del logo también más grande */
   }
@@ -481,16 +515,14 @@ footer {
     flex-direction: row;
     justify-content: space-between;
   }
+
+  /* 🔽 Ajuste del certificado para móviles */
+  .cert-badge {
+    left: 10px;
+    bottom: 10px;
+    max-width: 110px;
+    padding: 0.4rem 0.6rem;
+  }
 }
 
-.highlight-cards .card {
-  background: white;
-  padding: 1.8rem;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-.highlight-cards .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
+
