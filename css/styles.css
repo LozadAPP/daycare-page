@@ -82,28 +82,30 @@ body {
     bottom: 20px;
     left: 20px;
     background: #fff;
-    padding: 0.6rem 1rem;
-    border-radius: 12px;
+    padding: 0.8rem 1.2rem;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     z-index: 10;
-    max-width: 200px;
+    max-width: 240px;
+    gap: 0.8rem;
+    transition: transform 0.2s ease;
   }
+
   .cert-badge img {
-    width: 48px;
+    width: 60px;
     height: auto;
-    margin-right: 0.8rem;
   }
   .cert-text {
     font-family: 'Poppins', sans-serif;
     color: #4b0082;
     line-height: 1.2;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 700;
   }
   .cert-text span {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 400;
     color: #333;
   }
