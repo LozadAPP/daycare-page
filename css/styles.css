@@ -409,6 +409,15 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .logo-area .logo-img {
+    height: 80px;         /* Antes era 70px o menos */
+    max-height: 80px;
+  }
+  
+  .logo-area {
+    font-size: 1.6rem;     /* El texto del logo también más grande */
+  }
+
   .hamburger {
     display: block;
   }
@@ -431,13 +440,14 @@ footer {
   }
 
   nav a {
-    font-size: 1.2rem;
+    font-size: 1.3rem;      /* Opcional: mejora legibilidad de las opciones */
     padding: 0.8rem 0;
     width: 100%;
     border-bottom: 1px solid #e7c8dd;
   }
 
   .main-header {
+    padding: 1.5rem 1.5rem; /* Un poco más de espacio en móviles */
     flex-direction: row;
     justify-content: space-between;
   }
