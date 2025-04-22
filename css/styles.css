@@ -44,14 +44,15 @@ body {
   }
   
   .logo-area .logo-img {
-    height: 140px;         /* 📈 Aumentamos el tamaño del logo */
-    max-height: 140px;    /* Opcional: para que no se estire demasiado */
+    height: 120px;         /* 📈 Aumentamos el tamaño del logo */
+    max-height: 120px;    /* Opcional: para que no se estire demasiado */
     object-fit: contain;
     margin-top: -10px;     /* 💡 OPCIONAL: levanta el logo un poco para que no haga crecer el header */
   }
   .logo-area span {
     font-size: 2.2rem;
     line-height: 1.1;
+    transform: translateY(5px);  /* 💡 Ajuste fino para bajar el texto */
   }
   header h1 {
     font-size: 2.2rem;
