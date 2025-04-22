@@ -16,17 +16,17 @@ body {
   line-height: 1.7;
 }
 
-  /* Encabezado moderno */
-  .main-header {
-    background-color: #ffdef0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 3rem;  /* ✅ menos alto, pero sigue centrado */
-    flex-wrap: wrap;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    font-size: 1.2rem;
-  }
+.main-header {
+  background-color: #ffdef0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1.5rem 3rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
   /* Header */
   header {
     background-color: #ffb6c1;
@@ -98,11 +98,22 @@ body {
     margin-bottom: 1rem;
   }
   .hero-overlay {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 2rem;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 2.5rem;
     text-align: center;
-    border-radius: 20px;
-    max-width: 600px;
+    border-radius: 24px;
+    max-width: 650px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  }
+  .hero-overlay h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #4b0082;
+    margin-bottom: 1rem;
+  }
+  .hero-overlay p {
+    font-size: 1.2rem;
+    color: #555;
   }
   .hero-overlay h2 {
     font-size: 2.2rem;
