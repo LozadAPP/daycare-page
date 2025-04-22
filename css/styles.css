@@ -590,9 +590,8 @@ footer {
   /* 🔹 Franja de confianza */
   .trust-badge {
     top: 10px;
-    left: 10px;
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
+    right: 10px; /* ✅ Lo movemos también en móvil */
+    font-size: 0.9rem;
+    padding: 0.4rem 0.9rem;
   }
 }
