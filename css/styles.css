@@ -44,9 +44,9 @@ body {
   }
   
   .logo-area .logo-img {
-    width: 70px;
+    width: 90px;
     height: auto;
-    max-height: 70px;
+    max-height: 90px;
     object-fit: contain;
   }
   header h1 {
@@ -64,7 +64,7 @@ body {
   }
   
   nav a {
-    font-size: 1.3rem;
+    font-size: 1.5rem; /* Se verá más grande y limpio */
     font-weight: 700;
     color: #4b0082;
     text-decoration: none;
