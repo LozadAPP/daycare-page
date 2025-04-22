@@ -176,7 +176,10 @@ body {
     color: #333;
   }
   .card p {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #4b0082;
   }
 /* Footer */
 footer {
@@ -470,3 +473,14 @@ footer {
   }
 }
 
+.highlight-cards .card {
+  background: white;
+  padding: 1.8rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.highlight-cards .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
