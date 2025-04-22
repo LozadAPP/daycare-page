@@ -68,11 +68,11 @@ body {
   }
   
   nav a {
-    font-size: 1.5rem; /* Se verá más grande y limpio */
+    font-size: 1.8rem;           /* 🔺 Antes: 1.5rem */
     font-weight: 700;
     color: #4b0082;
     text-decoration: none;
-    padding: 0.8rem 1.2rem;
+    padding: 0.6rem 1rem;        /* 🔽 Le bajamos un poco el padding vertical */
     border-radius: 6px;
     transition: all 0.3s ease-in-out;
   }
