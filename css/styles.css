@@ -36,10 +36,9 @@ body {
   }
   .logo-area {
     display: flex;
+    flex-direction: column;  /* 🔁 Cambia de fila a columna */
     align-items: center;
-    gap: 0.6rem;
-    font-size: 2.2rem;     /* 🔺 Subimos de 2rem a 2.2rem */
-    font-weight: 800;
+    text-align: center;
     color: #4b0082;
   }
   
@@ -50,9 +49,10 @@ body {
     margin-top: -10px;     /* 💡 OPCIONAL: levanta el logo un poco para que no haga crecer el header */
   }
   .logo-area span {
-    font-size: 2.2rem;
-    line-height: 1.1;
-    transform: translateY(5px);  /* 💡 Ajuste fino para bajar el texto */
+    font-size: 2rem;
+    margin-top: 0.3rem;    /* 🔽 Espacio entre imagen y texto */
+    line-height: 1.2;
+    font-weight: 800;
   }
   header h1 {
     font-size: 2.2rem;
