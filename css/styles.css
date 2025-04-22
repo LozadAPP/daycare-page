@@ -49,7 +49,10 @@ body {
     object-fit: contain;
     margin-top: -10px;     /* 💡 OPCIONAL: levanta el logo un poco para que no haga crecer el header */
   }
-
+  .logo-area span {
+    font-size: 2.2rem;
+    line-height: 1.1;
+  }
   header h1 {
     font-size: 2.2rem;
     margin-bottom: 0.5rem;
