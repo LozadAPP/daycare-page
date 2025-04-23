@@ -56,7 +56,7 @@ body {
     font-weight: 700;
     display: inline-block;
     transform: translateY(6px);
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.08);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.08); /* ✅ Sombra más suave */
   }
   header h1 {
     font-size: 2.2rem;
