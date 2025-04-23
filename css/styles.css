@@ -49,12 +49,14 @@ body {
     object-fit: contain;
   }
   .logo-area span {
-    font-size: 2.4rem;
-    padding-bottom: 8px;   /* 🔽 Aumentamos ligeramente */
+    font-family: 'Fredoka', sans-serif; /* ✅ Nueva fuente */
+    font-size: 2.8rem;                  /* ✅ Un poco más grande */
+    padding-bottom: 8px;
     line-height: 1.1;
-    font-weight: 800;
+    font-weight: 700;
     display: inline-block;
-    transform: translateY(6px); /* ✅ Mueve el texto hacia abajo visualmente */
+    transform: translateY(6px);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.08);
   }
   header h1 {
     font-size: 2.2rem;
