@@ -36,10 +36,11 @@ body {
   }
   .logo-area {
     display: flex;
-    align-items: flex-end; /* ✅ Esto ahora sí funciona correctamente */
+    align-items: flex-end;
     gap: 0.6rem;
     color: #4b0082;
     font-weight: 800;
+    padding-bottom: 0.4rem;  /* ✅ Empuja el texto un poco hacia abajo */
   }
   
   .logo-area .logo-img {
@@ -48,10 +49,12 @@ body {
     object-fit: contain;
   }
   .logo-area span {
-    font-size: 2.4rem;   /* 🔺 Antes: 2rem → subimos para que se vea más destacado */
-    padding-bottom: 4px; 
+    font-size: 2.4rem;
+    padding-bottom: 8px;   /* 🔽 Aumentamos ligeramente */
     line-height: 1.1;
     font-weight: 800;
+    display: inline-block;
+    transform: translateY(6px); /* ✅ Mueve el texto hacia abajo visualmente */
   }
   header h1 {
     font-size: 2.2rem;
