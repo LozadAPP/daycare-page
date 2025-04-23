@@ -68,12 +68,15 @@ body {
   }
   
   nav a {
-    font-size: 1.8rem;           /* 🔺 Antes: 1.5rem */
+    font-size: 2rem;              /* 🔼 Más grande */
     font-weight: 700;
     color: #6b3e75;
     text-decoration: none;
-    padding: 0.6rem 1rem;        /* 🔽 Le bajamos un poco el padding vertical */
-    border-radius: 6px;
+    padding: 1.2rem 1.6rem;        /* 🔼 Más alto para centrar verticalmente */
+    display: flex;
+    align-items: center;          /* 🔄 Centrado vertical */
+    justify-content: center;      /* 🔄 Centrado horizontal */
+    border-radius: 8px;
     transition: all 0.3s ease-in-out;
   }
   
@@ -478,7 +481,8 @@ footer {
   gap: 2rem;
   flex-wrap: wrap;
   align-items: center;
-  padding-left: 0;
+  justify-content: center;     /* 🔄 Centrado horizontal de todo el menú */
+  padding: 0;
   margin: 0;
   list-style: none;
 }
