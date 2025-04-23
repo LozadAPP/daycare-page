@@ -146,24 +146,33 @@ body {
     margin-bottom: 1rem;
   }
   .hero-overlay {
-    background: rgba(255, 255, 255, 0.92);
-    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.7); /* 🔸 Menos opaco para dejar ver la imagen */
+    backdrop-filter: blur(10px);         /* 🔸 Efecto frosted-glass */
+    -webkit-backdrop-filter: blur(10px); /* 🔸 Soporte Safari */
+    padding: 3rem 2rem;
     text-align: center;
-    border-radius: 24px;
-    max-width: 700px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border-radius: 28px;
+    max-width: 680px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
     z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
+  
   .hero-overlay h1 {
-    font-size: 2.4rem;
-    font-weight: 700;
+    font-size: 2.6rem;               /* 🔼 Un poco más grande */
     color: #4b0082;
+    font-weight: 800;
+    line-height: 1.3;
     margin-bottom: 1rem;
     font-family: 'Poppins', sans-serif;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.08); /* 🔸 Mejor contraste */
   }
   .hero-overlay p {
     font-size: 1.2rem;
-    color: #555;
+    color: #333;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
   }
   .hero-overlay h2 {
     font-size: 2.2rem;
