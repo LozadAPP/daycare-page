@@ -29,9 +29,9 @@ body {
 }
   /* Header */
   header {
-    background-color: #ffe8d6; /* header superior (reemplazo de #ffb6c1) */
+    background-color: #ffe8d6;
     color: #6b3e75;
-    padding: 1.5rem;
+    padding: 0.5rem 1.5rem 1rem; /* 🔽 menos padding arriba */
     text-align: center;
   }
   .logo-area {
