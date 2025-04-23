@@ -146,10 +146,10 @@ body {
     margin-bottom: 1rem;
   }
   .hero-overlay {
-    background: rgba(255, 255, 255, 0.7); /* 🔸 Menos opaco para dejar ver la imagen */
-    backdrop-filter: blur(10px);         /* 🔸 Efecto frosted-glass */
-    -webkit-backdrop-filter: blur(10px); /* 🔸 Soporte Safari */
-    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 3rem 2rem 3.5rem; /* 🔽 más espacio en la parte inferior */
     text-align: center;
     border-radius: 28px;
     max-width: 680px;
@@ -157,22 +157,21 @@ body {
     z-index: 2;
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
-  
   .hero-overlay h1 {
-    font-size: 2.6rem;               /* 🔼 Un poco más grande */
+    font-size: 2.6rem;
     color: #4b0082;
     font-weight: 800;
     line-height: 1.3;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     font-family: 'Poppins', sans-serif;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.08); /* 🔸 Mejor contraste */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.08);
   }
   .hero-overlay p {
     font-size: 1.2rem;
     color: #333;
     line-height: 1.6;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 2.2rem; /* 🔽 espacio extra debajo del párrafo */
   }
   .hero-overlay h2 {
     font-size: 2.2rem;
@@ -181,7 +180,6 @@ body {
   }
 
   .cta-button {
-    margin-top: 1.5rem;
     padding: 1rem 2rem;
     background: linear-gradient(45deg, #6a0dad, #b266ff);
     color: white;
