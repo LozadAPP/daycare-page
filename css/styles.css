@@ -645,3 +645,12 @@ footer {
 .gallery-grid img:hover {
   transform: scale(1.03);
 }
+.about-section a:hover, .testimonials a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(142, 84, 233, 0.4);
+}
+
+.testimonials div[style*="background: white"]:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
