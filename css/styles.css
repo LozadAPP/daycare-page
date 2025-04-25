@@ -47,7 +47,7 @@ header {
 }
 
 .logo-area .logo-img {
-  height: 100p;
+  height: 100px;
   max-height: 100px;
   object-fit: contain;
 }
@@ -106,7 +106,7 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Botón hamburguesa oculto en desktop */
+/* Botón hamburguesa */
 .hamburger {
   display: none;
   font-size: 2rem;
@@ -128,15 +128,17 @@ footer {
   list-style: none;
 }
 
-/* Media Queries (comunes) */
+/* Media Queries */
 @media (max-width: 768px) {
   .logo-area .logo-img {
     height: 80px;
     max-height: 80px;
   }
 
-  .logo-area {
+  .logo-area span {
     font-size: 1.6rem;
+  transform: translateY(4px);
+  padding-bottom: 4px;
   }
 
   .hamburger {
@@ -168,24 +170,39 @@ footer {
   }
 
   .main-header {
-    background-color: #fff4ec;
     padding: 1.5rem 1.5rem;
     flex-direction: row;
     justify-content: space-between;
   }
 }
+
 /*Estilos para la página de Inicio (index.html)*/
 /* Hero section */
 .hero {
   position: relative;
   background: url('../assets/images/hero-bg.jpg') center/cover no-repeat;
   height: 70vh;
-  min-height: 500px; /* Altura mínima para dispositivos móviles */
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-attachment: fixed; /* Efecto parallax opcional */
+  background-attachment: fixed;
+}
+
+.hero.no-bg {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  max-height: 65vh;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .hero h2 {
@@ -197,13 +214,14 @@ footer {
 .hero-overlay {
   position: absolute;
   bottom: 2rem;
-  left: 2rem; /* Puedes usar right: 2rem para cambiar de lado */
+  left: 2rem;
   background-color: rgba(255, 255, 255, 0.95);
   padding: 2rem;
   border-radius: 20px;
   max-width: 420px;
   box-shadow: 0 6px 30px rgba(0,0,0,0.08);
 }
+
 .hero-overlay h1 {
   font-size: 3rem;
   color: #6b3e75;
@@ -246,7 +264,7 @@ footer {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
-/* Highlights como tarjetas */
+/* Highlights */
 .highlights {
   padding: 3rem 2rem;
   background-color: #fef8f4;
@@ -358,6 +376,18 @@ footer {
   z-index: 10;
 }
 
+.left-badges {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  z-index: 10;
+  opacity: 0.85;
+}
+
 /* Media Queries específicas para index */
 @media (max-width: 768px) {
   .hero {
@@ -419,6 +449,7 @@ footer {
     padding: 0.4rem 0.9rem;
   }
 }
+
 /* Estilos para la página "About" (about.html) */
 .about-content {
   padding: 3rem 2rem;
@@ -468,7 +499,8 @@ footer {
 .contact-info a:hover {
   text-decoration: underline;
 }
-/* Estilos para la página "About" (about.html) */
+
+/* Estilos para la página "Program" (program.html) */
 .program-content {
   padding: 2rem 1.5rem;
   max-width: 900px;
@@ -496,6 +528,7 @@ footer {
   font-size: 1rem;
 }
 
+/* Estilos para la página "Enrollment" (enrollment.html) */
 .enrollment-content {
   padding: 2rem 1.5rem;
   max-width: 700px;
@@ -545,6 +578,7 @@ footer {
 .enrollment-form button:hover {
   background-color: #6a0dad;
 }
+
 /* Estilos para la página "Contact" (contact.html) */
 .contact-content {
   padding: 2rem 1.5rem;
@@ -609,6 +643,7 @@ footer {
 .contact-form button:hover {
   background-color: #6a0dad;
 }
+
 /* Estilos para la página "Gallery" (gallery.html) */
 .gallery-content {
   padding: 2rem 1.5rem;
@@ -645,7 +680,10 @@ footer {
 .gallery-grid img:hover {
   transform: scale(1.03);
 }
-.about-section a:hover, .testimonials a:hover {
+
+/* Efectos hover */
+.about-section a:hover, 
+.testimonials a:hover {
   transform: translateY(-3px);
   box-shadow: 0 7px 20px rgba(142, 84, 233, 0.4);
 }
@@ -653,28 +691,4 @@ footer {
 .testimonials div[style*="background: white"]:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-}
-.left-badges {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.5rem;
-  z-index: 10;
-  opacity: 0.85;
-}
-.hero.no-bg {
-  position: relative;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-}
-.hero-img {
-  width: 100%;
-  max-height: 65vh; /* ← Esto limita la altura a 65% del viewport */
-  height: auto;
-  object-fit: contain;
-  display: block;
 }
