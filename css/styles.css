@@ -734,19 +734,19 @@ footer {
   top: 0;
   bottom: 0;
   height: 100%;
-  width: auto;
-  max-width: 150px; /* 🔧 AJUSTE CLAVE */
+  width: 120px; /* 🔧 Controla el ancho para que no invada el centro */
+  max-width: 14vw; /* Se adapta en pantallas más grandes */
+  object-fit: cover;
   z-index: 1;
   opacity: 0.95;
   pointer-events: none;
-  object-fit: contain;
 }
 .hero-side-image.left {
   left: 0;
-  transform: translateX(-20%);
+  transform: translateX(-10%);
 }
 
 .hero-side-image.right {
   right: 0;
-  transform: translateX(20%);
+  transform: translateX(10%);
 }
