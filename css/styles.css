@@ -185,26 +185,7 @@ footer {
   justify-content: center;
   overflow: hidden;
 }
-.hero-decor {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: auto;
-  height: 100%;
-  max-height: 100%;
-  z-index: 3;
-  pointer-events: none;
-  object-fit: cover;
-  opacity: 1; /* ❗Quita transparencia */
-}
-.hero-decor.left {
-  left: 0;
-  transform: translateX(-100%);
-}
-.hero-decor.right {
-  right: 0;
-  transform: translateX(100%);
-}
+
 .hero h2 {
   font-size: 1.8rem;
   color: #4b0082;
@@ -687,19 +668,11 @@ footer {
   width: 100%;
   height: auto;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fffaf5;
 }
-
-/* Imagen principal centrada */
 .hero-img {
-  width: auto;
-  max-width: 100%;
+  width: 100%;
+  max-height: 65vh; /* ← Esto limita la altura a 65% del viewport */
   height: auto;
-  max-height: 600px;
+  object-fit: contain;
   display: block;
-  z-index: 2;
-  position: relative;
 }
