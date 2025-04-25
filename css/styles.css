@@ -175,15 +175,17 @@ footer {
   }
 }
 /*Estilos para la página de Inicio (index.html)*/
-/* Hero con fondo */
+/* Hero section */
 .hero {
   position: relative;
   background: url('../assets/images/hero-bg.jpg') center/cover no-repeat;
-  height: 65vh;
+  height: 70vh;
+  min-height: 500px; /* Altura mínima para dispositivos móviles */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background-attachment: fixed; /* Efecto parallax opcional */
 }
 
 .hero h2 {
