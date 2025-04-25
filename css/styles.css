@@ -671,7 +671,8 @@ footer {
 }
 .hero-img {
   width: 100%;
+  max-height: 65vh; /* ← Esto limita la altura a 65% del viewport */
   height: auto;
+  object-fit: contain;
   display: block;
-  object-fit: contain; /* Asegura que no recorte la imagen */
 }
