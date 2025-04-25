@@ -178,12 +178,11 @@ footer {
 /* Hero con fondo */
 .hero {
   position: relative;
-  background: url('../assets/images/hero-bg.jpg') center/cover no-repeat;
-  height: 65vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  background: url('../assets/images/hero-bg.jpg') center center no-repeat;
+  background-size: contain;     /* ✅ muestra toda la imagen */
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 70vh;
 }
 
 .hero h2 {
@@ -662,4 +661,8 @@ footer {
   gap: 0.5rem;
   z-index: 10;
   opacity: 0.85;
+}
+.left-badges img {
+  max-width: 100px;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
 }
