@@ -13,8 +13,8 @@
 <body>
   <header class="main-header">
     <div class="logo-area">
-      <img src="assets/images/logo.png" alt="Butterfly Child Care logo" class="logo-img" />
-      <span>Butterfly Child Care</span>
+      <!-- Logo más grande sin fondo -->
+      <img src="assets/images/butterfly-logo-title.png" alt="Butterfly Child Care logo" class="logo-img" style="height: 120px;"/>
     </div>
     
     <button class="hamburger" id="hamburger">&#9776;</button>
@@ -31,23 +31,31 @@
   </header>
 
   <main>
-    <section class="hero no-bg">
-      <!-- Imagen en lugar de background -->
-      <img src="assets/images/hero-bg.jpg" alt="Children at Butterfly Child Care" class="hero-img" />
-    
-      <!-- Badge flotante en esquina inferior derecha -->
-      <div class="left-badges">
-        <div class="cert-badge">
-          <img src="assets/images/butterfly-logo-title.png" alt="Butter Fly Decorative Badge" />
-        </div>
-        <div class="trust-badge">Trusted by local families – Licensed since 2008</div>
+    <!-- Sección Hero rediseñada -->
+    <section class="hero" style="position: relative; min-height: 70vh; display: flex; align-items: center; justify-content: center; background: url('assets/images/hero-bg.jpg') center/cover no-repeat;">
+      <!-- Overlay para mejor legibilidad -->
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.2);"></div>
+      
+      <!-- CTA más grande y destacado -->
+      <div class="hero-overlay" style="position: relative; background: rgba(255,255,255,0.95); padding: 3rem; border-radius: 24px; max-width: 600px; margin: 2rem; box-shadow: 0 15px 40px rgba(0,0,0,0.15); z-index: 2;">
+        <h1 style="font-size: 2.8rem; color: #4b0082; margin-bottom: 1.5rem; line-height: 1.2; font-family: 'Poppins', sans-serif;">
+          Schedule a Visit Today
+        </h1>
+        <p style="font-size: 1.3rem; color: #555; line-height: 1.6; margin-bottom: 2rem;">
+          We'd love to show you around Butterfly Child Care. Book your visit now and come meet us in person.
+        </p>
+        <a href="contact.html" class="cta-button" style="display: inline-block; padding: 1.2rem 3rem; background: linear-gradient(to right, #8e54e9, #6a11cb); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(142, 84, 233, 0.3);">
+          Schedule Here
+        </a>
       </div>
-    
-      <!-- Caja de llamado a la acción reposicionada -->
-      <div class="hero-overlay">
-        <h1>Schedule a Visit Today</h1>
-        <p>We’d love to show you around Butterfly Child Care. Book your visit now and come meet us in person.</p>
-        <a href="contact.html" class="cta-button">Schedule Now</a>
+
+      <!-- Badge de licencia en esquina inferior derecha -->
+      <div style="position: absolute; right: 30px; bottom: 30px; background: rgba(255,255,255,0.9); padding: 15px; border-radius: 16px; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 3;">
+        <img src="assets/images/california-license.png" alt="Licensed" style="height: 50px;">
+        <div style="font-weight: 600; color: #4b0082;">
+          Licensed & Insured<br>
+          <span style="font-size: 0.9rem; color: #666;">Since 2008</span>
+        </div>
       </div>
     </section>
 
