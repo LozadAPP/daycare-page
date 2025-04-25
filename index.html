@@ -37,13 +37,6 @@
       <!-- <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.2);"></div> -->
       
       <!-- Badge de licencia -->
-      <div style="position: absolute; right: 30px; bottom: 30px; background: rgba(255,255,255,0.9); padding: 15px; border-radius: 16px; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 3;">
-        <img src="assets/images/california-license.png" alt="Licensed" style="height: 50px;">
-        <div style="font-weight: 600; color: #4b0082;">
-          Licensed & Insured<br>
-          <span style="font-size: 0.9rem; color: #666;">Since 2008</span>
-        </div>
-      </div>
     </section>
 
     <!-- Sección About Us mejorada -->
@@ -233,6 +226,15 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+<!-- Badge fijo en esquina inferior derecha -->
+<div style="position: fixed; right: 30px; bottom: 30px; background: rgba(255,255,255,0.95); padding: 15px; border-radius: 16px; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); z-index: 1000; border: 1px solid rgba(75, 0, 130, 0.1);">
+  <img src="assets/images/california-license.png" alt="Licensed" style="height: 50px;">
+  <div style="font-weight: 600; color: #4b0082;">
+    Licensed & Insured<br>
+    <span style="font-size: 0.9rem; color: #666;">Since 2008</span>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
 </body>
 </html>
