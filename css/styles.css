@@ -134,7 +134,9 @@ footer {
     height: 80px;
     max-height: 80px;
   }
-
+  .side-decor {
+    display: none;
+  }
   .logo-area {
     font-size: 1.6rem;
   }
@@ -701,4 +703,21 @@ footer {
 
 .hero-decor.right {
   margin-left: -4vw;
+}
+.side-decor {
+  position: absolute;
+  top: 10%;
+  width: 140px;
+  height: auto;
+  z-index: 5;
+  opacity: 1;
+}
+.left-decor {
+  left: 0;
+  transform: translateX(-40%);
+}
+
+.right-decor {
+  right: 0;
+  transform: translateX(40%);
 }
