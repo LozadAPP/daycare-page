@@ -665,13 +665,13 @@ footer {
 }
 .hero.no-bg {
   position: relative;
+  width: 100%;
   height: auto;
-  padding-bottom: 0;
   overflow: hidden;
 }
-
 .hero-img {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: contain; /* Asegura que no recorte la imagen */
 }
