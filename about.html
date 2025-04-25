@@ -109,9 +109,9 @@
     /* Estilos específicos para about */
     .about-hero {
       position: relative;
-      min-height: 50vh;
+      min-height: 60vh;
       background: linear-gradient(rgba(75, 0, 130, 0.7), rgba(142, 84, 233, 0.7)), 
-                  url('assets/images/about-hero.jpg') center/cover no-repeat;
+                  url('assets/images/about-bg.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -156,6 +156,27 @@
       padding: 3rem;
       border-radius: 16px;
       margin: 4rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    .tips-content {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .tips-image {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+    }
+    
+    .tips-image img {
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
     }
     
     .contact-info {
@@ -247,25 +268,16 @@
       </div>
     </section>
 
-    <!-- Sección Tips -->
-    <section class="about-content-section tips-section" data-animate-trigger>
-      <h2 class="animate__animated animate__fadeIn">T I P S FOR YOU</h2>
-      
-      <div data-animate="fadeInUp" data-animate-delay="0.3">
+    <!-- Sección Tips con imagen -->
+    <section class="tips-section" data-animate-trigger>
+      <div class="tips-content" data-animate="fadeInUp">
+        <h2>T I P S FOR YOU</h2>
         <p>Choosing a childcare provider can be one of the most important decisions parents can make, particularly during the years before a child starts kindergarten. The number of available options can be overwhelming, and it is easy to be tempted to go with the first recommendation from a friend or neighbor. But experts warn that a childcare solution that works for one family might not work for yours. Here are some tips to help you find the right fit for your family.</p>
       </div>
-    </section>
-
-    <!-- Sección CTA -->
-    <section style="background: linear-gradient(135deg, #8e54e9, #6a11cb); padding: 4rem 2rem; border-radius: 20px; text-align: center; margin: 5rem auto; max-width: 800px; color: white;" 
-             class="animate__animated animate__pulse animate__delay-1s animate__slower animate__infinite" data-animate-trigger>
-      <h2 style="margin-bottom: 1.5rem; font-size: 2rem;">Schedule a Visit Today</h2>
-      <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem;">
-        Come see our facility and learn more about our program
-      </p>
-      <a href="contact.html" class="btn-glow" style="display: inline-block; padding: 1rem 2.5rem; background: white; color: #6a11cb; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-        Contact Us
-      </a>
+      
+      <div class="tips-image" data-animate="fadeInUp" data-animate-delay="0.3">
+        <img src="assets/images/tips-image.jpg" alt="Childcare tips">
+      </div>
     </section>
   </main>
 
