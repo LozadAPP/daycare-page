@@ -697,3 +697,35 @@ footer {
   right: 0;
   transform: translateX(40%);
 }
+.hero.solo-central {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65vh;
+  overflow: hidden;
+  background: #fffaf5;
+}
+
+.hero-bg-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 100%;
+  z-index: 0;
+}
+
+.hero-bg-container img {
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  display: block;
+}
+
+.hero-overlay,
+.left-badges {
+  z-index: 2;
+  position: relative;
+}
