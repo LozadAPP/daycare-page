@@ -729,3 +729,21 @@ footer {
   z-index: 2;
   position: relative;
 }
+.hero-side-image {
+  position: absolute;
+  top: 10%;
+  width: 160px;
+  max-width: 18vw;
+  z-index: 1;
+  opacity: 0.9;
+  pointer-events: none;
+}
+.hero-side-image.left {
+  left: 0;
+  transform: translateX(-40%);
+}
+
+.hero-side-image.right {
+  right: 0;
+  transform: translateX(40%);
+}
