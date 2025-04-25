@@ -228,14 +228,52 @@
     </div>
   </footer>
 
-<!-- Badge fijo en esquina inferior derecha - VERSIÓN GRANDE MEJORADA -->
-<div style="position: fixed; right: 30px; bottom: 30px; background: rgba(255,255,255,0.97); padding: 20px 25px; border-radius: 20px; display: flex; align-items: center; gap: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); z-index: 1000; border: 2px solid rgba(75, 0, 130, 0.15);">
-  <img src="assets/images/california-license.png" alt="Licensed" style="height: 70px; width: auto;">
+<!-- Badge premium en esquina inferior derecha -->
+<div style="position: fixed; 
+            right: 40px; 
+            bottom: 40px; 
+            background: linear-gradient(145deg, #ffffff, #f9f5ff); 
+            padding: 22px 28px; 
+            border-radius: 18px; 
+            display: flex; 
+            align-items: center; 
+            gap: 18px; 
+            box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18); 
+            z-index: 1000;
+            border: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+  
+  <img src="assets/images/california-license.png" alt="Licensed" 
+       style="height: 80px; 
+              width: auto; 
+              filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));">
+  
   <div style="font-family: 'Poppins', sans-serif;">
-    <div style="font-size: 1.5rem; font-weight: 700; color: #4b0082; line-height: 1.2;">Licensed & Insured</div>
-    <div style="font-size: 1.1rem; color: #666; margin-top: 5px;">Since 2008</div>
+    <div style="font-size: 1.8rem; 
+                font-weight: 700; 
+                color: #4b0082; 
+                line-height: 1.2; 
+                letter-spacing: 0.3px;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+      Licensed & Insured
+    </div>
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const badge = document.querySelector('div[style*="position: fixed"]');
+    
+    badge.addEventListener('mouseenter', function() {
+      this.style.transform = 'scale(1.05) translateY(-5px)';
+      this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
+    });
+    
+    badge.addEventListener('mouseleave', function() {
+      this.style.transform = 'scale(1)';
+      this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
+    });
+  });
+</script>
 
 <script src="js/main.js"></script>
 </body>
