@@ -185,7 +185,24 @@ footer {
   justify-content: center;
   overflow: hidden;
 }
-
+/* Ilustraciones decorativas a los lados */
+.hero-decor {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  max-height: 100%;
+  z-index: 2;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.hero-decor.left {
+  left: 0;
+  transform: translateX(-50%);
+}
+.hero-decor.right {
+  right: 0;
+  transform: translateX(50%);
+}
 .hero h2 {
   font-size: 1.8rem;
   color: #4b0082;
