@@ -193,17 +193,15 @@ footer {
 }
 
 .hero-overlay {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  padding: 3rem 2.2rem 4rem;
-  text-align: center;
-  border-radius: 30px;
-  max-width: 720px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem; /* Puedes usar right: 2rem para cambiar de lado */
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 420px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.08);
 }
-
 .hero-overlay h1 {
   font-size: 3rem;
   color: #6b3e75;
@@ -653,4 +651,15 @@ footer {
 .testimonials div[style*="background: white"]:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+.left-badges {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  z-index: 10;
+  opacity: 0.85;
 }
