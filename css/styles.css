@@ -729,6 +729,9 @@ footer {
   z-index: 2;
   position: relative;
 }
+.hero-bg-container {
+  z-index: 1;
+}
 .hero-side-image {
   position: absolute;
   top: 0;
@@ -737,7 +740,7 @@ footer {
   width: 90px;
   max-width: 8vw;
   object-fit: cover;
-  z-index: 1;
+  z-index: 0; /* 👈 Esto las manda detrás */
   opacity: 0.95;
   pointer-events: none;
 }
