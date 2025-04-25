@@ -713,7 +713,7 @@ footer {
   top: 50%;
   transform: translate(-50%, -50%);
   max-height: 100%;
-  z-index: 0;
+  z-index: 1;
 }
 
 .hero-bg-container img {
@@ -729,9 +729,7 @@ footer {
   z-index: 2;
   position: relative;
 }
-.hero-bg-container {
-  z-index: 1;
-}
+
 .hero-side-image {
   position: absolute;
   top: 0;
