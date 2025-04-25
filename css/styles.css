@@ -185,23 +185,25 @@ footer {
   justify-content: center;
   overflow: hidden;
 }
-/* Decoraciones laterales flotantes */
 .hero-decor {
   position: absolute;
   top: 0;
+  bottom: 0;
+  width: auto;
   height: 100%;
   max-height: 100%;
-  z-index: 1;
-  opacity: 0.35;
+  z-index: 3;
   pointer-events: none;
+  object-fit: cover;
+  opacity: 1; /* ❗Quita transparencia */
 }
 .hero-decor.left {
   left: 0;
-  transform: translateX(-50%);
+  transform: translateX(-100%);
 }
 .hero-decor.right {
   right: 0;
-  transform: translateX(50%);
+  transform: translateX(100%);
 }
 .hero h2 {
   font-size: 1.8rem;
@@ -688,14 +690,15 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fffaf5; /* de fondo si la pantalla es más ancha */
+  background-color: #fffaf5;
 }
 
 /* Imagen principal centrada */
 .hero-img {
-  width: 100%;
-  max-width: 1600px; /* límite para que no se estire más de lo necesario */
+  width: auto;
+  max-width: 100%;
   height: auto;
+  max-height: 600px;
   display: block;
   z-index: 2;
   position: relative;
