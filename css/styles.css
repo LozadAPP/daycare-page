@@ -731,18 +731,19 @@ footer {
 }
 .hero-side-image {
   position: absolute;
-  top: 0; /* antes estaba en 10% */
+  top: 0;
   bottom: 0;
+  height: 100%;
   width: auto;
-  height: 100%; /* aseguramos que crezca verticalmente */
+  max-width: 150px; /* 🔧 AJUSTE CLAVE */
   z-index: 1;
   opacity: 0.95;
   pointer-events: none;
-  object-fit: cover;
+  object-fit: contain;
 }
 .hero-side-image.left {
   left: 0;
-  transform: translateX(-40%);
+  transform: translateX(-20%);
 }
 
 .hero-side-image.right {
