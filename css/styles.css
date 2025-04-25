@@ -185,23 +185,26 @@ footer {
   justify-content: center;
   overflow: hidden;
 }
-/* Ilustraciones decorativas a los lados */
+/* Ilustraciones decorativas */
 .hero-decor {
   position: absolute;
   top: 0;
+  bottom: 0;
+  width: auto;
   height: 100%;
   max-height: 100%;
-  z-index: 2;
-  opacity: 0.4;
+  z-index: 3;
+  opacity: 0.35;
   pointer-events: none;
 }
 .hero-decor.left {
   left: 0;
-  transform: translateX(-50%);
+  transform: translateX(-25%); /* se mete solo un poco */
 }
+
 .hero-decor.right {
   right: 0;
-  transform: translateX(50%);
+  transform: translateX(25%);
 }
 .hero h2 {
   font-size: 1.8rem;
@@ -688,8 +691,8 @@ footer {
 }
 .hero-img {
   width: 100%;
-  max-height: 65vh; /* ← Esto limita la altura a 65% del viewport */
   height: auto;
-  object-fit: contain;
   display: block;
+  object-fit: cover;
+  max-height: 600px; /* ajusta según lo que te parezca mejor */
 }
