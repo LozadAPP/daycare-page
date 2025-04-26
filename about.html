@@ -33,7 +33,41 @@
       75% { transform: translate(-10px, -15px) rotate(-5deg); }
       100% { transform: translate(0, 0) rotate(0deg); }
     }
-    
+    .tips-container {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+    }
+    .tips-box {
+      display: flex;
+      flex-wrap: wrap;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      position: relative;
+      border: 1px solid rgba(75, 0, 130, 0.1);
+    }
+    .tips-decoration {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: url('assets/images/butterfly-decor.png') no-repeat;
+      background-size: contain;
+      opacity: 0.1;
+      z-index: 1;
+    }
+    .tips-decoration-1 {
+      top: -30px;
+      left: -30px;
+      transform: rotate(-15deg);
+    }
+
+    .tips-decoration-2 {
+      bottom: -30px;
+      right: -30px;
+      transform: rotate(15deg);
+    }
     .animate-float {
       animation: float 4s ease-in-out infinite;
     }
@@ -165,25 +199,51 @@
       overflow: hidden;
     }
     .tips-content h2 {
-      color: white !important;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      color: #4b0082;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .tips-content h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50%;
+      height: 4px;
+      background: linear-gradient(to right, #ff7eb9, #8e54e9);
     }
 
     .tips-content p {
-      color: rgba(255,255,255,0.9) !important;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
     }
     .tips-content {
       flex: 1;
       min-width: 300px;
+      padding: 3rem;
+      position: relative;
+      z-index: 2;
     }
     
     .tips-image {
       flex: 1;
       min-width: 300px;
-      text-align: center;
+      background: url('assets/images/tips-image.jpg') center/cover no-repeat;
+      position: relative;
     }
     
+    .tips-image:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(142, 84, 233, 0.1), rgba(75, 0, 130, 0.1));
+    }
     .tips-image img {
       max-width: 100%;
       border-radius: 16px;
@@ -279,19 +339,19 @@
       </div>
     </section>
 
-    <!-- Sección Tips con imagen -->
-    <!-- Sección Tips con imagen -->
-    <section class="tips-section" data-animate-trigger>
-      <div class="tips-content" data-animate="fadeInUp">
-        <h2 style="color: white;">T I P S FOR YOU</h2>
-        <p style="color: rgba(255,255,255,0.9);">
-          Choosing a childcare provider can be one of the most important decisions parents can make...
-        </p>
+  <!-- Sección Tips rediseñada -->
+  <div class="tips-container" data-animate-trigger>
+    <div class="tips-box hover-grow" data-animate="fadeInUp">
+      <div class="tips-decoration tips-decoration-1"></div>
+      <div class="tips-decoration tips-decoration-2"></div>
+      
+      <div class="tips-content">
+        <h2>T I P S &nbsp; F O R &nbsp; Y O U</h2>
+        <p>Choosing a childcare provider can be one of the most important decisions parents can make, particularly during the years before a child starts kindergarten. The number of available options can be overwhelming, and it is easy to be tempted to go with the first recommendation from a friend or neighbor. But experts warn that a childcare solution that works for one family might not work for yours. Here are some tips to help you find the right fit for your family.</p>
       </div>
       
-      <div class="tips-image" data-animate="fadeInUp" data-animate-delay="0.3">
-        <img src="assets/images/tips-image.jpg" alt="Childcare tips" style="border: 4px solid white;">
-      </div>
+      <div class="tips-image" data-animate="fadeInUp" data-animate-delay="0.3"></div>
+    </div>
     </section>
 
   <footer style="background-color: #333; color: white; padding: 3rem 1rem; text-align: center;">
