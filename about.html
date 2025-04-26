@@ -74,7 +74,42 @@
     [data-animate="fadeIn"] {
       opacity: 1;
     }
-    
+    /* Estilos para el cuadro lateral */
+    .about-side-box {
+      flex: 0 0 350px;
+      min-width: 300px;
+    }
+    .about-side-container {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 1px solid rgba(75, 0, 130, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .about-side-container:hover {
+      transform: translateY(-5px);
+    }
+    .about-side-image {
+      height: 200px;
+      background: url('assets/images/about-side-image.jpg') center/cover no-repeat;
+    }
+    .about-side-content {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .about-side-content h3 {
+      color: #4b0082;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .about-side-content p {
+      color: #555;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
     [data-animate="fadeInUp"] {
       opacity: 1;
       transform: translateY(0);
@@ -298,18 +333,30 @@
   </section>
 
   <main>
-    <!-- Sección About Us -->
+    <!-- Sección About Us con cuadro lateral -->
     <section class="about-content-section" data-animate-trigger>
-      <img src="assets/images/right-decor-crayon.png" alt="Butterfly Child Care" 
-           class="animate__animated animate__fadeIn" 
-           style="width: 100%; max-height: 500px; object-fit: cover; border-radius: 16px; margin-bottom: 2rem;">
-      
-      <div data-animate="fadeInUp">
-        <p>We are a licensed Family Home Childcare located in San Rafael.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+        <!-- Contenido principal (izquierda) -->
+        <div style="flex: 1; min-width: 300px;" data-animate="fadeInUp">
+          <h2>About Us</h2>
+          <p>We are a licensed Family Home Childcare located in San Rafael.</p>
+          <p>We are offering a safe and fun space for children to learn, grow, and develop life skills they will be able to take with them once they move on from our program.</p>
+          <p>Caring for the children with love, heartfelt education, and patient guidelines, to develop the potential of children and to promote physical and mental development of children.</p>
+        </div>
         
-        <p>We are offering a safe and fun space for children to learn, grow, and develop life skills they will be able to take with them once they move on from our program.</p>
-        
-        <p>Caring for the children with love, heartfelt education, and patient guidelines, to develop the potential of children and to promote physical and mental development of children.</p>
+        <!-- Cuadro pequeño (derecha) -->
+        <div style="flex: 0 0 350px; min-width: 300px;" data-animate="fadeInUp" data-animate-delay="0.3">
+          <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(75, 0, 130, 0.1);">
+            <!-- Imagen superior -->
+            <div style="height: 200px; background: url('assets/images/about-side-image.jpg') center/cover no-repeat;"></div>
+            
+            <!-- Texto inferior -->
+            <div style="padding: 1.5rem; text-align: center;">
+              <h3 style="color: #4b0082; margin-bottom: 1rem;">Why Choose Us?</h3>
+              <p style="color: #555; line-height: 1.6;">We provide a nurturing environment where children can explore, learn and grow with personalized attention.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
