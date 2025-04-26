@@ -164,6 +164,111 @@
       border-radius: 8px;
       margin: 2rem 0;
     }
+    
+    /* Estilos para el menú activo */
+    .nav-menu .active {
+      color: #ff7eb9;
+      font-weight: 600;
+      position: relative;
+      opacity: 1 !important;
+      animation: none !important;
+    }
+
+    .nav-menu .active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #ff7eb9;
+    }
+
+    .nav-menu a {
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #8e54e9;
+      transform: translateY(-2px);
+    }
+    
+    /* Nueva sección de actividades */
+    .activity-section {
+      padding: 6rem 1rem;
+      background: linear-gradient(to bottom, #fffaf5, #f9f7ff);
+    }
+    
+    .activity-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+    
+    .activity-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .activity-image {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+    }
+    
+    .activity-image img {
+      max-width: 100%;
+      border-radius: 16px;
+      border: 8px solid white;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    
+    .activity-title {
+      font-family: 'Poppins', sans-serif;
+      color: #5a2d9a;
+      font-size: 2.4rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .activity-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #ff7eb9, #8e54e9);
+    }
+    
+    .activity-description {
+      font-size: 1.15rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    
+    .activity-quote {
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #5a2d9a;
+      padding-left: 1.5rem;
+      border-left: 3px solid #ffb8d9;
+      margin: 2rem 0;
+    }
+    
+    .activity-list {
+      padding-left: 1.5rem;
+    }
+    
+    .activity-list li {
+      margin-bottom: 1rem;
+      color: #555;
+      line-height: 1.6;
+    }
   </style>
 </head>
 
@@ -181,7 +286,7 @@
                   color: #4b0082;
                   line-height: 1.1;
                   text-shadow: 1px 1px 3px rgba(0,0,0,0.1);"
-           class="animate__animated animate__fadeIn animate__delay-1s">
+           class="animate__animated animate__fadeIn animate__delay-0-5s">
         Butterfly <span style="display: block;">Child Care</span>
       </div>
     </div>
@@ -216,6 +321,42 @@
       </div>
     </section>
 
+    <!-- Sección de Actividades (Nueva) -->
+    <section class="activity-section" data-animate-trigger>
+      <div class="activity-container">
+        <div class="activity-text" data-animate="fadeInUp">
+          <h2 class="activity-title">Our Daily Activities</h2>
+          <p class="activity-description">
+            At Butterfly Home Childcare, we provide a comprehensive program that balances learning, play, and rest. Our activities are designed to stimulate your child's development while creating a fun and engaging environment.
+          </p>
+          
+          <div class="activity-quote">
+            "The best and biggest benefit of our childcare service is the personalized attention we provide. Unlike large daycare centers, we offer a home-like environment where each child receives individual care tailored to their needs."
+          </div>
+          
+          <p class="activity-description">
+            For parents who need flexible hours beyond the typical daycare schedule, our extended care options provide the perfect solution. We understand the challenges of modern parenting and strive to accommodate your family's unique needs.
+          </p>
+          
+          <h3 style="color: #4b0082; font-size: 1.5rem; margin: 2rem 0 1rem;">Key Benefits of Our Program:</h3>
+          <ul class="activity-list">
+            <li>Personalized attention in a home-like setting</li>
+            <li>Flexible hours to accommodate working parents</li>
+            <li>Comprehensive learning through play-based activities</li>
+            <li>Nutritious meals and snacks included</li>
+            <li>Daily updates and communication with parents</li>
+          </ul>
+        </div>
+        
+        <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
+          <img src="assets/images/children-activities.jpg" alt="Children engaged in activities" class="hover-grow">
+          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            "Learning Through Play"
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Services Overview -->
     <section style="padding: 6rem 1rem; background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
       <div style="max-width: 1200px; margin: 0 auto;">
@@ -225,7 +366,7 @@
             Comprehensive Childcare Services
           </h2>
           <p style="font-size: 1.15rem; color: #666; max-width: 700px; margin: 1rem auto 0; line-height: 1.6;">
-            At Butterfly Home Childcare, we provide a loving, stimulating environment where children can learn, play, and grow.
+            We offer age-appropriate programs designed to meet your child's developmental needs at every stage.
           </p>
         </div>
         
@@ -333,49 +474,9 @@
             <div style="position: relative; display: inline-block;">
               <img src="assets/images/daily-schedule.jpg" alt="Children engaged in daily activities" style="max-width: 100%; border-radius: 16px; border: 8px solid white; box-shadow: 0 15px 40px rgba(0,0,0,0.1);">
               <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                "Learning Through Play"
+                "Structured & Fun"
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Included Features -->
-    <section style="padding: 6rem 1rem; background: linear-gradient(to bottom, #fffaf5, #f9f7ff);" data-animate-trigger>
-      <div style="max-width: 1200px; margin: 0 auto;">
-        <div style="text-align: center; margin-bottom: 4rem;" data-animate="fadeIn">
-          <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.4rem; margin-bottom: 1rem;">
-            Everything <span style="color: #ff7eb9;">Included</span>
-          </h2>
-          <p style="font-size: 1.15rem; color: #666; max-width: 700px; margin: 1rem auto 0; line-height: 1.6;">
-            We provide all the essentials so you can focus on what matters most - your child's happiness and growth.
-          </p>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-          <div style="background: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);" data-animate="fadeInUp" data-animate-delay="0.3">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem; color: #8e54e9;">🍎</div>
-            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Nutritious Meals</h3>
-            <p style="color: #555; line-height: 1.6;">Healthy breakfast, lunch and snacks prepared daily</p>
-          </div>
-          
-          <div style="background: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);" data-animate="fadeInUp" data-animate-delay="0.6">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem; color: #8e54e9;">📚</div>
-            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Learning Materials</h3>
-            <p style="color: #555; line-height: 1.6;">All educational supplies and activity materials</p>
-          </div>
-          
-          <div style="background: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);" data-animate="fadeInUp" data-animate-delay="0.9">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem; color: #8e54e9;">🛏️</div>
-            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Nap Essentials</h3>
-            <p style="color: #555; line-height: 1.6;">Cots, sheets and blankets provided</p>
-          </div>
-          
-          <div style="background: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);" data-animate="fadeInUp" data-animate-delay="1.2">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem; color: #8e54e9;">📱</div>
-            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Daily Updates</h3>
-            <p style="color: #555; line-height: 1.6;">Photos and reports via parent app</p>
           </div>
         </div>
       </div>
@@ -439,6 +540,7 @@
             <li>10% sibling discount available</li>
             <li>Meals, snacks and all supplies included</li>
             <li>Hours: Monday-Friday, 7:30am-5:30pm</li>
+            <li>Extended care options available</li>
           </ul>
         </div>
       </div>
