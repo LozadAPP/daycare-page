@@ -125,17 +125,30 @@
       flex: 1;
       min-width: 250px;
       background: #f9f7ff;
-      padding: 2rem;
+      padding: 0;
       border-radius: 16px;
       border: 1px solid rgba(142, 84, 233, 0.2);
       box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      overflow: hidden;
     }
     
-    .about-image {
+    .about-hero-image {
       width: 100%;
+      height: 400px;
+      object-fit: cover;
       border-radius: 12px;
       margin-bottom: 2rem;
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .tips-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .tips-content {
+      padding: 2rem;
     }
     
     .section-divider {
@@ -160,6 +173,14 @@
       .tips-sidebar {
         order: -1;
         margin-bottom: 2rem;
+      }
+      
+      .about-hero-image {
+        height: 300px;
+      }
+      
+      .tips-image {
+        height: 150px;
       }
     }
   </style>
@@ -200,7 +221,7 @@
     <main class="main-content" data-animate-trigger>
       <h1 class="animate__animated animate__fadeIn" style="color: #4b0082; margin-bottom: 1.5rem;">About Us</h1>
       
-      <img src="assets/images/image0.jpeg" alt="Butterfly Child Care" class="about-image animate__animated animate__fadeIn">
+      <img src="assets/images/about-hero-full.jpg" alt="Butterfly Child Care" class="about-hero-image animate__animated animate__fadeIn">
       
       <div data-animate="fadeInUp">
         <p>We are a licensed Family Home Childcare located in San Rafael.</p>
@@ -229,13 +250,16 @@
     </main>
     
     <aside class="tips-sidebar animate__animated animate__fadeInRight" data-animate-delay="0.9">
-      <h2 style="color: #4b0082; text-align: center; margin-bottom: 1.5rem; letter-spacing: 2px;">T I P S FOR YOU</h2>
-      <p style="line-height: 1.7;">Choosing a childcare provider can be one of the most important decisions parents can make, particularly during the years before a child starts kindergarten. The number of available options can be overwhelming, and it is easy to be tempted to go with the first recommendation from a friend or neighbor. But experts warn that a childcare solution that works for one family might not work for yours. Here are some tips to help you find the right fit for your family.</p>
-      
-      <div style="text-align: center; margin-top: 2rem;">
-        <a href="contact.html" class="btn-glow" style="display: inline-block; padding: 0.8rem 1.5rem; background: linear-gradient(to right, #8e54e9, #6a11cb); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(142, 84, 233, 0.3);">
-          Get More Tips
-        </a>
+      <img src="assets/images/tips-image.jpg" alt="Parenting Tips" class="tips-image">
+      <div class="tips-content">
+        <h2 style="color: #4b0082; text-align: center; margin-bottom: 1.5rem; letter-spacing: 2px;">T I P S FOR YOU</h2>
+        <p style="line-height: 1.7;">Choosing a childcare provider can be one of the most important decisions parents can make, particularly during the years before a child starts kindergarten. The number of available options can be overwhelming, and it is easy to be tempted to go with the first recommendation from a friend or neighbor. But experts warn that a childcare solution that works for one family might not work for yours. Here are some tips to help you find the right fit for your family.</p>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="contact.html" class="btn-glow" style="display: inline-block; padding: 0.8rem 1.5rem; background: linear-gradient(to right, #8e54e9, #6a11cb); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(142, 84, 233, 0.3);">
+            Get More Tips
+          </a>
+        </div>
       </div>
     </aside>
   </div>
