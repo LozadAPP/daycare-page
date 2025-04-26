@@ -55,6 +55,14 @@
     .delay-3 { animation-delay: 0.9s; }
     .delay-4 { animation-delay: 1.2s; }
     
+    /* Delays personalizados para el menú */
+    .animate__delay-1-5s {
+      animation-delay: 1.5s !important;
+    }
+    .animate__delay-2-5s {
+      animation-delay: 2.5s !important;
+    }
+    
     /* Efecto hover para tarjetas */
     .hover-grow {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -122,20 +130,19 @@
                   color: #4b0082;
                   line-height: 1.1;
                   text-shadow: 1px 1px 3px rgba(0,0,0,0.1);"
-           class="animate__animated animate__fadeIn animate__delay-1s">
+           class="animate__animated animate__fadeIn animate__delay-0-5s">
         Butterfly <span style="display: block;">Child Care</span>
       </div>
     </div>
     
     <button class="hamburger" id="hamburger">&#9776;</button>
-  
     <nav class="nav-menu" id="navMenu">
       <ul>
-        <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-2s">Home</a></li>
-        <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-3s">About Us</a></li>
-        <li><a href="services.html" class="animate__animated animate__fadeIn animate__delay-4s">Services</a></li>
-        <li><a href="gallery.html" class="animate__animated animate__fadeIn animate__delay-5s">Gallery</a></li>
-        <li><a href="contact.html" class="animate__animated animate__fadeIn animate__delay-6s">Contact</a></li>
+        <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-1s">Home</a></li>
+        <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-1-5s">About Us</a></li>
+        <li><a href="services.html" class="animate__animated animate__fadeIn animate__delay-2s">Services</a></li>
+        <li><a href="gallery.html" class="animate__animated animate__fadeIn animate__delay-2-5s">Gallery</a></li>
+        <li><a href="contact.html" class="animate__animated animate__fadeIn animate__delay-3s">Contact</a></li>
       </ul>
     </nav>
   </header>
