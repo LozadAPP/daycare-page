@@ -134,13 +134,14 @@
     
     .about-hero-image {
       width: 100%;
-      height: 400px;
-      object-fit: cover;
+      max-width: 676px; /* ✅ Limitar ancho real de imagen */
+      height: auto; /* ✅ Altura automática para no recortar */
+      display: block; /* ✅ Centrar correctamente si es necesario */
+      margin: 0 auto 2rem auto; /* ✅ Centrar y agregar espacio abajo */
       border-radius: 12px;
-      margin-bottom: 2rem;
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
-    
+      
     .tips-image {
       width: 100%;
       height: 200px;
