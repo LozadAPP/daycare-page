@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <style>
-    /* Animaciones personalizadas */
+    /* Animaciones personalizadas (igual que en index) */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
@@ -55,7 +55,15 @@
     .delay-3 { animation-delay: 0.9s; }
     .delay-4 { animation-delay: 1.2s; }
     
-    /* Efecto hover para tarjetas */
+    /* Delays personalizados para el menú (igual que en index) */
+    .animate__delay-1-5s {
+      animation-delay: 1.5s !important;
+    }
+    .animate__delay-2-5s {
+      animation-delay: 2.5s !important;
+    }
+    
+    /* Efecto hover para tarjetas (igual que en index) */
     .hover-grow {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -65,7 +73,7 @@
       box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
     }
     
-    /* Efecto de aparición gradual */
+    /* Efecto de aparición gradual (igual que en index) */
     [data-animate] {
       opacity: 0;
       transition: opacity 0.8s ease, transform 0.8s ease;
@@ -80,7 +88,7 @@
       transform: translateY(0);
     }
     
-    /* Animación de botón */
+    /* Animación de botón (igual que en index) */
     .btn-glow {
       position: relative;
       overflow: hidden;
@@ -106,7 +114,7 @@
       left: 100%;
     }
     
-    /* Estilos específicos para about - MEJORAS PROFESIONALES */
+    /* Estilos específicos para about - Manteniendo estructura pero mejorando detalles */
     .about-container {
       display: flex;
       flex-wrap: wrap;
@@ -122,57 +130,38 @@
     }
     
     .main-content h1 {
+      font-family: 'Poppins', sans-serif;
       font-size: 2.5rem;
       color: #4b0082;
-      margin-bottom: 1.8rem;
-      position: relative;
-      padding-bottom: 1rem;
-    }
-    
-    .main-content h1::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, #8e54e9, #6a11cb);
-      border-radius: 2px;
+      margin-bottom: 1.5rem;
     }
     
     .main-content h2 {
+      font-family: 'Poppins', sans-serif;
       font-size: 1.8rem;
       color: #4b0082;
       margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 0.5rem;
-    }
-    
-    .main-content h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 50px;
-      height: 2px;
-      background: #8e54e9;
     }
     
     .main-content p {
+      font-family: 'Nunito', sans-serif;
       font-size: 1.1rem;
       line-height: 1.7;
       color: #444;
       margin-bottom: 1.5rem;
     }
     
+    /* Hero image container */
     .about-hero-container {
       width: 100%;
-      max-height: 550px;
+      max-height: 600px;
       overflow: hidden;
-      border-radius: 14px;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-      position: relative;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     
     .about-hero-image {
@@ -180,75 +169,36 @@
       height: auto;
       object-fit: cover;
       display: block;
-      transition: transform 0.8s ease;
     }
     
-    .about-hero-container:hover .about-hero-image {
-      transform: scale(1.03);
-    }
-    
-    .section-divider {
-      border: none;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(142, 84, 233, 0.3), transparent);
-      margin: 2.5rem 0;
-    }
-    
-    .contact-info {
-      background: linear-gradient(135deg, #f8f5ff, #f0f9ff);
-      padding: 2rem;
-      border-radius: 14px;
-      margin-top: 2.5rem;
-      border: 1px solid rgba(142, 84, 233, 0.1);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
-    
-    .contact-info h2 {
-      color: #6a11cb;
-    }
-    
-    .contact-info p {
-      font-size: 1.15rem;
-      margin-bottom: 1rem;
-    }
-    
-    .contact-info strong {
-      color: #4b0082;
-      font-weight: 600;
-    }
-    
-    /* Sidebar de tips mejorado - MANTENIENDO EL ESTILO ORIGINAL PERO MEJORADO */
+    /* Sidebar de tips - Manteniendo el estilo original pero con mejoras */
     .tips-sidebar {
       flex: 1;
-      min-width: 280px;
+      min-width: 250px;
       background: #f9f7ff;
+      padding: 0;
       border-radius: 16px;
       border: 1px solid rgba(142, 84, 233, 0.2);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
       overflow: hidden;
       transform: translateY(20px);
       opacity: 0;
-      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: fadeInUp 1s ease forwards;
       animation-delay: 1.5s;
-      transition: all 0.4s ease;
-    }
-    
-    .tips-sidebar:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     }
     
     .tips-image-container {
       width: 100%;
+      height: 250px;
       overflow: hidden;
-      position: relative;
     }
     
     .tips-image {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      transition: transform 0.8s ease;
+      transition: transform 0.5s ease;
     }
     
     .tips-sidebar:hover .tips-image {
@@ -260,31 +210,100 @@
     }
     
     .tips-content h2 {
-      font-size: 1.5rem;
+      font-family: 'Poppins', sans-serif;
+      color: #4b0082;
       text-align: center;
-      margin-bottom: 1.8rem;
-      letter-spacing: 1px;
-      color: #6a11cb;
-      position: relative;
-    }
-    
-    .tips-content h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(to right, #8e54e9, #6a11cb);
+      margin-bottom: 1.5rem;
+      letter-spacing: 2px;
     }
     
     .tips-content p {
-      font-size: 1rem;
+      font-family: 'Nunito', sans-serif;
+      line-height: 1.7;
       color: #555;
-      line-height: 1.8;
     }
     
+    /* Section divider */
+    .section-divider {
+      border: none;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #8e54e9, transparent);
+      margin: 2rem 0;
+    }
+    
+    /* Contact info */
+    .contact-info {
+      background: #f0f9ff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+    }
+    
+    /* Footer (igual que en index) */
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    
+    footer img {
+      height: 60px;
+      margin-bottom: 1.5rem;
+    }
+    
+    footer p {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    
+    /* Badge premium animado (IDÉNTICO al del index) */
+    .license-badge {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      background: linear-gradient(145deg, #ffffff, #f9f5ff);
+      padding: 22px 28px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18);
+      z-index: 1000;
+      border: none;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 1s;
+    }
+    
+    .license-badge:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(106, 17, 203, 0.25);
+    }
+    
+    .license-badge img {
+      height: 80px;
+      width: auto;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));
+    }
+    
+    .license-badge-text {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .license-badge-text div {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #4b0082;
+      line-height: 1.2;
+      letter-spacing: 0.3px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    /* Responsive (igual que en index) */
     @media (max-width: 768px) {
       .about-container {
         flex-direction: column;
@@ -292,26 +311,36 @@
       
       .tips-sidebar {
         order: -1;
-        margin-bottom: 2.5rem;
-        min-width: 100%;
-      }
-      
-      .main-content h1 {
-        font-size: 2rem;
-      }
-      
-      .main-content h2 {
-        font-size: 1.6rem;
+        margin-bottom: 2rem;
       }
       
       .about-hero-container {
         max-height: 400px;
+      }
+      
+      .tips-image-container {
+        height: 200px;
+      }
+      
+      .license-badge {
+        right: 20px;
+        bottom: 20px;
+        padding: 15px 20px;
+      }
+      
+      .license-badge img {
+        height: 60px;
+      }
+      
+      .license-badge-text div {
+        font-size: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Header (IDÉNTICO al del index) -->
   <header class="main-header">
     <div class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px;">
       <img src="assets/images/logo.png" alt="Butterfly Child Care logo" 
@@ -347,9 +376,9 @@
       <h1 class="animate__animated animate__fadeIn">About Us</h1>
       
       <!-- Contenedor de imagen hero -->
-      <div class="about-hero-container animate-subtle-pulse">
+      <div class="about-hero-container">
         <img src="assets/images/happy-children-playing.jpg" alt="Happy children at Butterfly Child Care" 
-             class="about-hero-image">
+             class="about-hero-image animate__animated animate__fadeIn">
       </div>
       
       <div data-animate="fadeInUp">
@@ -389,51 +418,26 @@
     </aside>
   </div>
 
-  <footer style="background-color: #333; color: white; padding: 3rem 1rem; text-align: center;">
-    <div style="max-width: 1000px; margin: 0 auto;" class="animate__animated animate__fadeIn">
-      <img src="assets/images/logo-white.png" alt="Butterfly Child Care logo" style="height: 60px; margin-bottom: 1.5rem;">
-      <p style="margin-bottom: 0.5rem; font-size: 1.1rem;">966 Las Pavadas Ave, San Rafael, CA 94903</p>
-      <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">License #214005909</p>
+  <!-- Footer (IDÉNTICO al del index) -->
+  <footer>
+    <div class="animate__animated animate__fadeIn">
+      <img src="assets/images/logo-white.png" alt="Butterfly Child Care logo">
+      <p>966 Las Pavadas Ave, San Rafael, CA 94903</p>
+      <p>License #214005909</p>
       <p>&copy; 2025 Butterfly Home Child Care. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Badge premium animado -->
-  <div style="position: fixed; 
-              right: 40px; 
-              bottom: 40px; 
-              background: linear-gradient(145deg, #ffffff, #f9f5ff); 
-              padding: 22px 28px; 
-              border-radius: 18px; 
-              display: flex; 
-              align-items: center; 
-              gap: 18px; 
-              box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18); 
-              z-index: 1000;
-              border: none;
-              transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-              cursor: pointer;"
-       class="animate__animated animate__fadeInRight animate__delay-1s hover-grow">
-    
-    <img src="assets/images/california-license.png" alt="Licensed" 
-         style="height: 80px; 
-                width: auto; 
-                filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));">
-    
-    <div style="font-family: 'Poppins', sans-serif;">
-      <div style="font-size: 1.8rem; 
-                  font-weight: 700; 
-                  color: #4b0082; 
-                  line-height: 1.2; 
-                  letter-spacing: 0.3px;
-                  text-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        Licensed & Insured
-      </div>
+  <!-- Badge premium animado (IDÉNTICO al del index) -->
+  <div class="license-badge hover-grow">
+    <img src="assets/images/california-license.png" alt="Licensed">
+    <div class="license-badge-text">
+      <div>Licensed & Insured</div>
     </div>
   </div>
 
   <script>
-    // Scroll suave
+    // Scroll suave (igual que en index)
     function scrollToSection(selector) {
       const element = document.querySelector(selector);
       if (element) {
@@ -441,7 +445,7 @@
       }
     }
     
-    // Animación al hacer scroll
+    // Animación al hacer scroll (igual que en index)
     document.addEventListener('DOMContentLoaded', function() {
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       
@@ -465,20 +469,20 @@
         observer.observe(element);
       });
       
-      // Efecto hover para el badge
-      const badge = document.querySelector('div[style*="position: fixed"]');
+      // Efecto hover para el badge (igual que en index)
+      const badge = document.querySelector('.license-badge');
       
       badge.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.05) translateY(-5px)';
+        this.style.transform = 'translateY(-5px)';
         this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
       });
       
       badge.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
+        this.style.transform = 'translateY(0)';
         this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
       });
       
-      // Click en el badge para ir al contacto
+      // Click en el badge para ir al contacto (igual que en index)
       badge.addEventListener('click', function() {
         window.location.href = 'contact.html';
       });
