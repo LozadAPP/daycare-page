@@ -74,42 +74,7 @@
     [data-animate="fadeIn"] {
       opacity: 1;
     }
-    /* Estilos para el cuadro lateral */
-    .about-side-box {
-      flex: 0 0 350px;
-      min-width: 300px;
-    }
-    .about-side-container {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 1px solid rgba(75, 0, 130, 0.1);
-      transition: transform 0.3s ease;
-    }
-    .about-side-container:hover {
-      transform: translateY(-5px);
-    }
-    .about-side-image {
-      height: 200px;
-      background: url('assets/images/about-side-image.jpg') center/cover no-repeat;
-    }
-    .about-side-content {
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .about-side-content h3 {
-      color: #4b0082;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-
-    .about-side-content p {
-      color: #555;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
+    
     [data-animate="fadeInUp"] {
       opacity: 1;
       transform: translateY(0);
@@ -142,148 +107,60 @@
     }
     
     /* Estilos específicos para about */
-    .about-hero {
-      position: relative;
-      min-height: 60vh;
-      background: url('assets/images/happy-children-playing.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .about-content-section {
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-    }
-    
-    .about-content-section p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #555;
-      margin-bottom: 1.5rem;
-    }
-    
-    .about-content-section h2 {
-      color: #4b0082;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 0.5rem;
-    }
-    
-    .about-content-section h2:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, #ff7eb9, #8e54e9);
-    }
-    
-    /* Estilos para la sección TIPS */
-    .tips-container {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 0 1rem;
-    }
-    
-    .tips-box {
+    .about-container {
       display: flex;
       flex-wrap: wrap;
-      background: linear-gradient(135deg, #f9f0ff, #e6f9ff);
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      gap: 2rem;
+    }
+    
+    .main-content {
+      flex: 2;
+      min-width: 300px;
+    }
+    
+    .tips-sidebar {
+      flex: 1;
+      min-width: 250px;
+      background: #f9f7ff;
+      padding: 2rem;
       border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-      position: relative;
-      border: 1px solid rgba(75, 0, 130, 0.1);
+      border: 1px solid rgba(142, 84, 233, 0.2);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     }
     
-    .tips-decoration {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      background: url('assets/images/butterfly-decor.png') no-repeat;
-      background-size: contain;
-      opacity: 0.1;
-      z-index: 1;
-    }
-    
-    .tips-decoration-1 {
-      top: -30px;
-      left: -30px;
-      transform: rotate(-15deg);
-    }
-    
-    .tips-decoration-2 {
-      bottom: -30px;
-      right: -30px;
-      transform: rotate(15deg);
-    }
-    
-    .tips-content {
-      flex: 1;
-      min-width: 300px;
-      padding: 3rem;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .tips-content h2 {
-      color: #4b0082;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .tips-content h2:after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 50%;
-      height: 4px;
-      background: linear-gradient(to right, #ff7eb9, #8e54e9);
-    }
-    
-    .tips-content p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #555;
-    }
-    
-    .tips-image {
-      flex: 1;
-      min-width: 300px;
-      background: url('assets/images/tips-bg.jpg') center/cover no-repeat;
-      position: relative;
-    }
-    
-    .tips-image:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
+    .about-image {
       width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(142, 84, 233, 0.1), rgba(75, 0, 130, 0.1));
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
     
-    @media (max-width: 768px) {
-      .tips-image {
-        min-height: 300px;
-      }
+    .section-divider {
+      border: none;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #8e54e9, transparent);
+      margin: 2rem 0;
     }
     
     .contact-info {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 2px dashed #8e54e9;
+      background: #f0f9ff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+      }
+      
+      .tips-sidebar {
+        order: -1;
+        margin-bottom: 2rem;
+      }
     }
   </style>
 </head>
@@ -319,83 +196,49 @@
     </nav>
   </header>
 
-  <section class="about-hero animate__animated animate__fadeIn">
-    <div>
-      <h1 class="animate__animated animate__fadeInDown" style="font-size: 3rem; margin-bottom: 1rem;">About Us</h1>
-      <p class="animate__animated animate__fadeIn animate__delay-1s" style="font-size: 1.5rem; max-width: 800px; margin: 0 auto;">
-        Our loving childcare family in San Rafael
-      </p>
-    </div>
-    
-    <!-- Elementos decorativos animados -->
-    <div class="animate-butterfly" style="position: absolute; top: 20%; left: 15%; width: 50px; height: 50px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.7; z-index: 1;"></div>
-    <div class="animate-butterfly" style="position: absolute; top: 30%; right: 20%; width: 40px; height: 40px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.5; z-index: 1; animation-delay: 1s;"></div>
-  </section>
-
-  <main>
-    <!-- Sección About Us con cuadro lateral -->
-    <section class="about-content-section" data-animate-trigger>
-      <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
-        <!-- Contenido principal (izquierda) -->
-        <div style="flex: 1; min-width: 300px;" data-animate="fadeInUp">
-          <h2>About Us</h2>
-          <p>We are a licensed Family Home Childcare located in San Rafael.</p>
-          <p>We are offering a safe and fun space for children to learn, grow, and develop life skills they will be able to take with them once they move on from our program.</p>
-          <p>Caring for the children with love, heartfelt education, and patient guidelines, to develop the potential of children and to promote physical and mental development of children.</p>
-        </div>
+  <div class="about-container">
+    <main class="main-content" data-animate-trigger>
+      <h1 class="animate__animated animate__fadeIn" style="color: #4b0082; margin-bottom: 1.5rem;">About Us</h1>
+      
+      <img src="assets/images/image0.jpeg" alt="Butterfly Child Care" class="about-image animate__animated animate__fadeIn">
+      
+      <div data-animate="fadeInUp">
+        <p>We are a licensed Family Home Childcare located in San Rafael.</p>
         
-        <!-- Cuadro pequeño (derecha) -->
-        <div style="flex: 0 0 350px; min-width: 300px;" data-animate="fadeInUp" data-animate-delay="0.3">
-          <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(75, 0, 130, 0.1);">
-            <!-- Imagen superior -->
-            <div style="height: 200px; background: url('assets/images/about-side-image.jpg') center/cover no-repeat;"></div>
-            
-            <!-- Texto inferior -->
-            <div style="padding: 1.5rem; text-align: center;">
-              <h3 style="color: #4b0082; margin-bottom: 1rem;">Why Choose Us?</h3>
-              <p style="color: #555; line-height: 1.6;">We provide a nurturing environment where children can explore, learn and grow with personalized attention.</p>
-            </div>
-          </div>
-        </div>
+        <p>We are offering a safe and fun space for children to learn, grow, and develop life skills they will be able to take with them once they move on from our program.</p>
+        
+        <p>Caring for the children with love, heartfelt education, and patient guidelines, to develop the potential of children and to promote physical and mental development of children.</p>
       </div>
-    </section>
-
-    <!-- Sección Our Program -->
-    <section class="about-content-section" data-animate-trigger>
-      <h2 class="animate__animated animate__fadeIn">Our program!</h2>
+      
+      <hr class="section-divider">
       
       <div data-animate="fadeInUp" data-animate-delay="0.3">
+        <h2 style="color: #4b0082;">Our program!</h2>
         <p>In our program Though our guidance, they will experience new opportunities for exploration and discovery. Different areas of early childhood development includes physical, emotional, social and cognitive development.our play based curriculum includes dramatic play, craft/art, music, dance, reading.</p>
         
         <p>Children will grow up in a warm, home-style environment, and parents can go to work without worries.</p>
       </div>
-    </section>
-
-    <!-- Sección Contacto -->
-    <section class="about-content-section" data-animate-trigger>
-      <h2 class="animate__animated animate__fadeIn">Contact us !</h2>
       
-      <div class="contact-info" data-animate="fadeInUp" data-animate-delay="0.3">
-        <p><strong>Phone:</strong> 415-578-25-15</p>
-        <p><strong>Email:</strong> nayaraondina@outlook.com</p>
+      <hr class="section-divider">
+      
+      <div class="contact-info animate__animated animate__fadeIn" data-animate-delay="0.6">
+        <h2 style="color: #4b0082; margin-bottom: 1rem;">Contact us !</h2>
+        <p style="font-size: 1.2rem;"><strong>Phone:</strong> 415-578-25-15</p>
+        <p style="font-size: 1.2rem;"><strong>E-mail:</strong> nayaraondina@outlook.com</p>
       </div>
-    </section>
-
-    <!-- Sección Tips rediseñada -->
-    <div class="tips-container" data-animate-trigger>
-      <div class="tips-box hover-grow" data-animate="fadeInUp">
-        <div class="tips-decoration tips-decoration-1"></div>
-        <div class="tips-decoration tips-decoration-2"></div>
-        
-        <div class="tips-content">
-          <h2>T I P S &nbsp; F O R &nbsp; Y O U</h2>
-          <p>Choosing a childcare provider can be one of the most important decisions parents can make, particularly during the years before a child starts kindergarten. The number of available options can be overwhelming, and it is easy to be tempted to go with the first recommendation from a friend or neighbor. But experts warn that a childcare solution that works for one family might not work for yours. Here are some tips to help you find the right fit for your family.</p>
-        </div>
-        
-        <div class="tips-image" data-animate="fadeInUp" data-animate-delay="0.3"></div>
+    </main>
+    
+    <aside class="tips-sidebar animate__animated animate__fadeInRight" data-animate-delay="0.9">
+      <h2 style="color: #4b0082; text-align: center; margin-bottom: 1.5rem; letter-spacing: 2px;">T I P S FOR YOU</h2>
+      <p style="line-height: 1.7;">Choosing a childcare provider can be one of the most important decisions parents can make, particularly during the years before a child starts kindergarten. The number of available options can be overwhelming, and it is easy to be tempted to go with the first recommendation from a friend or neighbor. But experts warn that a childcare solution that works for one family might not work for yours. Here are some tips to help you find the right fit for your family.</p>
+      
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="contact.html" class="btn-glow" style="display: inline-block; padding: 0.8rem 1.5rem; background: linear-gradient(to right, #8e54e9, #6a11cb); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(142, 84, 233, 0.3);">
+          Get More Tips
+        </a>
       </div>
-    </div>
-  </main>
+    </aside>
+  </div>
 
   <footer style="background-color: #333; color: white; padding: 3rem 1rem; text-align: center;">
     <div style="max-width: 1000px; margin: 0 auto;" class="animate__animated animate__fadeIn">
