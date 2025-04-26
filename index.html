@@ -33,7 +33,34 @@
       75% { transform: translate(-10px, -15px) rotate(-5deg); }
       100% { transform: translate(0, 0) rotate(0deg); }
     }
-    
+    /* Estilos para el menú activo */
+    .nav-menu .active {
+      color: #ff7eb9;
+      font-weight: 600;
+      position: relative;
+      opacity: 1 !important;
+      animation: none !important;
+    }
+
+    .nav-menu .active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #ff7eb9;
+    }
+
+    .nav-menu a {
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #8e54e9;
+      transform: translateY(-2px);
+    }
     .animate-float {
       animation: float 4s ease-in-out infinite;
     }
@@ -138,11 +165,11 @@
     <button class="hamburger" id="hamburger">&#9776;</button>
     <nav class="nav-menu" id="navMenu">
       <ul>
-        <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-1s">Home</a></li>
-        <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-1-5s">About Us</a></li>
-        <li><a href="services.html" class="animate__animated animate__fadeIn animate__delay-2s">Services</a></li>
-        <li><a href="gallery.html" class="animate__animated animate__fadeIn animate__delay-2-5s">Gallery</a></li>
-        <li><a href="contact.html" class="animate__animated animate__fadeIn animate__delay-3s">Contact</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-0-5s">About Us</a></li>
+        <li><a href="services.html" class="animate__animated animate__fadeIn animate__delay-0-7s">Services</a></li>
+        <li><a href="gallery.html" class="animate__animated animate__fadeIn animate__delay-0-9s">Gallery</a></li>
+        <li><a href="contact.html" class="animate__animated animate__fadeIn animate__delay-1-1s">Contact</a></li>
       </ul>
     </nav>
   </header>
