@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us – Butterfly Child Care</title>
-  <meta name="description" content="Learn about Butterfly Child Care, a licensed family daycare in San Rafael providing loving, play-based early childhood education in a home-like setting.">
+  <title>Butterfly Home Child Care – Licensed Daycare in Terra Linda, San Rafael, California</title>
+  <meta name="description" content="Butterfly Home Child Care is a licensed family daycare located at 966 Las Pavadas Ave in Terra Linda, San Rafael, California. We offer safe, loving childcare for families in the North Bay area.">
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <style>
-    /* Animaciones personalizadas (igual que en index) */
+    /* Animaciones personalizadas */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
@@ -55,15 +55,7 @@
     .delay-3 { animation-delay: 0.9s; }
     .delay-4 { animation-delay: 1.2s; }
     
-    /* Delays personalizados para el menú (igual que en index) */
-    .animate__delay-1-5s {
-      animation-delay: 1.5s !important;
-    }
-    .animate__delay-2-5s {
-      animation-delay: 2.5s !important;
-    }
-    
-    /* Efecto hover para tarjetas (igual que en index) */
+    /* Efecto hover para tarjetas */
     .hover-grow {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -73,7 +65,7 @@
       box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
     }
     
-    /* Efecto de aparición gradual (igual que en index) */
+    /* Efecto de aparición gradual */
     [data-animate] {
       opacity: 0;
       transition: opacity 0.8s ease, transform 0.8s ease;
@@ -88,7 +80,7 @@
       transform: translateY(0);
     }
     
-    /* Animación de botón (igual que en index) */
+    /* Animación de botón */
     .btn-glow {
       position: relative;
       overflow: hidden;
@@ -113,234 +105,10 @@
     .btn-glow:hover::after {
       left: 100%;
     }
-    
-    /* Estilos específicos para about - Manteniendo estructura pero mejorando detalles */
-    .about-container {
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 1200px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-      gap: 2rem;
-    }
-    
-    .main-content {
-      flex: 2;
-      min-width: 300px;
-    }
-    
-    .main-content h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
-      color: #4b0082;
-      margin-bottom: 1.5rem;
-    }
-    
-    .main-content h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.8rem;
-      color: #4b0082;
-      margin-bottom: 1.5rem;
-    }
-    
-    .main-content p {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #444;
-      margin-bottom: 1.5rem;
-    }
-    
-    /* Hero image container */
-    .about-hero-container {
-      width: 100%;
-      max-height: 600px;
-      overflow: hidden;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .about-hero-image {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      display: block;
-    }
-    
-    /* Sidebar de tips - Manteniendo el estilo original pero con mejoras */
-    .tips-sidebar {
-      flex: 1;
-      min-width: 250px;
-      background: #f9f7ff;
-      padding: 0;
-      border-radius: 16px;
-      border: 1px solid rgba(142, 84, 233, 0.2);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-      overflow: hidden;
-      transform: translateY(20px);
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
-      animation-delay: 1.5s;
-    }
-    
-    .tips-image-container {
-      width: 100%;
-      height: 250px;
-      overflow: hidden;
-    }
-    
-    .tips-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    
-    .tips-sidebar:hover .tips-image {
-      transform: scale(1.05);
-    }
-    
-    .tips-content {
-      padding: 2rem;
-    }
-    
-    .tips-content h2 {
-      font-family: 'Poppins', sans-serif;
-      color: #4b0082;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      letter-spacing: 2px;
-    }
-    
-    .tips-content p {
-      font-family: 'Nunito', sans-serif;
-      line-height: 1.7;
-      color: #555;
-    }
-    
-    /* Section divider */
-    .section-divider {
-      border: none;
-      height: 2px;
-      background: linear-gradient(to right, transparent, #8e54e9, transparent);
-      margin: 2rem 0;
-    }
-    
-    /* Contact info */
-    .contact-info {
-      background: #f0f9ff;
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin-top: 2rem;
-    }
-    
-    /* Footer (igual que en index) */
-    footer {
-      background-color: #333;
-      color: white;
-      padding: 3rem 1rem;
-      text-align: center;
-    }
-    
-    footer img {
-      height: 60px;
-      margin-bottom: 1.5rem;
-    }
-    
-    footer p {
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-    }
-    
-    /* Badge premium animado (IDÉNTICO al del index) */
-    .license-badge {
-      position: fixed;
-      right: 40px;
-      bottom: 40px;
-      background: linear-gradient(145deg, #ffffff, #f9f5ff);
-      padding: 22px 28px;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18);
-      z-index: 1000;
-      border: none;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: pointer;
-      transform: translateY(20px);
-      opacity: 0;
-      animation: fadeInUp 0.8s ease forwards;
-      animation-delay: 1s;
-    }
-    
-    .license-badge:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(106, 17, 203, 0.25);
-    }
-    
-    .license-badge img {
-      height: 80px;
-      width: auto;
-      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));
-    }
-    
-    .license-badge-text {
-      font-family: 'Poppins', sans-serif;
-    }
-    
-    .license-badge-text div {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #4b0082;
-      line-height: 1.2;
-      letter-spacing: 0.3px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    
-    /* Responsive (igual que en index) */
-    @media (max-width: 768px) {
-      .about-container {
-        flex-direction: column;
-      }
-      
-      .tips-sidebar {
-        order: -1;
-        margin-bottom: 2rem;
-      }
-      
-      .about-hero-container {
-        max-height: 400px;
-      }
-      
-      .tips-image-container {
-        height: 200px;
-      }
-      
-      .license-badge {
-        right: 20px;
-        bottom: 20px;
-        padding: 15px 20px;
-      }
-      
-      .license-badge img {
-        height: 60px;
-      }
-      
-      .license-badge-text div {
-        font-size: 1.5rem;
-      }
-    }
   </style>
 </head>
-<body>
 
-  <!-- Header (IDÉNTICO al del index) -->
+<body>
   <header class="main-header">
     <div class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px;">
       <img src="assets/images/logo.png" alt="Butterfly Child Care logo" 
@@ -354,90 +122,278 @@
                   color: #4b0082;
                   line-height: 1.1;
                   text-shadow: 1px 1px 3px rgba(0,0,0,0.1);"
-           class="animate__animated animate__fadeIn animate__delay-0-5s">
+           class="animate__animated animate__fadeIn animate__delay-1s">
         Butterfly <span style="display: block;">Child Care</span>
       </div>
     </div>
     
     <button class="hamburger" id="hamburger">&#9776;</button>
+  
     <nav class="nav-menu" id="navMenu">
       <ul>
-        <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-1s">Home</a></li>
-        <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-1-5s">About Us</a></li>
-        <li><a href="services.html" class="animate__animated animate__fadeIn animate__delay-2s">Services</a></li>
-        <li><a href="gallery.html" class="animate__animated animate__fadeIn animate__delay-2-5s">Gallery</a></li>
-        <li><a href="contact.html" class="animate__animated animate__fadeIn animate__delay-3s">Contact</a></li>
+        <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-2s">Home</a></li>
+        <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-3s">About Us</a></li>
+        <li><a href="services.html" class="animate__animated animate__fadeIn animate__delay-4s">Services</a></li>
+        <li><a href="gallery.html" class="animate__animated animate__fadeIn animate__delay-5s">Gallery</a></li>
+        <li><a href="contact.html" class="animate__animated animate__fadeIn animate__delay-6s">Contact</a></li>
       </ul>
     </nav>
   </header>
+  <main>
+    <section class="hero" style="position: relative; min-height: 70vh; background: url('assets/images/hero-bg.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+      <!-- Elementos decorativos animados -->
+      <div class="animate-butterfly" style="position: absolute; top: 20%; left: 15%; width: 50px; height: 50px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.7; z-index: 1;"></div>
+      <div class="animate-butterfly" style="position: absolute; top: 30%; right: 20%; width: 40px; height: 40px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.5; z-index: 1; animation-delay: 1s;"></div>
+      <div class="animate-butterfly" style="position: absolute; bottom: 25%; left: 25%; width: 60px; height: 60px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.6; z-index: 1; animation-delay: 2s;"></div>
+      
+      <!-- Contenedor del logo centrado -->
+      <div style="text-align: center; width: 100%;" class="animate__animated animate__zoomIn animate__delay-1s">
+        <img src="assets/images/butterfly-logo-title.png" alt="Butterfly Child Care" 
+             style="height: auto; width: 80%; max-width: 800px; min-width: 300px; 
+                    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));">
+      </div>
+      
+      <!-- Flecha animada para scroll -->
+      <div class="animate__animated animate__fadeIn animate__infinite animate__slower" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); cursor: pointer; z-index: 2;" onclick="scrollToSection('.about-section')">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 10L12 15L17 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
 
-  <div class="about-container">
-    <main class="main-content" data-animate-trigger>
-      <h1 class="animate__animated animate__fadeIn">About Us</h1>
-      
-      <!-- Contenedor de imagen hero -->
-      <div class="about-hero-container">
-        <img src="assets/images/happy-children-playing.jpg" alt="Happy children at Butterfly Child Care" 
-             class="about-hero-image animate__animated animate__fadeIn">
-      </div>
-      
-      <div data-animate="fadeInUp">
-        <p>We are a licensed Family Home Childcare located in San Rafael.</p>
+    <!-- Sección About Us con animaciones -->
+    <section class="about-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff); padding: 6rem 1rem;" data-animate-trigger>
+      <div style="max-width: 1200px; margin: 0 auto; position: relative;">
+        <!-- Elemento decorativo animado -->
+        <div class="animate-float" style="position: absolute; top: -30px; left: -30px; width: 100px; height: 100px; background: url('assets/images/butterfly-decor.png') no-repeat; z-index: 1;"></div>
         
-        <p>We are offering a safe and fun space for children to learn, grow, and develop life skills they will be able to take with them once they move on from our program.</p>
-        
-        <p>Caring for the children with love, heartfelt education, and patient guidelines, to develop the potential of children and to promote physical and mental development of children.</p>
+        <div style="background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 8px 40px rgba(146, 123, 255, 0.1); display: flex; flex-wrap: wrap; align-items: center; position: relative; overflow: hidden; border: 1px solid rgba(75, 0, 130, 0.1);" data-animate="fadeInUp">
+          <!-- Efecto decorativo -->
+          <div style="position: absolute; bottom: 0; right: 0; width: 100px; height: 100px; background: url('assets/images/child-handprint.png') no-repeat; opacity: 0.1;"></div>
+          
+          <!-- Columna de texto -->
+          <div style="flex: 1; min-width: 300px; padding: 2rem; position: relative; z-index: 2;">
+            <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.4rem; margin-bottom: 1.5rem; line-height: 1.3;">
+              <span style="color: #ff7eb9;">Our Loving</span><br>Childcare Family
+            </h2>
+            <p style="font-size: 1.15rem; color: #555; line-height: 1.8; margin-bottom: 2rem; position: relative; padding-left: 1.5rem; border-left: 3px solid #ffb8d9;">
+              At Butterfly Home Childcare, we nurture little minds with joy and creativity in our San Rafael home. Our licensed caregivers provide personalized attention in a safe, stimulating environment where children flourish through play-based learning and discovery.
+            </p>
+            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+              <a href="about.html" class="btn-glow" style="display: inline-block; padding: 1rem 2.5rem; background: linear-gradient(to right, #8e54e9, #6a11cb); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(142, 84, 233, 0.3);">
+                Discover Our Story
+              </a>
+              <div style="display: flex; align-items: center;">
+                <div style="display: flex; margin-right: 10px;">
+                  <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #ffb8d9; display: flex; align-items: center; justify-content: center; margin-right: -10px; border: 2px solid white; z-index: 1;">
+                    <span style="color: white; font-weight: bold;">✓</span>
+                  </div>
+                  <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #8e54e9; display: flex; align-items: center; justify-content: center; border: 2px solid white;">
+                    <span style="color: white; font-weight: bold;">✓</span>
+                  </div>
+                </div>
+                <span style="font-size: 0.9rem; color: #666;">Licensed & Insured</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Columna de imagen con animación -->
+          <div style="flex: 1; min-width: 300px; padding: 1rem; text-align: center; position: relative; z-index: 2;" class="animate__animated animate__fadeInRight">
+            <div style="position: relative; display: inline-block;" class="hover-grow">
+              <img src="assets/images/happy-children-playing.jpg" alt="Happy children playing at our daycare" style="max-width: 100%; border-radius: 16px; border: 8px solid white; box-shadow: 0 15px 40px rgba(0,0,0,0.1); transform: rotate(-2deg);">
+              <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(5deg);">
+                "Play & Learn"
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <hr class="section-divider">
-      
-      <div data-animate="fadeInUp" data-animate-delay="0.3">
-        <h2>Our Program</h2>
-        <p>In our program through our guidance, they will experience new opportunities for exploration and discovery. Different areas of early childhood development includes physical, emotional, social and cognitive development. Our play based curriculum includes dramatic play, craft/art, music, dance, reading.</p>
-        
-        <p>Children will grow up in a warm, home-style environment, and parents can go to work without worries.</p>
-      </div>
-      
-      <hr class="section-divider">
-      
-      <div class="contact-info animate__animated animate__fadeIn" data-animate-delay="0.6">
-        <h2>Contact Us</h2>
-        <p><strong>Phone:</strong> 415-578-25-15</p>
-        <p><strong>E-mail:</strong> nayaraondina@outlook.com</p>
-      </div>
-    </main>
-    
-    <aside class="tips-sidebar hover-grow">
-      <div class="tips-image-container">
-        <img src="assets/images/tips-image.jpg" alt="Parenting Tips" class="tips-image">
-      </div>
-      <div class="tips-content">
-        <h2>T I P S &nbsp; F O R &nbsp; Y O U</h2>
-        <p>Choosing a childcare provider can be one of the most important decisions parents can make, particularly during the years before a child starts kindergarten. The number of available options can be overwhelming, and it is easy to be tempted to go with the first recommendation from a friend or neighbor. But experts warn that a childcare solution that works for one family might not work for yours. Here are some tips to help you find the right fit for your family.</p>
-      </div>
-    </aside>
-  </div>
+    </section>
 
-  <!-- Footer (IDÉNTICO al del index) -->
-  <footer>
-    <div class="animate__animated animate__fadeIn">
-      <img src="assets/images/logo-white.png" alt="Butterfly Child Care logo">
-      <p>966 Las Pavadas Ave, San Rafael, CA 94903</p>
-      <p>License #214005909</p>
+    <!-- Sección CTA con animaciones -->
+    <section class="cta-section" style="padding: 6rem 1rem; background: linear-gradient(to right, #f9f0ff, #e6f9ff); position: relative; overflow: hidden;">
+      <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+        <div style="background: rgba(255,255,255,0.95); padding: 4rem; border-radius: 24px; max-width: 800px; margin: 0 auto; box-shadow: 0 15px 40px rgba(0,0,0,0.1); text-align: center; border: 1px solid rgba(75, 0, 130, 0.1);" 
+             class="animate__animated animate__pulse animate__delay-1s animate__slower animate__infinite">
+          <h1 style="font-size: 2.5rem; color: #4b0082; margin-bottom: 1.5rem; line-height: 1.2; font-family: 'Poppins', sans-serif;">
+            Tuition & Openings
+          </h1>
+          <p style="font-size: 1.2rem; color: #555; line-height: 1.6; margin-bottom: 2rem;">
+            To schedule a daycare center visit at Butterfly Child Care at San Rafael, just complete the form below and we'll get back to you shortly.
+          </p>
+          <a href="contact.html" class="btn-glow" style="display: inline-block; padding: 1.2rem 3rem; background: linear-gradient(to right, #8e54e9, #6a11cb); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(142, 84, 233, 0.3);">
+            Schedule Here
+          </a>
+        </div>
+      </div>
+      
+      <!-- Elementos decorativos animados -->
+      <div class="animate-float" style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; background: url('assets/images/butterfly-decor.png') no-repeat; opacity: 0.1; transform: rotate(15deg);"></div>
+      <div class="animate-float" style="position: absolute; bottom: -50px; right: -50px; width: 200px; height: 200px; background: url('assets/images/butterfly-decor.png') no-repeat; opacity: 0.1; transform: rotate(-15deg); animation-delay: 1s;"></div>
+    </section>
+
+    <!-- Sección de Testimonios con animaciones -->
+    <section class="testimonials" style="padding: 6rem 1rem; background: url('assets/images/testimonials-bg.png') no-repeat center center; background-size: cover; position: relative;" data-animate-trigger>
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 254, 252, 0.9); z-index: 1;"></div>
+      
+      <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+        <div style="text-align: center; margin-bottom: 4rem;" data-animate="fadeIn">
+          <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.4rem; margin-bottom: 1rem; position: relative; display: inline-block;">
+            <span style="position: absolute; bottom: -10px; left: 0; width: 50%; height: 4px; background: linear-gradient(to right, #ff7eb9, #8e54e9);"></span>
+            Heartfelt Parent Reviews
+          </h2>
+          <p style="font-size: 1.15rem; color: #666; max-width: 700px; margin: 1rem auto 0; line-height: 1.6;">
+            Don't just take our word for it - here's what our daycare families say about their experience
+          </p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 2rem;">
+          <!-- Testimonio 1 -->
+          <div style="background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; border: 1px solid rgba(146, 123, 255, 0.2); transition: all 0.3s ease;" 
+               class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.3">
+            <div style="position: absolute; top: -20px; left: 20px; background: linear-gradient(to right, #ff7eb9, #ffb8d9); color: white; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 126, 185, 0.3);">
+              ★★★★★
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+              <div style="width: 60px; height: 60px; border-radius: 50%; background: #f0f0f0 url('assets/images/parent1.jpg') center/cover; margin-right: 1rem; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></div>
+              <div>
+                <div style="font-size: 1.2rem; color: #5a2d9a; font-weight: 600;">Lahmad Nop</div>
+                <div style="font-size: 0.9rem; color: #ff7eb9;">Parent since 2020</div>
+              </div>
+            </div>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem; position: relative; padding-left: 1.5rem; border-left: 2px solid #ffb8d9;">
+              "The transformation in my child's confidence and social skills has been remarkable. The caregivers treat each child like family and the daily updates give me such peace of mind."
+            </p>
+            <div style="font-size: 3rem; color: rgba(142, 84, 233, 0.1); position: absolute; bottom: 10px; right: 20px; line-height: 1;">”</div>
+          </div>
+          
+          <!-- Testimonio 2 -->
+          <div style="background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; border: 1px solid rgba(146, 123, 255, 0.2); transition: all 0.3s ease;" 
+               class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.6">
+            <div style="position: absolute; top: -20px; left: 20px; background: linear-gradient(to right, #ff7eb9, #ffb8d9); color: white; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 126, 185, 0.3);">
+              ★★★★★
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+              <div style="width: 60px; height: 60px; border-radius: 50%; background: #f0f0f0 url('assets/images/parent2.jpg') center/cover; margin-right: 1rem; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></div>
+              <div>
+                <div style="font-size: 1.2rem; color: #5a2d9a; font-weight: 600;">Heather Palmer</div>
+                <div style="font-size: 0.9rem; color: #ff7eb9;">Parent since 2019</div>
+              </div>
+            </div>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem; position: relative; padding-left: 1.5rem; border-left: 2px solid #ffb8d9;">
+              "My daughter runs in every morning without looking back! The learning activities are creative and she comes home singing new songs every week. Truly a second home for her."
+            </p>
+            <div style="font-size: 3rem; color: rgba(142, 84, 233, 0.1); position: absolute; bottom: 10px; right: 20px; line-height: 1;">”</div>
+          </div>
+          
+          <!-- Testimonio 3 -->
+          <div style="background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; border: 1px solid rgba(146, 123, 255, 0.2); transition: all 0.3s ease;" 
+               class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.9">
+            <div style="position: absolute; top: -20px; left: 20px; background: linear-gradient(to right, #ff7eb9, #ffb8d9); color: white; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 126, 185, 0.3);">
+              ★★★★★
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+              <div style="width: 60px; height: 60px; border-radius: 50%; background: #f0f0f0 url('assets/images/parent3.jpg') center/cover; margin-right: 1rem; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></div>
+              <div>
+                <div style="font-size: 1.2rem; color: #5a2d9a; font-weight: 600;">Erin Taylor</div>
+                <div style="font-size: 0.9rem; color: #ff7eb9;">Parent since 2021</div>
+              </div>
+            </div>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem; position: relative; padding-left: 1.5rem; border-left: 2px solid #ffb8d9;">
+              "The holiday celebrations and birthday traditions make this daycare so special. My son has formed beautiful friendships and learns something new every single day."
+            </p>
+            <div style="font-size: 3rem; color: rgba(142, 84, 233, 0.1); position: absolute; bottom: 10px; right: 20px; line-height: 1;">”</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de beneficios con animaciones -->
+    <section class="highlights" style="padding: 5rem 1rem; background-color: #fffaf5;" data-animate-trigger>
+      <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+        <h2 style="color: #4b0082; font-size: 2.2rem; margin-bottom: 1.5rem;" data-animate="fadeIn">Why Families Choose Us</h2>
+        <p style="font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto 3rem;" data-animate="fadeIn" data-animate-delay="0.3">
+          Located at <strong>966 Las Pavadas Ave, San Rafael</strong>, we offer the perfect balance of professional care and home-like comfort
+        </p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
+          <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
+               class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.3">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏡</div>
+            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Home-Like Setting</h3>
+            <p style="color: #555; line-height: 1.6;">Small group sizes in a warm, family environment</p>
+          </div>
+          
+          <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
+               class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.6">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🧠</div>
+            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Developmental Focus</h3>
+            <p style="color: #555; line-height: 1.6;">Activities designed to support cognitive and social growth</p>
+          </div>
+          
+          <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
+               class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.9">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌿</div>
+            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Outdoor Play</h3>
+            <p style="color: #555; line-height: 1.6;">Daily outdoor time in our safe, engaging play area</p>
+          </div>
+          
+          <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
+               class="hover-grow" data-animate="fadeInUp" data-animate-delay="1.2">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🍎</div>
+            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Healthy Meals</h3>
+            <p style="color: #555; line-height: 1.6;">Nutritious snacks and meals included</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>  
+
+  <footer style="background-color: #333; color: white; padding: 3rem 1rem; text-align: center;">
+    <div style="max-width: 1000px; margin: 0 auto;" class="animate__animated animate__fadeIn">
+      <img src="assets/images/logo-white.png" alt="Butterfly Child Care logo" style="height: 60px; margin-bottom: 1.5rem;">
+      <p style="margin-bottom: 0.5rem; font-size: 1.1rem;">966 Las Pavadas Ave, San Rafael, CA 94903</p>
+      <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">License #214005909</p>
       <p>&copy; 2025 Butterfly Home Child Care. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Badge premium animado (IDÉNTICO al del index) -->
-  <div class="license-badge hover-grow">
-    <img src="assets/images/california-license.png" alt="Licensed">
-    <div class="license-badge-text">
-      <div>Licensed & Insured</div>
+  <!-- Badge premium animado -->
+  <div style="position: fixed; 
+              right: 40px; 
+              bottom: 40px; 
+              background: linear-gradient(145deg, #ffffff, #f9f5ff); 
+              padding: 22px 28px; 
+              border-radius: 18px; 
+              display: flex; 
+              align-items: center; 
+              gap: 18px; 
+              box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18); 
+              z-index: 1000;
+              border: none;
+              transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+              cursor: pointer;"
+       class="animate__animated animate__fadeInRight animate__delay-1s hover-grow">
+    
+    <img src="assets/images/california-license.png" alt="Licensed" 
+         style="height: 80px; 
+                width: auto; 
+                filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));">
+    
+    <div style="font-family: 'Poppins', sans-serif;">
+      <div style="font-size: 1.8rem; 
+                  font-weight: 700; 
+                  color: #4b0082; 
+                  line-height: 1.2; 
+                  letter-spacing: 0.3px;
+                  text-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        Licensed & Insured
+      </div>
     </div>
   </div>
 
   <script>
-    // Scroll suave (igual que en index)
+    // Scroll suave
     function scrollToSection(selector) {
       const element = document.querySelector(selector);
       if (element) {
@@ -445,7 +401,7 @@
       }
     }
     
-    // Animación al hacer scroll (igual que en index)
+    // Animación al hacer scroll
     document.addEventListener('DOMContentLoaded', function() {
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       
@@ -469,20 +425,20 @@
         observer.observe(element);
       });
       
-      // Efecto hover para el badge (igual que en index)
-      const badge = document.querySelector('.license-badge');
+      // Efecto hover para el badge
+      const badge = document.querySelector('div[style*="position: fixed"]');
       
       badge.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-5px)';
+        this.style.transform = 'scale(1.05) translateY(-5px)';
         this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
       });
       
       badge.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
+        this.style.transform = 'scale(1)';
         this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
       });
       
-      // Click en el badge para ir al contacto (igual que en index)
+      // Click en el badge para ir al contacto
       badge.addEventListener('click', function() {
         window.location.href = 'contact.html';
       });
