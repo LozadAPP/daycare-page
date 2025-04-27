@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Services – Butterfly Home Child Care | Licensed Daycare in Terra Linda, San Rafael</title>
-  <meta name="description" content="Discover our comprehensive childcare services at Butterfly Home Child Care in San Rafael. We offer nurturing care, educational programs, nutritious meals, and a safe environment for children ages 6 months to 5 years.">
+  <title>Our Activities – Butterfly Home Child Care | Licensed Daycare in Terra Linda, San Rafael</title>
+  <meta name="description" content="Discover our fun and educational activities at Butterfly Home Child Care in San Rafael. We offer creative programs that stimulate children's development through play and learning.">
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -106,7 +106,7 @@
       left: 100%;
     }
     
-    /* Estilos específicos para services */
+    /* Estilos específicos para activities */
     .activity-section {
       padding: 6rem 1rem;
       background: white;
@@ -130,6 +130,7 @@
       flex: 1;
       min-width: 300px;
       text-align: center;
+      position: relative;
     }
     
     .activity-title {
@@ -164,62 +165,45 @@
       box-shadow: 0 15px 40px rgba(0,0,0,0.1);
     }
     
-    .service-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 30px rgba(146, 123, 255, 0.1);
-      border: 1px solid rgba(75, 0, 130, 0.1);
-      transition: all 0.3s ease;
+    .activity-tag {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: #ffb8d9;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      animation: pulse 3s ease infinite;
     }
     
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: #8e54e9;
+    /* Sección de información adicional */
+    .info-section {
+      padding: 6rem 1rem;
+      background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);
     }
     
-    .service-feature {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 1rem;
+    .info-container {
+      max-width: 1200px;
+      margin: 0 auto;
     }
     
-    .service-feature i {
-      color: #ff7eb9;
-      margin-right: 1rem;
-      font-size: 1.2rem;
-      margin-top: 0.2rem;
-    }
-    
-    .pricing-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 2rem 0;
-    }
-    
-    .pricing-table th, .pricing-table td {
-      padding: 1rem;
-      text-align: left;
-      border-bottom: 1px solid #eee;
-    }
-    
-    .pricing-table th {
-      background-color: #f9f0ff;
+    .info-title {
+      font-family: 'Poppins', sans-serif;
       color: #5a2d9a;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
     }
     
-    .pricing-table tr:hover {
-      background-color: #f9f7ff;
-    }
-    
-    .highlight-box {
-      background: linear-gradient(to right, #f9f0ff, #e6f9ff);
-      border-left: 4px solid #8e54e9;
-      padding: 2rem;
-      border-radius: 8px;
-      margin: 2rem 0;
+    .info-content {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(146, 123, 255, 0.1);
+      line-height: 1.8;
+      color: #555;
     }
     
     /* Estilos para el menú activo */
@@ -263,6 +247,11 @@
       .activity-title {
         font-size: 2rem;
       }
+      
+      .activity-tag {
+        right: 10px;
+        bottom: -15px;
+      }
     }
   </style>
 </head>
@@ -292,26 +281,27 @@
       <ul>
         <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-0-5s">Home</a></li>
         <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-0-7s">About Us</a></li>
-        <li><a href="services.html" class="active">Services</a></li>
-        <li><a href="gallery.html" class="animate__animated animate__fadeIn animate__delay-0-9s">Gallery</a></li>
-        <li><a href="contact.html" class="animate__animated animate__fadeIn animate__delay-1-1s">Contact</a></li>
+        <li><a href="services.html" class="animate__animated animate__fadeIn animate__delay-0-9s">Services</a></li>
+        <li><a href="activities.html" class="active">Activities</a></li>
+        <li><a href="gallery.html" class="animate__animated animate__fadeIn animate__delay-1-1s">Gallery</a></li>
+        <li><a href="contact.html" class="animate__animated animate__fadeIn animate__delay-1-3s">Contact</a></li>
       </ul>
     </nav>
   </header>
   
   <main>
     <!-- Hero Section -->
-    <section class="hero" style="position: relative; min-height: 50vh; background: url('assets/images/services-hero-bg.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+    <section class="hero" style="position: relative; min-height: 50vh; background: url('assets/images/activities-hero-bg.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; overflow: hidden;">
       <!-- Elementos decorativos animados -->
       <div class="animate-butterfly" style="position: absolute; top: 20%; left: 15%; width: 50px; height: 50px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.7; z-index: 1;"></div>
       <div class="animate-butterfly" style="position: absolute; top: 30%; right: 20%; width: 40px; height: 40px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.5; z-index: 1; animation-delay: 1s;"></div>
       
       <div style="text-align: center; width: 100%; z-index: 2;" class="animate__animated animate__fadeInUp">
         <h1 style="font-size: 3.5rem; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.3); margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">
-          Our <span style="color: #ffb8d9;">Services</span>
+          Our <span style="color: #ffb8d9;">Activities</span>
         </h1>
         <p style="font-size: 1.5rem; color: white; max-width: 700px; margin: 0 auto; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
-          Nurturing care designed for your child's growth and happiness
+          Fun and educational experiences for your child's growth
         </p>
       </div>
     </section>
@@ -319,20 +309,24 @@
     <!-- Sección de Actividades 1 -->
     <section class="activity-section" data-animate-trigger>
       <div class="activity-container">
-        <div class="activity-content" data-animate="fadeInUp">
-          <h2 class="activity-title">Nannies and Babysitters</h2>
-          <p class="activity-description">
-            "The best and biggest benefit to hiring a nanny or babysitter is convenience," says Katie Bugbee, senior managing editor and parenting expert for Care.com, an international online service that connects families with care for children, seniors, pets and homes. "The nanny comes to your house. You don't have the juggling act of packing all the daily necessities and shuttling your child to daycare before work."
-          </p>
-          <p class="activity-description">
-            For parents in L.A. who might not be able to make the typical closing time of 5:30 or 6 p.m. at a daycare center, a nanny or babysitter could be the best choice.
-          </p>
+        <div class="activity-image" data-animate="fadeInUp">
+          <img src="assets/images/art-activities.jpg" alt="Children doing art activities" class="hover-grow">
+          <div class="activity-tag">Creative Expression</div>
         </div>
-        <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
-          <img src="assets/images/nanny-service.jpg" alt="Nanny caring for child" class="hover-grow">
-          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-            "Personalized Care"
-          </div>
+        <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
+          <h2 class="activity-title">Art & Creativity</h2>
+          <p class="activity-description">
+            Our art program encourages children to explore their creativity through various mediums. Each week we introduce new projects that help develop fine motor skills while allowing for self-expression.
+          </p>
+          <p class="activity-description">
+            Activities include finger painting, clay modeling, collage making, and watercolor techniques. We focus on the process rather than the product, helping children build confidence in their creative abilities.
+          </p>
+          <ul style="color: #555; line-height: 1.8; padding-left: 1.5rem;">
+            <li>Daily art exploration sessions</li>
+            <li>Monthly themed art projects</li>
+            <li>Sensory art experiences</li>
+            <li>Outdoor art activities</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -340,17 +334,24 @@
     <!-- Sección de Actividades 2 -->
     <section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
       <div class="activity-container">
-        <div class="activity-image" data-animate="fadeInUp">
-          <img src="assets/images/cost-comparison.jpg" alt="Cost comparison chart" class="hover-grow">
+        <div class="activity-content" data-animate="fadeInUp">
+          <h2 class="activity-title">Music & Movement</h2>
+          <p class="activity-description">
+            Our music program introduces children to rhythm, melody, and movement through interactive sessions. We use instruments, songs, and dance to promote physical coordination and auditory development.
+          </p>
+          <p class="activity-description">
+            Each day includes a music circle time where children sing along, play simple instruments, and move to different rhythms. We incorporate multicultural music to expose children to diverse sounds and traditions.
+          </p>
+          <ul style="color: #555; line-height: 1.8; padding-left: 1.5rem;">
+            <li>Daily music and movement sessions</li>
+            <li>Introduction to basic instruments</li>
+            <li>Rhythm and pattern recognition</li>
+            <li>Creative dance and expression</li>
+          </ul>
         </div>
-        <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
-          <h2 class="activity-title">Cost Comparison</h2>
-          <p class="activity-description">
-            Nannies, however, are the most expensive childcare option. According to Care.com, the average weekly cost of a full-time nanny is $475, compared with $127 for a family childcare center and $186 for a daycare center. But if you have more than one child, a nanny or sitter might make sense economically.
-          </p>
-          <p class="activity-description">
-            "Depending on where you live, a nanny for two children can often be less expensive than two kids in daycare," says Bugbee. "Our pay calculator shows an average hourly rate of $13 in the L.A. area. But check it out to see the going rate for a nanny in your specific ZIP code."
-          </p>
+        <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
+          <img src="assets/images/music-activities.jpg" alt="Children enjoying music activities" class="hover-grow">
+          <div class="activity-tag">Rhythm & Fun</div>
         </div>
       </div>
     </section>
@@ -358,9 +359,73 @@
     <!-- Sección de Actividades 3 -->
     <section class="activity-section" data-animate-trigger>
       <div class="activity-container">
-        <div class="activity-content" data-animate="fadeInUp">
-          <h2 class="activity-title">Choosing the Right Care</h2>
+        <div class="activity-image" data-animate="fadeInUp">
+          <img src="assets/images/science-activities.jpg" alt="Children exploring science" class="hover-grow">
+          <div class="activity-tag">Little Scientists</div>
+        </div>
+        <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
+          <h2 class="activity-title">Science Exploration</h2>
           <p class="activity-description">
+            Our science activities introduce basic concepts through hands-on experiments and nature exploration. Children learn to observe, predict, and discover the world around them in age-appropriate ways.
+          </p>
+          <p class="activity-description">
+            We focus on sensory experiences, simple experiments, and nature studies that spark curiosity. Activities change with the seasons to connect children with the natural world.
+          </p>
+          <ul style="color: #555; line-height: 1.8; padding-left: 1.5rem;">
+            <li>Weekly science experiments</li>
+            <li>Nature walks and observations</li>
+            <li>Sensory bins with natural materials</li>
+            <li>Weather and seasonal activities</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Actividades 4 -->
+    <section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
+      <div class="activity-container">
+        <div class="activity-content" data-animate="fadeInUp">
+          <h2 class="activity-title">Outdoor Play</h2>
+          <p class="activity-description">
+            Our outdoor program provides daily opportunities for physical activity, social interaction, and nature exploration. We believe outdoor play is essential for healthy development.
+          </p>
+          <p class="activity-description">
+            Our playground is designed to challenge children at different developmental levels while ensuring safety. We incorporate structured games and free play to develop both motor skills and social abilities.
+          </p>
+          <ul style="color: #555; line-height: 1.8; padding-left: 1.5rem;">
+            <li>Daily outdoor play (weather permitting)</li>
+            <li>Climbing structures and balance beams</li>
+            <li>Sand and water play areas</li>
+            <li>Gardening and nature exploration</li>
+          </ul>
+        </div>
+        <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
+          <img src="assets/images/outdoor-activities.jpg" alt="Children playing outdoors" class="hover-grow">
+          <div class="activity-tag">Active Learning</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Información Adicional (Texto genérico sobre niñeras) -->
+    <section class="info-section" data-animate-trigger>
+      <div class="info-container">
+        <h2 class="info-title">Childcare Options Information</h2>
+        <div class="info-content" data-animate="fadeInUp">
+          <h3 style="color: #5a2d9a; font-size: 1.5rem; margin-bottom: 1rem;">Nannies and Babysitters</h3>
+          <p>
+            "The best and biggest benefit to hiring a nanny or babysitter is convenience," says Katie Bugbee, senior managing editor and parenting expert for Care.com, an international online service that connects families with care for children, seniors, pets and homes. "The nanny comes to your house. You don't have the juggling act of packing all the daily necessities and shuttling your child to daycare before work."
+          </p>
+          <p>
+            For parents in L.A. who might not be able to make the typical closing time of 5:30 or 6 p.m. at a daycare center, a nanny or babysitter could be the best choice.
+          </p>
+          <p>
+            Nannies, however, are the most expensive childcare option. According to Care.com, the average weekly cost of a full-time nanny is $475, compared with $127 for a family childcare center and $186 for a daycare center. But if you have more than one child, a nanny or sitter might make sense economically.
+          </p>
+          <p>
+            "Depending on where you live, a nanny for two children can often be less expensive than two kids in daycare," says Bugbee. "Our pay calculator shows an average hourly rate of $13 in the L.A. area. But check it out to see the going rate for a nanny in your specific ZIP code."
+          </p>
+          <h3 style="color: #5a2d9a; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem;">Choosing the Right Care</h3>
+          <p>
             If you have decided that a nanny or babysitter is the best option for your family, Bugbee suggests writing out what you will need from your sitter. Here is her list of questions to consider:
           </p>
           <ul style="color: #555; line-height: 1.8; padding-left: 1.5rem;">
@@ -372,110 +437,13 @@
             <li>What level of energy does our family need?</li>
             <li>How much experience should we require?</li>
           </ul>
-        </div>
-        <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
-          <img src="assets/images/choosing-care.jpg" alt="Parents choosing childcare" class="hover-grow">
-          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-            "Informed Decisions"
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sección de Actividades 4 -->
-    <section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
-      <div class="activity-container">
-        <div class="activity-image" data-animate="fadeInUp">
-          <img src="assets/images/tax-considerations.jpg" alt="Tax considerations" class="hover-grow">
-        </div>
-        <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
-          <h2 class="activity-title">Tax Considerations</h2>
-          <p class="activity-description">
+          <h3 style="color: #5a2d9a; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem;">Tax Considerations</h3>
+          <p>
             Bugbee advises parents not to overlook taxes, and to communicate with the new hire about them.
           </p>
-          <p class="activity-description">
+          <p>
             "If it seems like you could pay $1,900 or more to this sitter, you should make sure the sitter knows during the interview that taxes will be withheld from his or her pay from day one," says Bugbee. "So many sitters are simply unaware of what goes on behind the scenes when it comes to payroll and taxes, so they're unlikely to bring this subject up with the family."
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Nuestros Servicios -->
-    <section style="padding: 6rem 1rem; background: white;" data-animate-trigger>
-      <div style="max-width: 1200px; margin: 0 auto;">
-        <div style="text-align: center; margin-bottom: 4rem;" data-animate="fadeIn">
-          <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.4rem; margin-bottom: 1rem; position: relative; display: inline-block;">
-            <span style="position: absolute; bottom: -10px; left: 0; width: 50%; height: 4px; background: linear-gradient(to right, #ff7eb9, #8e54e9);"></span>
-            Our Childcare Programs
-          </h2>
-          <p style="font-size: 1.15rem; color: #666; max-width: 700px; margin: 1rem auto 0; line-height: 1.6;">
-            We offer specialized programs for each age group to support your child's development
-          </p>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-          <!-- Service Card 1 -->
-          <div class="service-card hover-grow" data-animate="fadeInUp" data-animate-delay="0.3">
-            <div class="service-icon">👶</div>
-            <h3 style="color: #4b0082; font-size: 1.5rem; margin-bottom: 1.5rem;">Infant Care (6-24 months)</h3>
-            <p style="color: #555; line-height: 1.7; margin-bottom: 1.5rem;">
-              Our nurturing infant program focuses on creating a secure, loving environment that supports your baby's developmental milestones.
-            </p>
-            <div class="service-feature">
-              <i>✓</i>
-              <span>Personalized feeding and nap schedules</span>
-            </div>
-            <div class="service-feature">
-              <i>✓</i>
-              <span>Stimulating sensory activities</span>
-            </div>
-            <div class="service-feature">
-              <i>✓</i>
-              <span>Daily communication log</span>
-            </div>
-          </div>
-          
-          <!-- Service Card 2 -->
-          <div class="service-card hover-grow" data-animate="fadeInUp" data-animate-delay="0.6">
-            <div class="service-icon">🧒</div>
-            <h3 style="color: #4b0082; font-size: 1.5rem; margin-bottom: 1.5rem;">Toddler Program (2-3 years)</h3>
-            <p style="color: #555; line-height: 1.7; margin-bottom: 1.5rem;">
-              Our toddler curriculum encourages exploration, language development, and social skills through play-based learning.
-            </p>
-            <div class="service-feature">
-              <i>✓</i>
-              <span>Potty training support</span>
-            </div>
-            <div class="service-feature">
-              <i>✓</i>
-              <span>Early literacy activities</span>
-            </div>
-            <div class="service-feature">
-              <i>✓</i>
-              <span>Creative arts and music</span>
-            </div>
-          </div>
-          
-          <!-- Service Card 3 -->
-          <div class="service-card hover-grow" data-animate="fadeInUp" data-animate-delay="0.9">
-            <div class="service-icon">👧</div>
-            <h3 style="color: #4b0082; font-size: 1.5rem; margin-bottom: 1.5rem;">Preschool Prep (3-5 years)</h3>
-            <p style="color: #555; line-height: 1.7; margin-bottom: 1.5rem;">
-              We prepare children for kindergarten with a balanced approach that builds academic foundations and social-emotional skills.
-            </p>
-            <div class="service-feature">
-              <i>✓</i>
-              <span>Early math and science concepts</span>
-            </div>
-            <div class="service-feature">
-              <i>✓</i>
-              <span>Social skills development</span>
-            </div>
-            <div class="service-feature">
-              <i>✓</i>
-              <span>Problem-solving activities</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -489,7 +457,7 @@
           Ready to Join Our Butterfly Family?
         </h2>
         <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; line-height: 1.6; margin-bottom: 2.5rem;">
-          Schedule a tour to visit our daycare center and see how we can provide the perfect environment for your child's growth and happiness.
+          Schedule a tour to see our activities in action and learn how we can provide the perfect environment for your child's growth and happiness.
         </p>
         <a href="contact.html" class="btn-glow" style="display: inline-block; padding: 1.2rem 3rem; background: white; color: #6a11cb; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
           Schedule a Tour
