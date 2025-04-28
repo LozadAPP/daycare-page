@@ -642,7 +642,7 @@
     
     // Animación al hacer scroll
     document.addEventListener('DOMContentLoaded', function() {
-      const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
+      const animateElements = document.querySelectorAll('[data-animate]');
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -650,10 +650,15 @@
             const element = entry.target;
             const animationType = element.getAttribute('data-animate');
 
-            element.style.opacity = '1';
+            element.classList.add('animate__animated');
+
             if (animationType === 'fadeInUp') {
-              element.style.transform = 'translateY(0)';
+              element.classList.add('animate__fadeInUp');
+            } else if (animationType === 'fadeIn') {
+              element.classList.add('animate__fadeIn');
             }
+
+            element.style.opacity = '1';
             observer.unobserve(element);
           }
         });
@@ -662,33 +667,35 @@
       animateElements.forEach(element => {
         observer.observe(element);
       });
-      
+
       // Efecto hover para el badge
       const badge = document.querySelector('div[style*="position: fixed"]');
       
-      badge.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.05) translateY(-5px)';
-        this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
-      });
-      
-      badge.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-        this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
-      });
-      
-      // Click en el badge para ir al contacto
-      badge.addEventListener('click', function() {
-        window.location.href = 'contact.html';
-      });
-      
+      if (badge) {
+        badge.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.05) translateY(-5px)';
+          this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
+        });
+
+        badge.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+          this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
+        });
+
+        badge.addEventListener('click', function() {
+          window.location.href = 'contact.html';
+        });
+      }
+
       // Menú hamburguesa
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
-      
+
       hamburger.addEventListener('click', function() {
         navMenu.classList.toggle('active');
       });
     });
+
   </script>
 
   <script src="js/main.js"></script>
