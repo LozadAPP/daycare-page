@@ -426,7 +426,7 @@
           </p>
         </div>
         <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
-          <img src="assets/images/educational-activities.jpg" alt="Children engaged in educational activities" class="hover-grow">
+          <img src="assets/images/educational-activities.jpg" alt="Children engaged in educational activities" class="hover-grow" data-animate="fadeInUp">
           <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
             "Learning Through Play"
           </div>
@@ -438,7 +438,7 @@
     <section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
       <div class="activity-container">
         <div class="activity-image" data-animate="fadeInUp">
-          <img src="assets/images/creative-activities.jpg" alt="Children doing creative activities" class="hover-grow">
+          <img src="assets/images/creative-activities.jpg" alt="Children doing creative activities" class="hover-grow" data-animate="fadeInUp">
         </div>
         <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
           <h2 class="activity-title">Creative Development</h2>
@@ -471,7 +471,7 @@
           </p>
         </div>
         <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
-          <img src="assets/images/physical-activities.jpg" alt="Children playing outdoors" class="hover-grow">
+          <img src="assets/images/physical-activities.jpg" alt="Children playing outdoors" class="hover-grow" data-animate="fadeInUp">
           <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
             "Active & Healthy"
           </div>
@@ -483,7 +483,7 @@
     <section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
       <div class="activity-container">
         <div class="activity-image" data-animate="fadeInUp">
-          <img src="assets/images/social-activities.jpg" alt="Children playing together" class="hover-grow">
+          <img src="assets/images/social-activities.jpg" alt="Children playing together" class="hover-grow" data-animate="fadeInUp">
         </div>
         <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
           <h2 class="activity-title">Social and Emotional Development</h2>
@@ -506,7 +506,7 @@
         
         <!-- Imagen decorativa -->
         <div class="nanny-image animate__animated animate__fadeInLeft" style="flex: 1; min-width: 300px; text-align: center;">
-          <img src="assets/images/nanny-babysitter.jpg" alt="Nanny taking care of children" style="max-width: 100%; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08);">
+          <img src="assets/images/nanny-babysitter.jpg" alt="Nanny taking care of children" style="max-width: 100%; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08);" data-animate="fadeInUp">
         </div>
     
         <!-- Contenido -->
@@ -643,23 +643,22 @@
     // Animación al hacer scroll
     document.addEventListener('DOMContentLoaded', function() {
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
-      
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const element = entry.target;
             const animationType = element.getAttribute('data-animate');
+
             element.style.opacity = '1';
-            
             if (animationType === 'fadeInUp') {
               element.style.transform = 'translateY(0)';
             }
-            
             observer.unobserve(element);
           }
         });
       }, { threshold: 0.1 });
-      
+
       animateElements.forEach(element => {
         observer.observe(element);
       });
