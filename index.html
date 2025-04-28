@@ -140,6 +140,104 @@
     .btn-glow:hover::after {
       left: 100%;
     }
+    @media (max-width: 1024px) {
+    .logo-img {
+      height: 80px !important;
+    }
+    
+    .hero {
+      min-height: 50vh !important;
+    }
+    
+    .about-section, .testimonials, .cta-section, .highlights {
+      padding: 3rem 1rem !important;
+    }
+    
+    div[style*="position: fixed"] {
+      right: 20px !important;
+      bottom: 20px !important;
+      padding: 15px 20px !important;
+    }
+  }
+
+  /* Móvil (hasta 767px) */
+  @media (max-width: 767px) {
+    /* Header */
+    .logo-area {
+      flex-direction: column !important;
+      text-align: center;
+      gap: 5px !important;
+    }
+    
+    .logo-img {
+      height: 60px !important;
+      margin: 0 auto !important;
+    }
+    
+    /* Menú Hamburguesa */
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    
+    .nav-menu.active {
+      display: block;
+    }
+    
+    .nav-menu ul {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    /* Hero */
+    .hero {
+      min-height: 40vh !important;
+    }
+    
+    /* Sección About */
+    .about-section > div > div {
+      flex-direction: column !important;
+      padding: 1.5rem !important;
+    }
+    
+    /* Testimonios */
+    .testimonials > div > div {
+      grid-template-columns: 1fr !important;
+    }
+    
+    /* Badge flotante */
+    div[style*="position: fixed"] {
+      right: 10px !important;
+      bottom: 10px !important;
+      padding: 10px 15px !important;
+      flex-direction: column;
+      gap: 5px !important;
+    }
+    
+    div[style*="position: fixed"] img {
+      height: 50px !important;
+    }
+    
+    /* Ajustes generales */
+    [style*="font-size: 2.2rem"] {
+      font-size: 1.8rem !important;
+    }
+    
+    [style*="font-size: 2.4rem"] {
+      font-size: 1.8rem !important;
+    }
+    
+    [style*="font-size: 2.5rem"] {
+      font-size: 2rem !important;
+    }
+  }
   </style>
 </head>
 
@@ -427,7 +525,7 @@
   </div>
 
   <script>
-    // Scroll suave
+    // Scroll suave (se mantiene igual)
     function scrollToSection(selector) {
       const element = document.querySelector(selector);
       if (element) {
@@ -435,10 +533,32 @@
       }
     }
     
-    // Animación al hacer scroll
+    // DOM Ready - Versión optimizada para móviles
     document.addEventListener('DOMContentLoaded', function() {
-      const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
+      // ===== Menú Hamburguesa =====
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
       
+      // Solo activar en móviles (anchos <= 767px)
+      if (window.innerWidth <= 767) {
+        hamburger.style.display = 'block'; // Mostrar botón
+        
+        hamburger.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+          this.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic en enlaces
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+          });
+        });
+      }
+  
+      // ===== Animaciones al Scroll (se mantiene igual) =====
+      const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -458,23 +578,45 @@
       animateElements.forEach(element => {
         observer.observe(element);
       });
-      
-      // Efecto hover para el badge
+  
+      // ===== Badge Flotante (mejorado para touch) =====
       const badge = document.querySelector('div[style*="position: fixed"]');
-      
-      badge.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.05) translateY(-5px)';
-        this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
-      });
-      
-      badge.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-        this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
-      });
-      
-      // Click en el badge para ir al contacto
-      badge.addEventListener('click', function() {
-        window.location.href = 'contact.html';
+      if (badge) {
+        // Hover para desktop
+        badge.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.05) translateY(-5px)';
+          this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
+        });
+        
+        badge.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+          this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
+        });
+        
+        // Click/touch para móviles
+        badge.addEventListener('click', function() {
+          window.location.href = 'contact.html';
+        });
+        
+        // Redimensionar en móviles
+        if (window.innerWidth <= 767) {
+          badge.style.right = '10px';
+          badge.style.bottom = '10px';
+          badge.style.padding = '10px 15px';
+        }
+      }
+  
+      // ===== Ajustar dinámicamente al cambiar tamaño de pantalla =====
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 767) {
+          // Ocultar hamburguesa y mostrar menú normal en desktop
+          hamburger.style.display = 'none';
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+        } else {
+          // Mostrar hamburguesa en móviles
+          hamburger.style.display = 'block';
+        }
       });
     });
   </script>

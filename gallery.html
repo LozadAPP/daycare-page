@@ -3,45 +3,821 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gallery – Butterfly Child Care</title>
+  <title>Photo Gallery – Butterfly Home Child Care | Licensed Daycare in Terra Linda, San Rafael</title>
+  <meta name="description" content="Explore our photo gallery showcasing daily activities, happy children, and our nurturing environment at Butterfly Home Child Care in San Rafael.">
   <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="icon" href="assets/images/favicon.png" type="image/png">
+  <style>
+    html, body {
+      overflow-x: hidden;
+    }
+    
+    /* Animaciones personalizadas (consistentes con services.html) */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes butterflyFly {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(20px, -15px) rotate(5deg); }
+      50% { transform: translate(10px, -25px) rotate(0deg); }
+      75% { transform: translate(-10px, -15px) rotate(-5deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+    
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    .animate-pulse {
+      animation: pulse 3s ease infinite;
+    }
+    
+    .animate-fade-in-up {
+      animation: fadeInUp 1s ease forwards;
+    }
+    
+    .animate-butterfly {
+      animation: butterflyFly 8s ease-in-out infinite;
+    }
+    
+    .delay-1 { animation-delay: 0.3s; }
+    .delay-2 { animation-delay: 0.6s; }
+    .delay-3 { animation-delay: 0.9s; }
+    .delay-4 { animation-delay: 1.2s; }
+    
+    /* Efecto hover para tarjetas */
+    .hover-grow {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-grow:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Efecto de aparición gradual */
+    [data-animate] {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    [data-animate="fadeIn"] {
+      opacity: 1;
+    }
+    
+    [data-animate="fadeInUp"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 40vh;
+      max-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-  <header>
-    <h1>Butterfly Child Care</h1>
-    <nav>
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/images/gallery-hero-bg.jpg') center/cover no-repeat;
+      background-attachment: fixed;
+      filter: brightness(0.7);
+      z-index: 0;
+    }
+
+    .hero-content {
+      text-align: center;
+      width: 100%;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      color: white;
+      max-width: 700px;
+      margin: 0 auto;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    /* Animación de botón */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-glow:hover {
+      box-shadow: 0 0 15px rgba(142, 84, 233, 0.5);
+    }
+    
+    .btn-glow::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255,255,255,0.2);
+      transform: rotate(30deg);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-glow:hover::after {
+      left: 100%;
+    }
+    
+    /* Estilos específicos para la galería */
+    .gallery-section {
+      padding: 6rem 1rem;
+      background: white;
+    }
+    
+    .gallery-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .gallery-title {
+      font-family: 'Poppins', sans-serif;
+      color: #5a2d9a;
+      font-size: 2.4rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .gallery-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #8e54e9, #6a11cb);
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+    }
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      aspect-ratio: 4/3;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      color: white;
+      padding: 2rem 1.5rem 1.5rem;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      font-family: 'Nunito', sans-serif;
+    }
+    
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+    
+    .gallery-category-title {
+      font-family: 'Poppins', sans-serif;
+      color: #5a2d9a;
+      font-size: 2rem;
+      margin: 4rem 0 2rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .gallery-category-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, #8e54e9, #6a11cb);
+    }
+    
+    /* Lightbox styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+    
+    .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    }
+    
+    .lightbox-caption {
+      color: white;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .lightbox-close, .lightbox-prev, .lightbox-next {
+      position: absolute;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    .lightbox-close {
+      top: 20px;
+      right: 30px;
+    }
+    
+    .lightbox-prev {
+      left: 30px;
+    }
+    
+    .lightbox-next {
+      right: 30px;
+    }
+    
+    /* Estilos para el menú activo */
+    .nav-menu .active {
+      color: #ff7eb9;
+      font-weight: 600;
+      position: relative;
+      opacity: 1 !important;
+      animation: none !important;
+    }
+    
+    .nav-menu .active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #ff7eb9;
+    }
+    
+    .nav-menu a {
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-menu a:hover {
+      color: #8e54e9;
+      transform: translateY(-2px);
+    }
+    
+    /* Sección de testimonio */
+    .testimonial-section {
+      background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);
+      padding: 6rem 1rem;
+    }
+    
+    .testimonial-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-title {
+      font-family: 'Poppins', sans-serif;
+      color: #5a2d9a;
+      font-size: 2.4rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .testimonial-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #8e54e9, #6a11cb);
+    }
+    
+    .testimonial-content {
+      background: white;
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 8px 30px rgba(146, 123, 255, 0.1);
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .testimonial-text {
+      font-size: 1.15rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    
+    .testimonial-author {
+      font-weight: 600;
+      color: #5a2d9a;
+      text-align: right;
+    }
+    
+    .testimonial-quote {
+      position: absolute;
+      font-size: 5rem;
+      color: rgba(142, 84, 233, 0.1);
+      font-family: serif;
+    }
+    
+    .testimonial-quote.open {
+      top: 20px;
+      left: 30px;
+    }
+    
+    .testimonial-quote.close {
+      bottom: 20px;
+      right: 30px;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .gallery-title, .testimonial-title {
+        font-size: 2rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      .testimonial-content {
+        padding: 2rem;
+      }
+      
+      .testimonial-quote {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px;">
+      <img src="assets/images/logo.png" alt="Butterfly Child Care logo" 
+           class="logo-img animate__animated animate__fadeIn" 
+           style="height: 120px; opacity: 1; background: none;"/>
+      
+      <div style="font-family: 'Poppins', cursive; 
+                  font-style: italic;
+                  font-weight: 600;
+                  font-size: 2.2rem;
+                  color: #4b0082;
+                  line-height: 1.1;
+                  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);"
+           class="animate__animated animate__fadeIn animate__delay-0-5s">
+        Butterfly <span style="display: block;">Child Care</span>
+      </div>
+    </div>
+    
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  
+    <nav class="nav-menu" id="navMenu"> 
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="program.html">Program</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="enrollment.html">Enrollment</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-0-5s">Home</a></li>
+        <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-0-7s">About Us</a></li>
+        <li><a href="services.html" class="animate__animated animate__fadeIn animate__delay-0-9s">Services</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="contact.html" class="animate__animated animate__fadeIn animate__delay-1-1s">Contact</a></li>
       </ul>
     </nav>
   </header>
-
-  <main class="gallery-content">
-    <section>
-      <h2>Photo Gallery</h2>
-      <p>Explore some beautiful moments from our childcare center. Activities, playtime, learning, and fun!</p>
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <!-- Elementos decorativos animados -->
+      <div class="animate-butterfly" style="position: absolute; top: 20%; left: 15%; width: 50px; height: 50px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.7; z-index: 1;"></div>
+      <div class="animate-butterfly" style="position: absolute; top: 30%; right: 20%; width: 40px; height: 40px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.5; z-index: 1; animation-delay: 1s;"></div>
+      
+      <div class="hero-content animate__animated animate__fadeInUp">
+        <h1>
+          Our <span style="color: #ffb8d9;">Gallery</span>
+        </h1>
+        <p>
+          A visual journey through our nurturing environment and happy moments
+        </p>
+      </div>
     </section>
 
-    <section class="gallery-grid">
-      <img src="assets/images/gallery1.jpg" alt="Children playing in outdoor area" />
-      <img src="assets/images/gallery2.jpg" alt="Story time inside the classroom" />
-      <img src="assets/images/gallery3.jpg" alt="Arts and crafts activity" />
-      <img src="assets/images/gallery4.jpg" alt="Child painting with watercolors" />
-      <img src="assets/images/gallery5.jpg" alt="Indoor learning environment" />
-      <img src="assets/images/gallery6.jpg" alt="Circle time with teacher" />
+    <!-- Sección de Galería Principal -->
+    <section class="gallery-section" data-animate-trigger>
+      <div class="gallery-container">
+        <h2 class="gallery-title animate__animated animate__fadeIn">Captured Moments of Joy</h2>
+        
+        <div class="gallery-grid">
+          <!-- Grupo 1: Actividades Educativas -->
+          <h3 class="gallery-category-title animate__animated animate__fadeIn">Learning Adventures</h3>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp">
+            <img src="assets/images/gallery/learning1.jpg" alt="Children engaged in reading activities">
+            <div class="gallery-caption">Story time with our favorite books</div>
+          </div>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.2s">
+            <img src="assets/images/gallery/learning2.jpg" alt="Kids exploring science concepts">
+            <div class="gallery-caption">Exploring science with hands-on experiments</div>
+          </div>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.4s">
+            <img src="assets/images/gallery/learning3.jpg" alt="Children working on art projects">
+            <div class="gallery-caption">Creative expression through art</div>
+          </div>
+          
+          <!-- Grupo 2: Juego al Aire Libre -->
+          <h3 class="gallery-category-title animate__animated animate__fadeIn" style="grid-column: 1 / -1; margin-top: 4rem;">Outdoor Fun</h3>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp">
+            <img src="assets/images/gallery/outdoor1.jpg" alt="Children playing in playground">
+            <div class="gallery-caption">Adventures in our safe playground</div>
+          </div>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.2s">
+            <img src="assets/images/gallery/outdoor2.jpg" alt="Kids enjoying water play">
+            <div class="gallery-caption">Splashing fun on hot summer days</div>
+          </div>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.4s">
+            <img src="assets/images/gallery/outdoor3.jpg" alt="Children exploring nature">
+            <div class="gallery-caption">Nature exploration in our backyard</div>
+          </div>
+          
+          <!-- Grupo 3: Celebraciones -->
+          <h3 class="gallery-category-title animate__animated animate__fadeIn" style="grid-column: 1 / -1; margin-top: 4rem;">Special Celebrations</h3>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp">
+            <img src="assets/images/gallery/celebration1.jpg" alt="Birthday party celebration">
+            <div class="gallery-caption">Birthday celebrations with friends</div>
+          </div>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.2s">
+            <img src="assets/images/gallery/celebration2.jpg" alt="Holiday performance">
+            <div class="gallery-caption">Holiday performances and shows</div>
+          </div>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.4s">
+            <img src="assets/images/gallery/celebration3.jpg" alt="Cultural celebration">
+            <div class="gallery-caption">Learning about different cultures</div>
+          </div>
+          
+          <!-- Grupo 4: Momentos Tranquilos -->
+          <h3 class="gallery-category-title animate__animated animate__fadeIn" style="grid-column: 1 / -1; margin-top: 4rem;">Quiet Moments</h3>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp">
+            <img src="assets/images/gallery/quiet1.jpg" alt="Child napping">
+            <div class="gallery-caption">Peaceful nap time</div>
+          </div>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.2s">
+            <img src="assets/images/gallery/quiet2.jpg" alt="Children reading quietly">
+            <div class="gallery-caption">Quiet reading corner</div>
+          </div>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.4s">
+            <img src="assets/images/gallery/quiet3.jpg" alt="Puzzle time">
+            <div class="gallery-caption">Focus during puzzle time</div>
+          </div>
+          
+          <!-- Grupo 5: Comidas y Nutrición -->
+          <h3 class="gallery-category-title animate__animated animate__fadeIn" style="grid-column: 1 / -1; margin-top: 4rem;">Nutrition & Meals</h3>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp">
+            <img src="assets/images/gallery/meal1.jpg" alt="Children eating healthy snacks">
+            <div class="gallery-caption">Healthy snacks we prepare</div>
+          </div>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.2s">
+            <img src="assets/images/gallery/meal2.jpg" alt="Kids helping with food prep">
+            <div class="gallery-caption">Little chefs helping with food prep</div>
+          </div>
+          
+          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.4s">
+            <img src="assets/images/gallery/meal3.jpg" alt="Family style dining">
+            <div class="gallery-caption">Family-style dining experience</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox para imágenes -->
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <span class="lightbox-prev">&#10094;</span>
+      <span class="lightbox-next">&#10095;</span>
+      <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+      </div>
+    </div>
+
+    <!-- Sección de Testimonio -->
+    <section class="testimonial-section" data-animate-trigger>
+      <div class="testimonial-container">
+        <h2 class="testimonial-title animate__animated animate__fadeIn">What Parents Say</h2>
+        
+        <div class="testimonial-content animate__animated animate__fadeInUp">
+          <span class="testimonial-quote open">"</span>
+          <p class="testimonial-text">
+            Seeing the daily photos in your gallery gives me so much peace of mind while I'm at work. I can see how happy my daughter is and all the wonderful activities she gets to experience. The learning environment you've created is exactly what we hoped for when we chose Butterfly Home Child Care.
+          </p>
+          <p class="testimonial-author">- The Johnson Family</p>
+          <span class="testimonial-quote close">"</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="padding: 6rem 1rem; background: linear-gradient(135deg, #8e54e9, #6a11cb); position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/images/dots-pattern.png') center/cover; opacity: 0.1;"></div>
+      
+      <div style="max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 2;" data-animate="fadeIn">
+        <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+          See Our World in Person
+        </h2>
+        <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; line-height: 1.6; margin-bottom: 2.5rem;">
+          The photos capture just a glimpse of our daily joy. Schedule a tour to experience our nurturing environment firsthand.
+        </p>
+        <a href="contact.html" class="btn-glow" style="display: inline-block; padding: 1.2rem 3rem; background: white; color: #6a11cb; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+          Schedule a Tour
+        </a>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Butterfly Child Care | San Rafael, CA | License #XXXXXXX</p>
+  <footer style="background-color: #333; color: white; padding: 3rem 1rem; text-align: center;">
+    <div style="max-width: 1000px; margin: 0 auto;" class="animate__animated animate__fadeIn">
+      <img src="assets/images/logo-white.png" alt="Butterfly Child Care logo" style="height: 60px; margin-bottom: 1.5rem;">
+      <p style="margin-bottom: 0.5rem; font-size: 1.1rem;">966 Las Pavadas Ave, San Rafael, CA 94903</p>
+      <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">License #214005909</p>
+      <p>&copy; 2025 Butterfly Home Child Care. All rights reserved.</p>
+    </div>
   </footer>
 
+  <!-- Badge premium animado -->
+  <div style="position: fixed; 
+              right: 40px; 
+              bottom: 40px; 
+              background: linear-gradient(145deg, #ffffff, #f9f5ff); 
+              padding: 22px 28px; 
+              border-radius: 18px; 
+              display: flex; 
+              align-items: center; 
+              gap: 18px; 
+              box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18); 
+              z-index: 1000;
+              border: none;
+              transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+              cursor: pointer;"
+       class="animate__animated animate__fadeInRight animate__delay-1s hover-grow">
+    
+    <img src="assets/images/california-license.png" alt="Licensed" 
+         style="height: 80px; 
+                width: auto; 
+                filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));">
+    
+    <div style="font-family: 'Poppins', sans-serif;">
+      <div style="font-size: 1.8rem; 
+                  font-weight: 700; 
+                  color: #4b0082; 
+                  line-height: 1.2; 
+                  letter-spacing: 0.3px;
+                  text-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        Licensed & Insured
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Scroll suave
+    function scrollToSection(selector) {
+      const element = document.querySelector(selector);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    
+    // Animación al hacer scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('[data-animate]');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const animationType = element.getAttribute('data-animate');
+
+            element.classList.add('animate__animated');
+
+            if (animationType === 'fadeInUp') {
+              element.classList.add('animate__fadeInUp');
+            } else if (animationType === 'fadeIn') {
+              element.classList.add('animate__fadeIn');
+            }
+
+            element.style.opacity = '1';
+            observer.unobserve(element);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animateElements.forEach(element => {
+        observer.observe(element);
+      });
+
+      // Efecto hover para el badge
+      const badge = document.querySelector('div[style*="position: fixed"]');
+      
+      if (badge) {
+        badge.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.05) translateY(-5px)';
+          this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
+        });
+
+        badge.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+          this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
+        });
+
+        badge.addEventListener('click', function() {
+          window.location.href = 'contact.html';
+        });
+      }
+
+      // Menú hamburguesa
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+
+      hamburger.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+      });
+
+      // Lightbox functionality
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const lightboxClose = document.querySelector('.lightbox-close');
+      const lightboxPrev = document.querySelector('.lightbox-prev');
+      const lightboxNext = document.querySelector('.lightbox-next');
+      
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      let currentImageIndex = 0;
+      const images = [];
+      const captions = [];
+      
+      // Populate images and captions arrays
+      galleryItems.forEach((item, index) => {
+        const img = item.querySelector('img');
+        const caption = item.querySelector('.gallery-caption');
+        
+        images.push(img.src);
+        captions.push(caption.textContent);
+        
+        item.addEventListener('click', () => {
+          currentImageIndex = index;
+          openLightbox();
+        });
+      });
+      
+      function openLightbox() {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = images[currentImageIndex];
+        lightboxCaption.textContent = captions[currentImageIndex];
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeLightbox() {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+      
+      function showPrevImage() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        lightboxImg.src = images[currentImageIndex];
+        lightboxCaption.textContent = captions[currentImageIndex];
+      }
+      
+      function showNextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        lightboxImg.src = images[currentImageIndex];
+        lightboxCaption.textContent = captions[currentImageIndex];
+      }
+      
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightboxPrev.addEventListener('click', showPrevImage);
+      lightboxNext.addEventListener('click', showNextImage);
+      
+      // Close lightbox when clicking outside the image
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.style.display === 'flex') {
+          if (e.key === 'Escape') {
+            closeLightbox();
+          } else if (e.key === 'ArrowLeft') {
+            showPrevImage();
+          } else if (e.key === 'ArrowRight') {
+            showNextImage();
+          }
+        }
+      });
+    });
+  </script>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
