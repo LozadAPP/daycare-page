@@ -10,7 +10,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <style>
-    /* Animaciones personalizadas (consistentes con index.html) */
+    html, body {
+      overflow-x: hidden;
+    }    /* Animaciones personalizadas (consistentes con index.html) */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
@@ -82,7 +84,8 @@
     /* Agrega esto en la sección de estilos */
     .hero {
       position: relative;
-      min-height: 60vh;
+      min-height: 40vh; /* antes 60vh */
+      max-height: 400px; /* opcional para no exceder en pantallas grandes */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -502,48 +505,37 @@
 
 
     <section class="nanny-section" data-animate-trigger>
-      <div class="nanny-container" style="display: flex; flex-wrap: wrap; gap: 3rem;">
+      <div class="nanny-container" style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: flex-start;">
     
-        <!-- Galería de Imágenes -->
-        <div style="flex: 1; min-width: 300px;">
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        <!-- Galería Vertical Mejorada -->
+        <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+          <img src="assets/images/nanny-babysitter.jpg" alt="Nanny 1"
+               class="hover-grow animate__animated" data-animate="fadeInUp"
+               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
     
-            <!-- Imagen 1 -->
-            <img src="assets/images/nanny-babysitter.jpg" alt="Nanny 1"
-                 class="hover-grow animate__animated animate__fadeInLeft"
-                 style="max-width: 48%; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08);" />
+          <img src="assets/images/educational-activities.jpg" alt="Nanny 2"
+               class="hover-grow animate__animated" data-animate="fadeInUp"
+               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
     
-            <!-- Imagen 2 -->
-            <img src="assets/images/educational-activities.jpg" alt="Nanny 2"
-                 class="hover-grow animate__animated animate__fadeInUp"
-                 style="max-width: 48%; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08);" />
+          <img src="assets/images/creative-activities.jpg" alt="Nanny 3"
+               class="hover-grow animate__animated" data-animate="fadeInUp"
+               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
     
-            <!-- Imagen 3 -->
-            <img src="assets/images/creative-activities.jpg" alt="Nanny 3"
-                 class="hover-grow animate__animated animate__fadeInRight"
-                 style="max-width: 48%; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08);" />
+          <img src="assets/images/physical-activities.jpg" alt="Extra 1"
+               class="hover-grow animate__animated" data-animate="fadeInUp"
+               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
     
-            <!-- Imagen 4 -->
-            <img src="assets/images/physical-activities.jpg" alt="Nanny 4"
-                 class="hover-grow animate__animated animate__fadeInLeft"
-                 style="max-width: 48%; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08);" />
+          <img src="assets/images/hero-bg.jpg" alt="Extra 2"
+               class="hover-grow animate__animated" data-animate="fadeInUp"
+               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
     
-            <!-- Imagen 5 -->
-            <img src="assets/images/social-activities.jpg" alt="Nanny 5"
-                 class="hover-grow animate__animated animate__fadeInUp"
-                 style="max-width: 48%; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08);" />
+          <img src="assets/images/happy-children-playing.jpg" alt="Extra 3"
+               class="hover-grow animate__animated" data-animate="fadeInUp"
+               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
     
-            <!-- Imagen 6 -->
-            <img src="assets/images/gallery-1.jpg" alt="Nanny 6"
-                 class="hover-grow animate__animated animate__fadeInRight"
-                 style="max-width: 48%; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08);" />
-    
-            <!-- Imagen 7 -->
-            <img src="assets/images/gallery-2.jpg" alt="Nanny 7"
-                 class="hover-grow animate__animated animate__fadeInLeft"
-                 style="max-width: 48%; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08);" />
-    
-          </div>
+          <img src="assets/images/social-activities.jpg" alt="Extra 4"
+               class="hover-grow animate__animated" data-animate="fadeInUp"
+               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
         </div>
     
         <!-- Contenido de texto -->
@@ -604,6 +596,7 @@
         </div>
       </div>
     </section>
+    
     
     
 
