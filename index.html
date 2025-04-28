@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Butterfly Home Child Care – Licensed Daycare in Terra Linda, San Rafael, California</title>
   <meta name="description" content="Butterfly Home Child Care is a licensed family daycare located at 966 Las Pavadas Ave in Terra Linda, San Rafael, California. We offer safe, loving childcare for families in the North Bay area.">
   <link rel="stylesheet" href="css/styles.css" />
@@ -33,6 +33,15 @@
       75% { transform: translate(-10px, -15px) rotate(-5deg); }
       100% { transform: translate(0, 0) rotate(0deg); }
     }
+    
+    @keyframes butterflyFlyMobile {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(10px, -10px) rotate(5deg); }
+      50% { transform: translate(5px, -15px) rotate(0deg); }
+      75% { transform: translate(-5px, -10px) rotate(-5deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
     /* Estilos para el menú activo */
     .nav-menu .active {
       color: #ff7eb9;
@@ -61,6 +70,7 @@
       color: #8e54e9;
       transform: translateY(-2px);
     }
+    
     .animate-float {
       animation: float 4s ease-in-out infinite;
     }
@@ -75,6 +85,10 @@
     
     .animate-butterfly {
       animation: butterflyFly 8s ease-in-out infinite;
+    }
+    
+    .animate-butterfly-mobile {
+      animation: butterflyFlyMobile 6s ease-in-out infinite;
     }
     
     .delay-1 { animation-delay: 0.3s; }
@@ -140,104 +154,404 @@
     .btn-glow:hover::after {
       left: 100%;
     }
-    @media (max-width: 1024px) {
-    .logo-img {
-      height: 80px !important;
+    
+    /* Estilos base para móvil */
+    body {
+      overflow-x: hidden;
     }
     
-    .hero {
-      min-height: 50vh !important;
+    .main-header {
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1000;
     }
     
-    .about-section, .testimonials, .cta-section, .highlights {
-      padding: 3rem 1rem !important;
-    }
-    
-    div[style*="position: fixed"] {
-      right: 20px !important;
-      bottom: 20px !important;
-      padding: 15px 20px !important;
-    }
-  }
-
-  /* Móvil (hasta 767px) */
-  @media (max-width: 767px) {
-    /* Header */
-    .logo-area {
-      flex-direction: column !important;
-      text-align: center;
-      gap: 5px !important;
-    }
-    
-    .logo-img {
-      height: 60px !important;
-      margin: 0 auto !important;
-    }
-    
-    /* Menú Hamburguesa */
-    .nav-menu {
+    .hamburger {
       display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: white;
-      padding: 1rem;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-      z-index: 100;
+      background: none;
+      border: none;
+      color: #4b0082;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 5px;
     }
     
-    .nav-menu.active {
-      display: block;
+    .hamburger.active {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      color: #ff7eb9;
     }
     
-    .nav-menu ul {
-      flex-direction: column;
-      gap: 0.5rem;
+    /* Estilos generales para todas las secciones */
+    section {
+      padding: 3rem 1rem;
     }
     
-    /* Hero */
+    /* Estilos para el hero */
     .hero {
-      min-height: 40vh !important;
+      position: relative;
+      min-height: 70vh;
+      background: url('assets/images/hero-bg.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
     
-    /* Sección About */
-    .about-section > div > div {
-      flex-direction: column !important;
-      padding: 1.5rem !important;
+    /* Estilos para el badge flotante */
+    .floating-badge {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      background: linear-gradient(145deg, #ffffff, #f9f5ff);
+      padding: 22px 28px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18);
+      z-index: 1000;
+      border: none;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
     }
     
-    /* Testimonios */
-    .testimonials > div > div {
-      grid-template-columns: 1fr !important;
+    /* ========== MEDIA QUERIES ========== */
+    
+    /* Tablet Landscape (769px - 1024px) */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .logo-img {
+        height: 80px !important;
+      }
+      
+      .hero {
+        min-height: 60vh !important;
+        background-attachment: scroll !important;
+      }
+      
+      .about-section > div > div,
+      .testimonials > div > div,
+      .highlights > div {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      .about-section, 
+      .testimonials, 
+      .cta-section, 
+      .highlights {
+        padding: 4rem 1.5rem !important;
+      }
+      
+      .floating-badge {
+        right: 25px !important;
+        bottom: 25px !important;
+        padding: 18px 22px !important;
+      }
+      
+      /* Optimización de animaciones para tablet */
+      .animate-butterfly {
+        animation-duration: 12s !important;
+        opacity: 0.5 !important;
+      }
+    }
+
+    /* Tablet Portrait (481px - 768px) */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .logo-img {
+        height: 70px !important;
+      }
+      
+      .hero {
+        min-height: 55vh !important;
+      }
+      
+      .about-section > div > div {
+        flex-direction: column !important;
+        padding: 2rem !important;
+      }
+      
+      .testimonials > div > div {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+      
+      /* Ajuste de tipografía */
+      [style*="font-size: 2.2rem"] {
+        font-size: 1.9rem !important;
+      }
+      
+      [style*="font-size: 2.4rem"] {
+        font-size: 2rem !important;
+      }
+      
+      [style*="font-size: 2.5rem"] {
+        font-size: 2.1rem !important;
+      }
+      
+      .floating-badge {
+        right: 20px;
+        bottom: 20px;
+        padding: 15px 20px;
+      }
+      
+      .floating-badge img {
+        height: 60px !important;
+      }
+    }
+
+    /* Móvil (hasta 480px) */
+    @media (max-width: 480px) {
+      /* Header */
+      .logo-area {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 5px !important;
+      }
+      
+      .logo-img {
+        height: 50px !important;
+        margin: 0 auto !important;
+      }
+      
+      .logo-area div {
+        font-size: 1.8rem !important;
+      }
+      
+      /* Menú Hamburguesa mejorado */
+      .hamburger {
+        display: block;
+      }
+      
+      .nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 2rem;
+        box-shadow: none;
+        z-index: 1000;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .nav-menu.active {
+        display: flex;
+        animation: fadeInUp 0.5s ease forwards;
+      }
+      
+      .nav-menu ul {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 0;
+      }
+      
+      .nav-menu li {
+        margin: 0;
+      }
+      
+      .nav-menu a {
+        font-size: 1.5rem !important;
+        padding: 0.8rem 1.5rem !important;
+        display: block;
+        color: #4b0082;
+      }
+      
+      /* Hero */
+      .hero {
+        min-height: 60vh !important;
+        background-position: 65% center !important;
+      }
+      
+      .hero img {
+        width: 90% !important;
+        min-width: 250px !important;
+      }
+      
+      /* Secciones */
+      .about-section > div > div {
+        flex-direction: column !important;
+        padding: 1.5rem !important;
+      }
+      
+      .about-section h2 {
+        font-size: 2rem !important;
+      }
+      
+      .about-section p {
+        font-size: 1.1rem !important;
+        padding-left: 1rem !important;
+      }
+      
+      /* Testimonios */
+      .testimonials > div > div {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+      
+      /* CTA Section */
+      .cta-section div {
+        padding: 2.5rem 1.5rem !important;
+      }
+      
+      .cta-section h1 {
+        font-size: 2rem !important;
+      }
+      
+      /* Highlights */
+      .highlights > div > div {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      .highlights h2 {
+        font-size: 1.8rem !important;
+      }
+      
+      /* Badge flotante optimizado para móvil */
+      .floating-badge {
+        right: 15px !important;
+        bottom: 15px !important;
+        padding: 12px 15px !important;
+        flex-direction: row;
+        gap: 8px !important;
+        width: auto;
+        border-radius: 12px !important;
+      }
+      
+      .floating-badge img {
+        height: 40px !important;
+      }
+      
+      .floating-badge div div {
+        font-size: 1.2rem !important;
+      }
+      
+      /* Ajustes tipográficos móvil */
+      [style*="font-size: 2.2rem"] {
+        font-size: 1.6rem !important;
+      }
+      
+      [style*="font-size: 2.4rem"] {
+        font-size: 1.7rem !important;
+      }
+      
+      [style*="font-size: 2.5rem"] {
+        font-size: 1.8rem !important;
+      }
+      
+      /* Mejoras de interacción táctil */
+      button, a {
+        min-width: 48px;
+        min-height: 48px;
+      }
+      
+      /* Optimización de animaciones para móvil */
+      .animate-butterfly {
+        display: none !important;
+      }
+      
+      .animate-butterfly-mobile {
+        display: block !important;
+        width: 30px !important;
+        height: 30px !important;
+        opacity: 0.5 !important;
+      }
+      
+      .hover-grow:hover {
+        transform: none !important;
+      }
+      
+      /* Footer */
+      footer img {
+        height: 50px !important;
+      }
+      
+      footer p {
+        font-size: 1rem !important;
+      }
+    }
+
+    /* Mobile Landscape (hasta 767px) */
+    @media (max-width: 767px) and (orientation: landscape) {
+      .hero {
+        min-height: 100vh !important;
+      }
+      
+      .nav-menu {
+        padding-top: 80px !important;
+        height: 100vh !important;
+        overflow-y: auto !important;
+      }
+      
+      .logo-img {
+        height: 40px !important;
+      }
+      
+      .floating-badge {
+        right: 10px !important;
+        bottom: 10px !important;
+        padding: 10px 12px !important;
+      }
+    }
+
+    /* Dispositivos con pantalla pequeña y alta densidad (ej: iPhone 12 Mini) */
+    @media (max-width: 375px) {
+      .logo-img {
+        height: 45px !important;
+      }
+      
+      .floating-badge {
+        padding: 8px 12px !important;
+      }
+      
+      .floating-badge img {
+        height: 35px !important;
+      }
+      
+      [style*="font-size: 2.2rem"] {
+        font-size: 1.5rem !important;
+      }
+      
+      .hero {
+        min-height: 50vh !important;
+      }
+      
+      .nav-menu a {
+        font-size: 1.3rem !important;
+      }
     }
     
-    /* Badge flotante */
-    div[style*="position: fixed"] {
-      right: 10px !important;
-      bottom: 10px !important;
-      padding: 10px 15px !important;
-      flex-direction: column;
-      gap: 5px !important;
+    /* Dispositivos muy pequeños (ej: iPhone 5/SE) */
+    @media (max-width: 320px) {
+      .logo-area div {
+        font-size: 1.5rem !important;
+      }
+      
+      .hero img {
+        min-width: 200px !important;
+      }
+      
+      .floating-badge {
+        flex-direction: column;
+        padding: 8px 10px !important;
+        right: 10px !important;
+        bottom: 10px !important;
+      }
+      
+      .floating-badge div div {
+        font-size: 1rem !important;
+      }
     }
-    
-    div[style*="position: fixed"] img {
-      height: 50px !important;
-    }
-    
-    /* Ajustes generales */
-    [style*="font-size: 2.2rem"] {
-      font-size: 1.8rem !important;
-    }
-    
-    [style*="font-size: 2.4rem"] {
-      font-size: 1.8rem !important;
-    }
-    
-    [style*="font-size: 2.5rem"] {
-      font-size: 2rem !important;
-    }
-  }
   </style>
 </head>
 
@@ -272,11 +586,11 @@
     </nav>
   </header>
   <main>
-    <section class="hero" style="position: relative; min-height: 70vh; background: url('assets/images/hero-bg.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-      <!-- Elementos decorativos animados -->
-      <div class="animate-butterfly" style="position: absolute; top: 20%; left: 15%; width: 50px; height: 50px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.7; z-index: 1;"></div>
-      <div class="animate-butterfly" style="position: absolute; top: 30%; right: 20%; width: 40px; height: 40px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.5; z-index: 1; animation-delay: 1s;"></div>
-      <div class="animate-butterfly" style="position: absolute; bottom: 25%; left: 25%; width: 60px; height: 60px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.6; z-index: 1; animation-delay: 2s;"></div>
+    <section class="hero">
+      <!-- Elementos decorativos animados optimizados para móvil -->
+      <div class="animate-butterfly-mobile" style="position: absolute; top: 15%; left: 10%; width: 30px; height: 30px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.7; z-index: 1; display: none;"></div>
+      <div class="animate-butterfly-mobile" style="position: absolute; top: 25%; right: 15%; width: 25px; height: 25px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.5; z-index: 1; animation-delay: 1s; display: none;"></div>
+      <div class="animate-butterfly-mobile" style="position: absolute; bottom: 20%; left: 20%; width: 35px; height: 35px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.6; z-index: 1; animation-delay: 2s; display: none;"></div>
       
       <!-- Contenedor del logo centrado -->
       <div style="text-align: center; width: 100%;" class="animate__animated animate__zoomIn animate__delay-1s">
@@ -294,33 +608,33 @@
     </section>
 
     <!-- Sección About Us con animaciones -->
-    <section class="about-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff); padding: 6rem 1rem;" data-animate-trigger>
+    <section class="about-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff); padding: 4rem 1rem;" data-animate-trigger>
       <div style="max-width: 1200px; margin: 0 auto; position: relative;">
         <!-- Elemento decorativo animado -->
-        <div class="animate-float" style="position: absolute; top: -30px; left: -30px; width: 100px; height: 100px; background: url('assets/images/butterfly-decor.png') no-repeat; z-index: 1;"></div>
+        <div class="animate-float" style="position: absolute; top: -30px; left: -30px; width: 100px; height: 100px; background: url('assets/images/butterfly-decor.png') no-repeat; z-index: 1; display: none;"></div>
         
-        <div style="background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 8px 40px rgba(146, 123, 255, 0.1); display: flex; flex-wrap: wrap; align-items: center; position: relative; overflow: hidden; border: 1px solid rgba(75, 0, 130, 0.1);" data-animate="fadeInUp">
+        <div style="background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 8px 30px rgba(146, 123, 255, 0.1); display: flex; flex-wrap: wrap; align-items: center; position: relative; overflow: hidden; border: 1px solid rgba(75, 0, 130, 0.1);" data-animate="fadeInUp">
           <!-- Efecto decorativo -->
           <div style="position: absolute; bottom: 0; right: 0; width: 100px; height: 100px; background: url('assets/images/child-handprint.png') no-repeat; opacity: 0.1;"></div>
           
           <!-- Columna de texto -->
-          <div style="flex: 1; min-width: 300px; padding: 2rem; position: relative; z-index: 2;">
-            <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.4rem; margin-bottom: 1.5rem; line-height: 1.3;">
+          <div style="flex: 1; min-width: 300px; padding: 1rem; position: relative; z-index: 2;">
+            <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2rem; margin-bottom: 1.5rem; line-height: 1.3;">
               <span style="color: #ff7eb9;">Our Loving</span><br>Childcare Family
             </h2>
-            <p style="font-size: 1.15rem; color: #555; line-height: 1.8; margin-bottom: 2rem; position: relative; padding-left: 1.5rem; border-left: 3px solid #ffb8d9;">
+            <p style="font-size: 1.1rem; color: #555; line-height: 1.6; margin-bottom: 1.5rem; position: relative; padding-left: 1rem; border-left: 3px solid #ffb8d9;">
               At Butterfly Home Childcare, we nurture little minds with joy and creativity in our San Rafael home. Our licensed caregivers provide personalized attention in a safe, stimulating environment where children flourish through play-based learning and discovery.
             </p>
-            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
-              <a href="about.html" class="btn-glow" style="display: inline-block; padding: 1rem 2.5rem; background: linear-gradient(to right, #8e54e9, #6a11cb); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(142, 84, 233, 0.3);">
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+              <a href="about.html" class="btn-glow" style="display: inline-block; padding: 0.8rem 1.8rem; background: linear-gradient(to right, #8e54e9, #6a11cb); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(142, 84, 233, 0.3);">
                 Discover Our Story
               </a>
               <div style="display: flex; align-items: center;">
-                <div style="display: flex; margin-right: 10px;">
-                  <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #ffb8d9; display: flex; align-items: center; justify-content: center; margin-right: -10px; border: 2px solid white; z-index: 1;">
+                <div style="display: flex; margin-right: 8px;">
+                  <div style="width: 35px; height: 35px; border-radius: 50%; background-color: #ffb8d9; display: flex; align-items: center; justify-content: center; margin-right: -8px; border: 2px solid white; z-index: 1;">
                     <span style="color: white; font-weight: bold;">✓</span>
                   </div>
-                  <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #8e54e9; display: flex; align-items: center; justify-content: center; border: 2px solid white;">
+                  <div style="width: 35px; height: 35px; border-radius: 50%; background-color: #8e54e9; display: flex; align-items: center; justify-content: center; border: 2px solid white;">
                     <span style="color: white; font-weight: bold;">✓</span>
                   </div>
                 </div>
@@ -332,8 +646,8 @@
           <!-- Columna de imagen con animación -->
           <div style="flex: 1; min-width: 300px; padding: 1rem; text-align: center; position: relative; z-index: 2;" class="animate__animated animate__fadeInRight">
             <div style="position: relative; display: inline-block;" class="hover-grow">
-              <img src="assets/images/happy-children-playing.jpg" alt="Happy children playing at our daycare" style="max-width: 100%; border-radius: 16px; border: 8px solid white; box-shadow: 0 15px 40px rgba(0,0,0,0.1); transform: rotate(-2deg);">
-              <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(5deg);">
+              <img src="assets/images/happy-children-playing.jpg" alt="Happy children playing at our daycare" style="max-width: 100%; border-radius: 16px; border: 6px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: rotate(-2deg);">
+              <div class="animate-pulse" style="position: absolute; bottom: -15px; right: -15px; background: #ffb8d9; color: white; padding: 0.6rem 1.2rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(5deg); font-size: 0.9rem;">
                 "Play & Learn"
               </div>
             </div>
@@ -343,177 +657,162 @@
     </section>
 
     <!-- Sección CTA con animaciones -->
-    <section class="cta-section" style="padding: 6rem 1rem; background: linear-gradient(to right, #f9f0ff, #e6f9ff); position: relative; overflow: hidden;">
+    <section class="cta-section" style="padding: 4rem 1rem; background: linear-gradient(to right, #f9f0ff, #e6f9ff); position: relative; overflow: hidden;">
       <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
-        <div style="background: rgba(255,255,255,0.95); padding: 4rem; border-radius: 24px; max-width: 800px; margin: 0 auto; box-shadow: 0 15px 40px rgba(0,0,0,0.1); text-align: center; border: 1px solid rgba(75, 0, 130, 0.1);" 
+        <div style="background: rgba(255,255,255,0.95); padding: 2.5rem; border-radius: 20px; max-width: 800px; margin: 0 auto; box-shadow: 0 15px 30px rgba(0,0,0,0.1); text-align: center; border: 1px solid rgba(75, 0, 130, 0.1);" 
              class="animate__animated animate__pulse animate__delay-1s animate__slower animate__infinite">
-          <h1 style="font-size: 2.5rem; color: #4b0082; margin-bottom: 1.5rem; line-height: 1.2; font-family: 'Poppins', sans-serif;">
+          <h1 style="font-size: 2rem; color: #4b0082; margin-bottom: 1.5rem; line-height: 1.2; font-family: 'Poppins', sans-serif;">
             Tuition & Openings
           </h1>
-          <p style="font-size: 1.2rem; color: #555; line-height: 1.6; margin-bottom: 2rem;">
+          <p style="font-size: 1.1rem; color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
             To schedule a daycare center visit at Butterfly Child Care at San Rafael, just complete the form below and we'll get back to you shortly.
           </p>
-          <a href="contact.html" class="btn-glow" style="display: inline-block; padding: 1.2rem 3rem; background: linear-gradient(to right, #8e54e9, #6a11cb); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(142, 84, 233, 0.3);">
+          <a href="contact.html" class="btn-glow" style="display: inline-block; padding: 1rem 2.5rem; background: linear-gradient(to right, #8e54e9, #6a11cb); color: white; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(142, 84, 233, 0.3);">
             Schedule Here
           </a>
         </div>
       </div>
       
       <!-- Elementos decorativos animados -->
-      <div class="animate-float" style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; background: url('assets/images/butterfly-decor.png') no-repeat; opacity: 0.1; transform: rotate(15deg);"></div>
-      <div class="animate-float" style="position: absolute; bottom: -50px; right: -50px; width: 200px; height: 200px; background: url('assets/images/butterfly-decor.png') no-repeat; opacity: 0.1; transform: rotate(-15deg); animation-delay: 1s;"></div>
+      <div class="animate-float" style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; background: url('assets/images/butterfly-decor.png') no-repeat; opacity: 0.1; transform: rotate(15deg); display: none;"></div>
+      <div class="animate-float" style="position: absolute; bottom: -50px; right: -50px; width: 200px; height: 200px; background: url('assets/images/butterfly-decor.png') no-repeat; opacity: 0.1; transform: rotate(-15deg); animation-delay: 1s; display: none;"></div>
     </section>
 
     <!-- Sección de Testimonios con animaciones -->
-    <section class="testimonials" style="padding: 6rem 1rem; background: url('assets/images/testimonials-bg.png') no-repeat center center; background-size: cover; position: relative;" data-animate-trigger>
+    <section class="testimonials" style="padding: 4rem 1rem; background: url('assets/images/testimonials-bg.png') no-repeat center center; background-size: cover; position: relative;" data-animate-trigger>
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 254, 252, 0.9); z-index: 1;"></div>
       
       <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
-        <div style="text-align: center; margin-bottom: 4rem;" data-animate="fadeIn">
-          <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.4rem; margin-bottom: 1rem; position: relative; display: inline-block;">
-            <span style="position: absolute; bottom: -10px; left: 0; width: 50%; height: 4px; background: linear-gradient(to right, #ff7eb9, #8e54e9);"></span>
+        <div style="text-align: center; margin-bottom: 3rem;" data-animate="fadeIn">
+          <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2rem; margin-bottom: 1rem; position: relative; display: inline-block;">
+            <span style="position: absolute; bottom: -8px; left: 0; width: 50%; height: 3px; background: linear-gradient(to right, #ff7eb9, #8e54e9);"></span>
             Heartfelt Parent Reviews
           </h2>
-          <p style="font-size: 1.15rem; color: #666; max-width: 700px; margin: 1rem auto 0; line-height: 1.6;">
+          <p style="font-size: 1.1rem; color: #666; max-width: 700px; margin: 1rem auto 0; line-height: 1.6;">
             Don't just take our word for it - here's what our daycare families say about their experience
           </p>
         </div>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 2rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
           <!-- Testimonio 1 -->
-          <div style="background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; border: 1px solid rgba(146, 123, 255, 0.2); transition: all 0.3s ease;" 
+          <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); position: relative; border: 1px solid rgba(146, 123, 255, 0.2); transition: all 0.3s ease;" 
                class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.3">
-            <div style="position: absolute; top: -20px; left: 20px; background: linear-gradient(to right, #ff7eb9, #ffb8d9); color: white; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 126, 185, 0.3);">
+            <div style="position: absolute; top: -15px; left: 15px; background: linear-gradient(to right, #ff7eb9, #ffb8d9); color: white; padding: 0.4rem 1.2rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 126, 185, 0.3); font-size: 0.9rem;">
               ★★★★★
             </div>
-            <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-              <div style="width: 60px; height: 60px; border-radius: 50%; background: #f0f0f0 url('assets/images/parent1.jpg') center/cover; margin-right: 1rem; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></div>
+            <div style="display: flex; align-items: center; margin-bottom: 1.2rem;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: #f0f0f0 url('assets/images/parent1.jpg') center/cover; margin-right: 1rem; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></div>
               <div>
-                <div style="font-size: 1.2rem; color: #5a2d9a; font-weight: 600;">Lahmad Nop</div>
-                <div style="font-size: 0.9rem; color: #ff7eb9;">Parent since 2020</div>
+                <div style="font-size: 1.1rem; color: #5a2d9a; font-weight: 600;">Lahmad Nop</div>
+                <div style="font-size: 0.85rem; color: #ff7eb9;">Parent since 2020</div>
               </div>
             </div>
-            <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem; position: relative; padding-left: 1.5rem; border-left: 2px solid #ffb8d9;">
+            <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: 1.2rem; position: relative; padding-left: 1rem; border-left: 2px solid #ffb8d9;">
               "The transformation in my child's confidence and social skills has been remarkable. The caregivers treat each child like family and the daily updates give me such peace of mind."
             </p>
-            <div style="font-size: 3rem; color: rgba(142, 84, 233, 0.1); position: absolute; bottom: 10px; right: 20px; line-height: 1;">”</div>
+            <div style="font-size: 2.5rem; color: rgba(142, 84, 233, 0.1); position: absolute; bottom: 10px; right: 15px; line-height: 1;">”</div>
           </div>
           
           <!-- Testimonio 2 -->
-          <div style="background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; border: 1px solid rgba(146, 123, 255, 0.2); transition: all 0.3s ease;" 
+          <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); position: relative; border: 1px solid rgba(146, 123, 255, 0.2); transition: all 0.3s ease;" 
                class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.6">
-            <div style="position: absolute; top: -20px; left: 20px; background: linear-gradient(to right, #ff7eb9, #ffb8d9); color: white; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 126, 185, 0.3);">
+            <div style="position: absolute; top: -15px; left: 15px; background: linear-gradient(to right, #ff7eb9, #ffb8d9); color: white; padding: 0.4rem 1.2rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 126, 185, 0.3); font-size: 0.9rem;">
               ★★★★★
             </div>
-            <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-              <div style="width: 60px; height: 60px; border-radius: 50%; background: #f0f0f0 url('assets/images/parent2.jpg') center/cover; margin-right: 1rem; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></div>
+            <div style="display: flex; align-items: center; margin-bottom: 1.2rem;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: #f0f0f0 url('assets/images/parent2.jpg') center/cover; margin-right: 1rem; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></div>
               <div>
-                <div style="font-size: 1.2rem; color: #5a2d9a; font-weight: 600;">Heather Palmer</div>
-                <div style="font-size: 0.9rem; color: #ff7eb9;">Parent since 2019</div>
+                <div style="font-size: 1.1rem; color: #5a2d9a; font-weight: 600;">Heather Palmer</div>
+                <div style="font-size: 0.85rem; color: #ff7eb9;">Parent since 2019</div>
               </div>
             </div>
-            <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem; position: relative; padding-left: 1.5rem; border-left: 2px solid #ffb8d9;">
+            <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: 1.2rem; position: relative; padding-left: 1rem; border-left: 2px solid #ffb8d9;">
               "My daughter runs in every morning without looking back! The learning activities are creative and she comes home singing new songs every week. Truly a second home for her."
             </p>
-            <div style="font-size: 3rem; color: rgba(142, 84, 233, 0.1); position: absolute; bottom: 10px; right: 20px; line-height: 1;">”</div>
+            <div style="font-size: 2.5rem; color: rgba(142, 84, 233, 0.1); position: absolute; bottom: 10px; right: 15px; line-height: 1;">”</div>
           </div>
           
           <!-- Testimonio 3 -->
-          <div style="background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; border: 1px solid rgba(146, 123, 255, 0.2); transition: all 0.3s ease;" 
+          <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); position: relative; border: 1px solid rgba(146, 123, 255, 0.2); transition: all 0.3s ease;" 
                class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.9">
-            <div style="position: absolute; top: -20px; left: 20px; background: linear-gradient(to right, #ff7eb9, #ffb8d9); color: white; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 126, 185, 0.3);">
+            <div style="position: absolute; top: -15px; left: 15px; background: linear-gradient(to right, #ff7eb9, #ffb8d9); color: white; padding: 0.4rem 1.2rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 126, 185, 0.3); font-size: 0.9rem;">
               ★★★★★
             </div>
-            <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-              <div style="width: 60px; height: 60px; border-radius: 50%; background: #f0f0f0 url('assets/images/parent3.jpg') center/cover; margin-right: 1rem; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></div>
+            <div style="display: flex; align-items: center; margin-bottom: 1.2rem;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: #f0f0f0 url('assets/images/parent3.jpg') center/cover; margin-right: 1rem; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></div>
               <div>
-                <div style="font-size: 1.2rem; color: #5a2d9a; font-weight: 600;">Erin Taylor</div>
-                <div style="font-size: 0.9rem; color: #ff7eb9;">Parent since 2021</div>
+                <div style="font-size: 1.1rem; color: #5a2d9a; font-weight: 600;">Erin Taylor</div>
+                <div style="font-size: 0.85rem; color: #ff7eb9;">Parent since 2021</div>
               </div>
             </div>
-            <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem; position: relative; padding-left: 1.5rem; border-left: 2px solid #ffb8d9;">
+            <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: 1.2rem; position: relative; padding-left: 1rem; border-left: 2px solid #ffb8d9;">
               "The holiday celebrations and birthday traditions make this daycare so special. My son has formed beautiful friendships and learns something new every single day."
             </p>
-            <div style="font-size: 3rem; color: rgba(142, 84, 233, 0.1); position: absolute; bottom: 10px; right: 20px; line-height: 1;">”</div>
+            <div style="font-size: 2.5rem; color: rgba(142, 84, 233, 0.1); position: absolute; bottom: 10px; right: 15px; line-height: 1;">”</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Sección de beneficios con animaciones -->
-    <section class="highlights" style="padding: 5rem 1rem; background-color: #fffaf5;" data-animate-trigger>
+    <section class="highlights" style="padding: 4rem 1rem; background-color: #fffaf5;" data-animate-trigger>
       <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
-        <h2 style="color: #4b0082; font-size: 2.2rem; margin-bottom: 1.5rem;" data-animate="fadeIn">Why Families Choose Us</h2>
-        <p style="font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto 3rem;" data-animate="fadeIn" data-animate-delay="0.3">
+        <h2 style="color: #4b0082; font-size: 2rem; margin-bottom: 1.5rem;" data-animate="fadeIn">Why Families Choose Us</h2>
+        <p style="font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto 2rem;" data-animate="fadeIn" data-animate-delay="0.3">
           Located at <strong>966 Las Pavadas Ave, San Rafael</strong>, we offer the perfect balance of professional care and home-like comfort
         </p>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
-          <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
                class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.3">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏡</div>
-            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Home-Like Setting</h3>
-            <p style="color: #555; line-height: 1.6;">Small group sizes in a warm, family environment</p>
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🏡</div>
+            <h3 style="color: #4b0082; font-size: 1.2rem; margin-bottom: 1rem;">Home-Like Setting</h3>
+            <p style="color: #555; line-height: 1.6; font-size: 0.95rem;">Small group sizes in a warm, family environment</p>
           </div>
           
-          <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
                class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.6">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🧠</div>
-            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Developmental Focus</h3>
-            <p style="color: #555; line-height: 1.6;">Activities designed to support cognitive and social growth</p>
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🧠</div>
+            <h3 style="color: #4b0082; font-size: 1.2rem; margin-bottom: 1rem;">Developmental Focus</h3>
+            <p style="color: #555; line-height: 1.6; font-size: 0.95rem;">Activities designed to support cognitive and social growth</p>
           </div>
           
-          <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
                class="hover-grow" data-animate="fadeInUp" data-animate-delay="0.9">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌿</div>
-            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Outdoor Play</h3>
-            <p style="color: #555; line-height: 1.6;">Daily outdoor time in our safe, engaging play area</p>
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🌿</div>
+            <h3 style="color: #4b0082; font-size: 1.2rem; margin-bottom: 1rem;">Outdoor Play</h3>
+            <p style="color: #555; line-height: 1.6; font-size: 0.95rem;">Daily outdoor time in our safe, engaging play area</p>
           </div>
           
-          <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s ease;" 
                class="hover-grow" data-animate="fadeInUp" data-animate-delay="1.2">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🍎</div>
-            <h3 style="color: #4b0082; font-size: 1.3rem; margin-bottom: 1rem;">Healthy Meals</h3>
-            <p style="color: #555; line-height: 1.6;">Nutritious snacks and meals included</p>
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🍎</div>
+            <h3 style="color: #4b0082; font-size: 1.2rem; margin-bottom: 1rem;">Healthy Meals</h3>
+            <p style="color: #555; line-height: 1.6; font-size: 0.95rem;">Nutritious snacks and meals included</p>
           </div>
         </div>
       </div>
     </section>
   </main>  
 
-  <footer style="background-color: #333; color: white; padding: 3rem 1rem; text-align: center;">
+  <footer style="background-color: #333; color: white; padding: 2.5rem 1rem; text-align: center;">
     <div style="max-width: 1000px; margin: 0 auto;" class="animate__animated animate__fadeIn">
       <img src="assets/images/logo-white.png" alt="Butterfly Child Care logo" style="height: 60px; margin-bottom: 1.5rem;">
       <p style="margin-bottom: 0.5rem; font-size: 1.1rem;">966 Las Pavadas Ave, San Rafael, CA 94903</p>
       <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">License #214005909</p>
-      <p>&copy; 2025 Butterfly Home Child Care. All rights reserved.</p>
+      <p style="font-size: 0.9rem;">&copy; 2025 Butterfly Home Child Care. All rights reserved.</p>
     </div>
   </footer>
 
   <!-- Badge premium animado -->
-  <div style="position: fixed; 
-              right: 40px; 
-              bottom: 40px; 
-              background: linear-gradient(145deg, #ffffff, #f9f5ff); 
-              padding: 22px 28px; 
-              border-radius: 18px; 
-              display: flex; 
-              align-items: center; 
-              gap: 18px; 
-              box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18); 
-              z-index: 1000;
-              border: none;
-              transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-              cursor: pointer;"
-       class="animate__animated animate__fadeInRight animate__delay-1s hover-grow">
-    
+  <div class="floating-badge animate__animated animate__fadeInRight animate__delay-1s hover-grow">
     <img src="assets/images/california-license.png" alt="Licensed" 
          style="height: 80px; 
                 width: auto; 
                 filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));">
     
     <div style="font-family: 'Poppins', sans-serif;">
-      <div style="font-size: 1.8rem; 
+      <div style="font-size: 1.5rem; 
                   font-weight: 700; 
                   color: #4b0082; 
                   line-height: 1.2; 
@@ -525,7 +824,7 @@
   </div>
 
   <script>
-    // Scroll suave (se mantiene igual)
+    // Scroll suave
     function scrollToSection(selector) {
       const element = document.querySelector(selector);
       if (element) {
@@ -539,25 +838,23 @@
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
       
-      // Solo activar en móviles (anchos <= 767px)
-      if (window.innerWidth <= 767) {
-        hamburger.style.display = 'block'; // Mostrar botón
-        
-        hamburger.addEventListener('click', function() {
-          navMenu.classList.toggle('active');
-          this.classList.toggle('active');
+      // Mostrar/ocultar menú en móviles
+      hamburger.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        this.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+      });
+      
+      // Cerrar menú al hacer clic en enlaces
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+          document.body.style.overflow = '';
         });
-        
-        // Cerrar menú al hacer clic en enlaces
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-          link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-          });
-        });
-      }
+      });
   
-      // ===== Animaciones al Scroll (se mantiene igual) =====
+      // ===== Animaciones al Scroll =====
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -580,44 +877,79 @@
       });
   
       // ===== Badge Flotante (mejorado para touch) =====
-      const badge = document.querySelector('div[style*="position: fixed"]');
+      const badge = document.querySelector('.floating-badge');
       if (badge) {
         // Hover para desktop
-        badge.addEventListener('mouseenter', function() {
-          this.style.transform = 'scale(1.05) translateY(-5px)';
-          this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
-        });
-        
-        badge.addEventListener('mouseleave', function() {
-          this.style.transform = 'scale(1)';
-          this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
-        });
+        if (window.innerWidth > 768) {
+          badge.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05) translateY(-5px)';
+            this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
+          });
+          
+          badge.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
+          });
+        }
         
         // Click/touch para móviles
         badge.addEventListener('click', function() {
           window.location.href = 'contact.html';
         });
         
-        // Redimensionar en móviles
-        if (window.innerWidth <= 767) {
-          badge.style.right = '10px';
-          badge.style.bottom = '10px';
-          badge.style.padding = '10px 15px';
-        }
+        // Mostrar/ocultar animaciones según el dispositivo
+        const butterflies = document.querySelectorAll('.animate-butterfly, .animate-butterfly-mobile, .animate-float');
+        butterflies.forEach(el => {
+          if (window.innerWidth <= 768) {
+            if (el.classList.contains('animate-butterfly-mobile')) {
+              el.style.display = 'block';
+            } else {
+              el.style.display = 'none';
+            }
+          } else {
+            if (el.classList.contains('animate-butterfly') || el.classList.contains('animate-float')) {
+              el.style.display = 'block';
+            } else {
+              el.style.display = 'none';
+            }
+          }
+        });
       }
   
       // ===== Ajustar dinámicamente al cambiar tamaño de pantalla =====
       window.addEventListener('resize', function() {
-        if (window.innerWidth > 767) {
-          // Ocultar hamburguesa y mostrar menú normal en desktop
-          hamburger.style.display = 'none';
-          navMenu.classList.remove('active');
+        // Mostrar/ocultar hamburguesa según tamaño
+        if (window.innerWidth > 768) {
+          navMenu.style.display = 'block';
           hamburger.classList.remove('active');
+          document.body.style.overflow = '';
         } else {
-          // Mostrar hamburguesa en móviles
-          hamburger.style.display = 'block';
+          navMenu.style.display = 'none';
         }
+        
+        // Ajustar animaciones según dispositivo
+        const butterflies = document.querySelectorAll('.animate-butterfly, .animate-butterfly-mobile, .animate-float');
+        butterflies.forEach(el => {
+          if (window.innerWidth <= 768) {
+            if (el.classList.contains('animate-butterfly-mobile')) {
+              el.style.display = 'block';
+            } else {
+              el.style.display = 'none';
+            }
+          } else {
+            if (el.classList.contains('animate-butterfly') || el.classList.contains('animate-float')) {
+              el.style.display = 'block';
+            } else {
+              el.style.display = 'none';
+            }
+          }
+        });
       });
+      
+      // Inicializar estado del menú
+      if (window.innerWidth <= 768) {
+        navMenu.style.display = 'none';
+      }
     });
   </script>
 
