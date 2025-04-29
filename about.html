@@ -41,6 +41,53 @@
       75% { transform: translate(-10px, -15px) rotate(-5deg); }
       100% { transform: translate(0, 0) rotate(0deg); }
     }
+
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+
+    .lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 2.8rem;
+      color: white;
+      background: rgba(0,0,0,0.6);
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10001;
+      transition: transform 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.2);
+      background: rgba(255,255,255,0.2);
+    }
+
+
     .license-badge {
       position: fixed;
       right: 40px;
@@ -779,22 +826,21 @@
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    
+  
     // DOM Ready - Versión optimizada para móviles
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       // ===== Menú Hamburguesa =====
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
   
       if (window.innerWidth <= 767) {
-        hamburger.style.display = 'block'; // Mostrar botón
+        hamburger.style.display = 'block';
   
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', function () {
           navMenu.classList.toggle('active');
           this.classList.toggle('active');
         });
   
-        // Cerrar menú al hacer clic en enlaces
         document.querySelectorAll('.nav-menu a').forEach(link => {
           link.addEventListener('click', () => {
             navMenu.classList.remove('active');
@@ -828,13 +874,47 @@
       // ===== Badge Flotante =====
       const licenseBadge = document.querySelector('.license-badge');
       if (licenseBadge) {
-        licenseBadge.addEventListener('click', function() {
+        licenseBadge.addEventListener('click', function () {
           this.classList.toggle('flipped');
         });
       }
   
+      // ===== Lightbox para imágenes =====
+      const galleryImages = document.querySelectorAll('img');
+      galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+          const prevOverlay = document.querySelector('.lightbox-overlay');
+          if (prevOverlay) return;
+  
+          const overlay = document.createElement('div');
+          overlay.classList.add('lightbox-overlay');
+  
+          const enlargedImg = document.createElement('img');
+          enlargedImg.src = img.src;
+          enlargedImg.alt = img.alt;
+  
+          const closeBtn = document.createElement('button');
+          closeBtn.classList.add('lightbox-close');
+          closeBtn.innerHTML = '&times;';
+  
+          closeBtn.addEventListener('click', () => {
+            overlay.remove();
+          });
+  
+          overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+              overlay.remove();
+            }
+          });
+  
+          overlay.appendChild(closeBtn);
+          overlay.appendChild(enlargedImg);
+          document.body.appendChild(overlay);
+        });
+      });
+  
       // ===== Ajustar dinámicamente al cambiar tamaño de pantalla =====
-      window.addEventListener('resize', function() {
+      window.addEventListener('resize', function () {
         if (window.innerWidth > 767) {
           hamburger.style.display = 'none';
           navMenu.classList.remove('active');
@@ -845,6 +925,7 @@
       });
     });
   </script>
+  
 
   <script src="js/main.js"></script>
 </body>
