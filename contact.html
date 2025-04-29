@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Contact Us – Butterfly Home Child Care | Licensed Daycare in Terra Linda, San Rafael</title>
   <meta name="description" content="Contact Butterfly Home Child Care in San Rafael. Visit us at 966 Las Pavadas Ave or reach us at 415-578-2515. Schedule a tour today!">
   <link rel="stylesheet" href="css/styles.css" />
@@ -10,8 +10,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <style>
-    html, body {
-      overflow-x: hidden;
+    @media (hover: none) {
+      .hover-grow:active {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+      }
     }
     
     /* Animaciones personalizadas (consistentes con el sitio) */
@@ -103,7 +106,6 @@
       width: 100%;
       height: 100%;
       background: url('assets/images/contact-hero-bg.jpg') center/cover no-repeat;
-      background-attachment: fixed;
       filter: brightness(0.7);
       z-index: 0;
     }
@@ -159,7 +161,7 @@
     
     /* Estilos específicos para contacto */
     .contact-section {
-      padding: 6rem 1rem;
+      padding: 3rem 1rem;
       background: white;
     }
     
@@ -168,7 +170,7 @@
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
-      gap: 3rem;
+      gap: 2rem;
     }
     
     .contact-info {
@@ -248,7 +250,7 @@
     /* Formulario de contacto */
     .contact-form {
       background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);
-      padding: 3rem;
+      padding: 2rem;
       border-radius: 16px;
       box-shadow: 0 8px 30px rgba(146, 123, 255, 0.1);
     }
@@ -305,7 +307,7 @@
     
     /* Mapa */
     .map-container {
-      margin-top: 3rem;
+      margin-top: 2rem;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 15px 40px rgba(0,0,0,0.1);
@@ -314,7 +316,7 @@
     
     .map-container iframe {
       width: 100%;
-      height: 400px;
+      height: 300px;
       border: none;
       display: block;
     }
@@ -351,7 +353,7 @@
     /* Hours Section */
     .hours-section {
       background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);
-      padding: 4rem 1rem;
+      padding: 3rem 1rem;
     }
     
     .hours-container {
@@ -382,7 +384,7 @@
     .hours-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+      gap: 1.5rem;
       max-width: 800px;
       margin: 0 auto;
     }
@@ -390,7 +392,7 @@
     .hours-card {
       background: white;
       border-radius: 12px;
-      padding: 2rem;
+      padding: 1.5rem;
       text-align: center;
       box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     }
@@ -409,30 +411,457 @@
     
     .hours-note {
       text-align: center;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       color: #666;
       font-style: italic;
     }
     
-    @media (max-width: 768px) {
+    /* CTA Section */
+    .cta-section {
+      padding: 4rem 1rem; 
+      background: linear-gradient(135deg, #8e54e9, #6a11cb); 
+      position: relative; 
+      overflow: hidden;
+    }
+    
+    .cta-pattern {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: url('assets/images/dots-pattern.png') center/cover; 
+      opacity: 0.1;
+    }
+    
+    .cta-content {
+      max-width: 800px; 
+      margin: 0 auto; 
+      text-align: center; 
+      position: relative; 
+      z-index: 2;
+    }
+    
+    .cta-title {
+      color: white; 
+      font-size: 2.5rem; 
+      margin-bottom: 1.5rem; 
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .cta-text {
+      color: rgba(255,255,255,0.9); 
+      font-size: 1.2rem; 
+      line-height: 1.6; 
+      margin-bottom: 2.5rem;
+    }
+    
+    .cta-button {
+      display: inline-block; 
+      padding: 1.2rem 3rem; 
+      background: white; 
+      color: #6a11cb; 
+      border-radius: 50px; 
+      font-weight: 600; 
+      text-decoration: none; 
+      font-size: 1.2rem; 
+      transition: all 0.3s ease; 
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    
+    /* Hamburger menu styles */
+    .hamburger {
+      background: #8e54e9; /* fondo morado */
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: none; /* oculto en escritorio */
+      z-index: 1001;
+    }
+    
+    .hamburger:hover {
+      background: #6a11cb;
+      transform: scale(1.05);
+    }
+    
+    .hamburger svg {
+      width: 32px;
+      height: 32px;
+    }
+    
+    /* License badge styles */
+    .license-badge {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      width: 200px;
+      height: 100px;
+      perspective: 1000px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .badge-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .license-badge .badge-inner {
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    /* Solo girar si tiene la clase flipped (NO con hover) */
+    .license-badge.flipped .badge-inner {
+      transform: rotateY(180deg);
+    }
+
+    .badge-front, .badge-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #ffffff, #f9f5ff);
+      box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18);
+      backface-visibility: hidden;
+    }
+
+    .badge-front {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .badge-front img {
+      height: 50px;
+      width: auto;
+    }
+
+    .badge-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4b0082;
+      text-align: center;
+    }
+
+    .badge-back {
+      transform: rotateY(180deg);
+      background: #8e54e9;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* ========== MEDIA QUERIES ========== */
+    
+    /* Tablet (768px - 1024px) */
+    @media (max-width: 1024px) {
+      .logo-img {
+        height: 80px !important;
+      }
+      
       .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
       }
       
       .hero p {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
       
       .contact-title {
         font-size: 2rem;
       }
       
-      .contact-form {
-        padding: 2rem;
+      .license-badge {
+        right: 20px !important;
+        bottom: 20px !important;
+      }
+    }
+
+    /* Móvil (hasta 767px) */
+    @media (max-width: 767px) {
+      /* Header */
+      .hamburger {
+        font-size: 0;
+        padding: 1rem 1.5rem;
+        display: block;
       }
       
-      .contact-container {
+      .hamburger svg {
+        width: 38px;
+        height: 38px;
+      }
+      
+      .logo-area {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+      }
+      
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+      
+      .logo-img {
+        height: 60px !important;
+        margin: 0 auto !important;
+      }
+      
+      /* Menú Hamburguesa */
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 100; 
+      }
+      
+      .nav-menu.active {
+        display: block;
+      }
+      
+      .nav-menu ul {
         flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      /* Hero Section */
+      .hero {
+        min-height: 35vh;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem !important;
+      }
+      
+      .hero p {
+        font-size: 1.1rem !important;
+      }
+      
+      /* Contact Section */
+      .contact-section {
+        padding: 2rem 1rem;
+      }
+      
+      .contact-title {
+        font-size: 1.8rem !important;
+      }
+      
+      .contact-text {
+        font-size: 1rem !important;
+      }
+      
+      .contact-icon {
+        font-size: 1.3rem;
+        margin-right: 1rem;
+      }
+      
+      .contact-value {
+        font-size: 1rem !important;
+      }
+      
+      .map-container iframe {
+        height: 250px;
+      }
+      
+      /* Form */
+      .contact-form {
+        padding: 1.5rem;
+      }
+      
+      /* Hours Section */
+      .hours-section {
+        padding: 2rem 1rem;
+      }
+      
+      .hours-title {
+        font-size: 1.8rem !important;
+      }
+      
+      .hours-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      /* CTA Section */
+      .cta-section {
+        padding: 3rem 1rem;
+      }
+      
+      .cta-title {
+        font-size: 2rem !important;
+      }
+      
+      .cta-text {
+        font-size: 1rem !important;
+      }
+      
+      .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+      }
+      
+      /* Badge flotante */
+      .license-badge {
+        right: 10px !important;
+        bottom: 10px !important;
+        width: 180px;
+        height: 90px;
+      }
+      
+      .badge-front img {
+        height: 40px !important;
+      }
+      
+      .badge-text {
+        font-size: 1rem !important;
+      }
+      
+      .badge-back {
+        font-size: 0.9rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem !important;
+      }
+      
+      .contact-title {
+        font-size: 1.6rem !important;
+      }
+      
+      .contact-form {
+        padding: 1.2rem;
+      }
+      
+      .submit-btn {
+        width: 100%;
+        padding: 1rem;
+      }
+      
+      .cta-title {
+        font-size: 1.8rem !important;
+      }
+    }
+    
+    @media (max-width: 375px) {
+      /* Logo más pequeño */
+      .logo-img {
+        height: 50px !important;
+      }
+      
+      .hamburger {
+        font-size: 0;
+        padding: 0.9rem 1.2rem;
+      }
+      
+      .hamburger svg {
+        width: 34px;
+        height: 34px;
+      }
+      
+      /* Hero más pequeño */
+      .hero h1 {
+        font-size: 1.8rem !important;
+      }
+      
+      /* Contact info */
+      .contact-item {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .contact-icon {
+        margin-right: 0;
+      }
+      
+      /* Badge flotante más pequeño */
+      .license-badge {
+        width: 150px;
+        height: 75px;
+        right: 8px !important;
+        bottom: 8px !important;
+      }
+      
+      .badge-front img {
+        height: 35px !important;
+      }
+      
+      .badge-text {
+        font-size: 0.9rem !important;
+      }
+      
+      .badge-back {
+        font-size: 0.8rem !important;
+      }
+    }
+
+    /* Ultra móviles pequeños (hasta 320px) */
+    @media (max-width: 320px) {
+      /* Logo aún más pequeño */
+      .logo-img {
+        height: 45px !important;
+      }
+      
+      .hamburger {
+        font-size: 0;
+        padding: 0.8rem 1rem;
+      }
+      
+      .hamburger svg {
+        width: 32px;
+        height: 32px;
+      }
+      
+      /* Títulos aún más pequeños */
+      .hero h1 {
+        font-size: 1.6rem !important;
+      }
+
+      .contact-title {
+        font-size: 1.4rem !important;
+      }
+
+      /* Ajustar textos largos */
+      p, span, a {
+        font-size: 0.95rem !important;
+      }
+
+      /* Badge flotante aún más pequeño */
+      .license-badge {
+        width: 130px;
+        height: 65px;
+        right: 6px !important;
+        bottom: 6px !important;
+      }
+
+      .badge-front img {
+        height: 30px !important;
+      }
+
+      .badge-text {
+        font-size: 0.8rem !important;
+      }
+
+      .badge-back {
+        font-size: 0.7rem !important;
       }
     }
   </style>
@@ -440,7 +869,7 @@
 
 <body>
   <header class="main-header">
-    <div class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px;">
+    <a href="index.html" class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px; text-decoration: none;">
       <img src="assets/images/logo.png" alt="Butterfly Child Care logo" 
            class="logo-img animate__animated animate__fadeIn" 
            style="height: 120px; opacity: 1; background: none;"/>
@@ -455,11 +884,17 @@
            class="animate__animated animate__fadeIn animate__delay-0-5s">
         Butterfly <span style="display: block;">Child Care</span>
       </div>
-    </div>
+    </a>
     
-    <button class="hamburger" id="hamburger">&#9776;</button>
-  
-    <nav class="nav-menu" id="navMenu"> 
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <svg id="hamburgerIcon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="7" x2="21" y2="7"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="17" x2="21" y2="17"></line>
+      </svg>
+    </button>
+    
+    <nav class="nav-menu" id="navMenu">
       <ul>
         <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-0-5s">Home</a></li>
         <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-0-7s">About Us</a></li>
@@ -611,17 +1046,17 @@
     </section>
 
     <!-- CTA Section -->
-    <section style="padding: 6rem 1rem; background: linear-gradient(135deg, #8e54e9, #6a11cb); position: relative; overflow: hidden;">
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/images/dots-pattern.png') center/cover; opacity: 0.1;"></div>
+    <section class="cta-section">
+      <div class="cta-pattern"></div>
       
-      <div style="max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 2;" data-animate="fadeIn">
-        <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+      <div class="cta-content" data-animate="fadeIn">
+        <h2 class="cta-title">
           Ready to Visit Us?
         </h2>
-        <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; line-height: 1.6; margin-bottom: 2.5rem;">
+        <p class="cta-text">
           Schedule a tour to see our facilities, meet our staff, and learn more about our programs.
         </p>
-        <a href="#contactForm" class="btn-glow" style="display: inline-block; padding: 1.2rem 3rem; background: white; color: #6a11cb; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2);" onclick="document.getElementById('subject').value='tour'; document.getElementById('subject').focus();">
+        <a href="#contactForm" class="cta-button btn-glow" onclick="document.getElementById('subject').value='tour'; document.getElementById('subject').focus();">
           Schedule a Tour
         </a>
       </div>
@@ -638,35 +1073,14 @@
   </footer>
 
   <!-- Badge premium animado -->
-  <div style="position: fixed; 
-              right: 40px; 
-              bottom: 40px; 
-              background: linear-gradient(145deg, #ffffff, #f9f5ff); 
-              padding: 22px 28px; 
-              border-radius: 18px; 
-              display: flex; 
-              align-items: center; 
-              gap: 18px; 
-              box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18); 
-              z-index: 1000;
-              border: none;
-              transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-              cursor: pointer;"
-       class="animate__animated animate__fadeInRight animate__delay-1s hover-grow">
-    
-    <img src="assets/images/california-license.png" alt="Licensed" 
-         style="height: 80px; 
-                width: auto; 
-                filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));">
-    
-    <div style="font-family: 'Poppins', sans-serif;">
-      <div style="font-size: 1.8rem; 
-                  font-weight: 700; 
-                  color: #4b0082; 
-                  line-height: 1.2; 
-                  letter-spacing: 0.3px;
-                  text-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        Licensed & Insured
+  <div class="license-badge">
+    <div class="badge-inner">
+      <div class="badge-front">
+        <img src="assets/images/california-license.png" alt="Licensed" />
+        <div class="badge-text">Licensed & Insured</div>
+      </div>
+      <div class="badge-back">
+        <div class="license-number">License #214005909</div>
       </div>
     </div>
   </div>
@@ -680,62 +1094,60 @@
       }
     }
     
-    // Animación al hacer scroll
+    // DOM Ready - Versión optimizada para móviles
     document.addEventListener('DOMContentLoaded', function() {
-      const animateElements = document.querySelectorAll('[data-animate]');
-
+      // ===== Menú Hamburguesa =====
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+  
+      if (window.innerWidth <= 767) {
+        hamburger.style.display = 'block'; // Mostrar botón
+  
+        hamburger.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+          this.classList.toggle('active');
+        });
+  
+        // Cerrar menú al hacer clic en enlaces
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+          });
+        });
+      }
+  
+      // ===== Animaciones al Scroll =====
+      const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const element = entry.target;
             const animationType = element.getAttribute('data-animate');
-
-            element.classList.add('animate__animated');
-
-            if (animationType === 'fadeInUp') {
-              element.classList.add('animate__fadeInUp');
-            } else if (animationType === 'fadeIn') {
-              element.classList.add('animate__fadeIn');
-            }
-
             element.style.opacity = '1';
+  
+            if (animationType === 'fadeInUp') {
+              element.style.transform = 'translateY(0)';
+            }
+  
             observer.unobserve(element);
           }
         });
       }, { threshold: 0.1 });
-
+  
       animateElements.forEach(element => {
         observer.observe(element);
       });
-
-      // Efecto hover para el badge
-      const badge = document.querySelector('div[style*="position: fixed"]');
-      
-      if (badge) {
-        badge.addEventListener('mouseenter', function() {
-          this.style.transform = 'scale(1.05) translateY(-5px)';
-          this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
-        });
-
-        badge.addEventListener('mouseleave', function() {
-          this.style.transform = 'scale(1)';
-          this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
-        });
-
-        badge.addEventListener('click', function() {
-          window.location.href = 'contact.html';
+  
+      // ===== Badge Flotante =====
+      const licenseBadge = document.querySelector('.license-badge');
+      if (licenseBadge) {
+        licenseBadge.addEventListener('click', function() {
+          this.classList.toggle('flipped');
         });
       }
-
-      // Menú hamburguesa
-      const hamburger = document.getElementById('hamburger');
-      const navMenu = document.getElementById('navMenu');
-
-      hamburger.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-      });
-
-      // Formulario de contacto
+  
+      // ===== Formulario de contacto =====
       const contactForm = document.getElementById('contactForm');
       if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -745,6 +1157,17 @@
           this.reset();
         });
       }
+  
+      // ===== Ajustar dinámicamente al cambiar tamaño de pantalla =====
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 767) {
+          hamburger.style.display = 'none';
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+        } else {
+          hamburger.style.display = 'block';
+        }
+      });
     });
   </script>
 
