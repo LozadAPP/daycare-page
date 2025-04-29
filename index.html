@@ -255,11 +255,9 @@
     .about-section, .testimonials, .cta-section, .highlights {
       padding: 3rem 1rem !important;
     }
-    
-    div[style*="position: fixed"] {
+    .license-badge {
       right: 20px !important;
       bottom: 20px !important;
-      padding: 15px 20px !important;
     }
   }
 
@@ -273,6 +271,23 @@
     .hamburger svg {
       width: 38px;
       height: 38px;
+    }
+    .license-badge {
+      right: 10px !important;
+      bottom: 10px !important;
+      width: 180px;
+      height: 90px;
+    }
+    .badge-front img {
+      height: 40px !important;
+    }
+
+    .badge-text {
+      font-size: 1rem !important;
+    }
+
+    .badge-back {
+      font-size: 0.9rem !important;
     }
     .logo-area {
       flex-direction: column !important;
@@ -327,31 +342,13 @@
       grid-template-columns: 1fr !important;
     }
     
-    /* Badge flotante */
-    div[style*="position: fixed"] {
-      right: 10px !important;
-      bottom: 10px !important;
-      padding: 10px 15px !important;
-      flex-direction: column;
-      gap: 5px !important;
-    }
+
     
     div[style*="position: fixed"] img {
       height: 50px !important;
     }
     
-    /* Ajustes generales */
-    [style*="font-size: 2.2rem"] {
-      font-size: 1.8rem !important;
-    }
-    
-    [style*="font-size: 2.4rem"] {
-      font-size: 1.8rem !important;
-    }
-    
-    [style*="font-size: 2.5rem"] {
-      font-size: 2rem !important;
-    }
+
   }
   @media (max-width: 375px) {
   /* Logo más pequeño */
@@ -366,12 +363,7 @@
     width: 34px;
     height: 34px;
   }
-  /* Texto principal (Butterfly Child Care) más pequeño */
-  [style*="font-size: 2.2rem"],
-  [style*="font-size: 2.4rem"],
-  [style*="font-size: 2.5rem"] {
-    font-size: 1.6rem !important;
-  }
+
   .hero {
     min-height: 35vh !important;
   }
@@ -387,23 +379,41 @@
     padding: 1rem !important;
   }
 
-  /* Badge flotante más pequeño */
-  div[style*="position: fixed"] {
-    padding: 8px 12px !important;
-    right: 8px !important;
-    bottom: 8px !important;
-  }
+
 
   div[style*="position: fixed"] img {
     height: 40px !important;
   }
 }
 
+  .badge-front img {
+      height: 35px !important;
+    }
+
+  .badge-back {
+      font-size: 0.8rem !important;
+    }
+
 /* Ultra móviles pequeños (hasta 320px) */
 @media (max-width: 320px) {
   /* Logo aún más pequeño */
   .logo-img {
     height: 45px !important;
+  }
+  .license-badge {
+    width: 130px;
+    height: 65px;
+    right: 6px !important;
+    bottom: 6px !important;
+  }
+  .badge-front img {
+    height: 30px !important;
+  }
+
+
+
+  .badge-back {
+    font-size: 0.7rem !important;
   }
   .hamburger {
     font-size: 0;
@@ -434,12 +444,6 @@
     font-size: 0.95rem !important;
   }
 
-  /* Badge flotante aún más pequeño */
-  div[style*="position: fixed"] {
-    padding: 6px 10px !important;
-    right: 6px !important;
-    bottom: 6px !important;
-  }
 
   div[style*="position: fixed"] img {
     height: 35px !important;
@@ -515,7 +519,7 @@
           <div class="license-number">License #214005909</div>
         </div>
       </div>
-    </div>
+    </div>    
     <!-- Sección About Us con animaciones -->
     <section class="about-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff); padding: 6rem 1rem;" data-animate-trigger>
       <div style="max-width: 1200px; margin: 0 auto; position: relative;">

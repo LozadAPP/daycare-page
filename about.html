@@ -2,14 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>About Us – Butterfly Child Care</title>
   <meta name="description" content="Learn about Butterfly Child Care, a licensed family daycare in San Rafael providing loving, play-based early childhood education in a home-like setting.">
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <style>
+    @media (hover: none) {
+    .hover-grow:active {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    }
     /* Animaciones personalizadas */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
@@ -33,7 +41,122 @@
       75% { transform: translate(-10px, -15px) rotate(-5deg); }
       100% { transform: translate(0, 0) rotate(0deg); }
     }
-    
+    .license-badge {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      width: 200px;
+      height: 100px;
+      perspective: 1000px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .badge-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .license-badge .badge-inner {
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    /* Solo girar si tiene la clase flipped (NO con hover) */
+    .license-badge.flipped .badge-inner {
+      transform: rotateY(180deg);
+    }
+
+    .badge-front, .badge-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #ffffff, #f9f5ff);
+      box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18);
+      backface-visibility: hidden;
+    }
+
+    .badge-front {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .badge-front img {
+      height: 50px;
+      width: auto;
+    }
+
+    .badge-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4b0082;
+      text-align: center;
+    }
+
+    .badge-back {
+      transform: rotateY(180deg);
+      background: #8e54e9;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      justify-content: center;
+      align-items: center;
+    }
+    .hamburger {
+      background: #8e54e9; /* fondo morado */
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: none; /* oculto en escritorio */
+      z-index: 1001;
+    }
+    .hamburger:hover {
+      background: #6a11cb;
+      transform: scale(1.05);
+    }
+    .hamburger svg {
+      width: 32px;
+      height: 32px;
+    }
+    /* Estilos para el menú activo */
+    .nav-menu .active {
+      color: #ff7eb9;
+      font-weight: 600;
+      position: relative;
+      opacity: 1 !important;
+      animation: none !important;
+    }
+
+    .nav-menu .active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #ff7eb9;
+    }
+
+    .nav-menu a {
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #8e54e9;
+      transform: translateY(-2px);
+    }
     .animate-float {
       animation: float 4s ease-in-out infinite;
     }
@@ -54,6 +177,14 @@
     .delay-2 { animation-delay: 0.6s; }
     .delay-3 { animation-delay: 0.9s; }
     .delay-4 { animation-delay: 1.2s; }
+    
+    /* Delays personalizados para el menú */
+    .animate__delay-1-5s {
+      animation-delay: 1.5s !important;
+    }
+    .animate__delay-2-5s {
+      animation-delay: 2.5s !important;
+    }
     
     /* Efecto hover para tarjetas */
     .hover-grow {
@@ -105,27 +236,8 @@
     .btn-glow:hover::after {
       left: 100%;
     }
-    .nav-menu .active {
-      color: #ff7eb9;
-      font-weight: 600;
-      position: relative;
-      opacity: 1 !important;
-      animation: none !important;
-    }
-    .nav-menu .active::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: #ff7eb9;
-    }
-
-    .nav-menu a {
-      display: inline-block;
-    }
-    /* Estilos específicos para about - MEJORAS PROFESIONALES */
+    
+    /* Estilos específicos para about */
     .about-container {
       display: flex;
       flex-wrap: wrap;
@@ -236,7 +348,7 @@
       font-weight: 600;
     }
     
-    /* Sidebar de tips mejorado - MANTENIENDO EL ESTILO ORIGINAL PERO MEJORADO */
+    /* Sidebar de tips mejorado */
     .tips-sidebar {
       flex: 1;
       min-width: 280px;
@@ -303,36 +415,257 @@
       color: #555;
       line-height: 1.8;
     }
-    
-    @media (max-width: 768px) {
-      .about-container {
-        flex-direction: column;
+
+    /* Media Queries para móvil */
+    @media (max-width: 1024px) {
+      .logo-img {
+        height: 80px !important;
       }
-      
-      .tips-sidebar {
-        order: -1;
-        margin-bottom: 2.5rem;
-        min-width: 100%;
+      .hamburger {
+        font-size: 0; /* ya no necesitamos texto */
+        padding: 1rem 1.5rem;
       }
-      
+      .hamburger svg {
+        width: 36px;
+        height: 36px;
+      }
       .main-content h1 {
-        font-size: 2rem;
+        font-size: 2rem !important;
       }
       
       .main-content h2 {
-        font-size: 1.6rem;
+        font-size: 1.6rem !important;
       }
       
       .about-hero-container {
         max-height: 400px;
       }
+      
+      .license-badge {
+        right: 20px !important;
+        bottom: 20px !important;
+      }
+    }
+
+    /* Móvil (hasta 767px) */
+    @media (max-width: 767px) {
+      /* Header */
+      .hamburger {
+        font-size: 0;
+        padding: 1rem 1.5rem;
+        display: block;
+      }
+      .hamburger svg {
+        width: 38px;
+        height: 38px;
+      }
+      .logo-area {
+        flex-direction: column !important;
+        padding-top: 10px !important;
+        text-align: center;
+        gap: 5px !important;
+      }
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+      .logo-img {
+        height: 60px !important;
+        margin: 0 auto !important;
+      }
+      
+      /* Menú Hamburguesa */
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 100;
+      }
+      
+      .nav-menu.active {
+        display: block;
+      }
+      
+      .nav-menu ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      /* About Container */
+      .about-container {
+        flex-direction: column;
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+      }
+      
+      .tips-sidebar {
+        order: 2;
+        margin-bottom: 2rem;
+        min-width: 100%;
+      }
+      .contact-info {
+        order: 3;
+      }
+      .main-content h1 {
+        font-size: 1.8rem !important;
+        margin-bottom: 1.2rem;
+      }
+      
+      .main-content h2 {
+        font-size: 1.4rem !important;
+      }
+      
+      .main-content p {
+        font-size: 1rem !important;
+      }
+      
+      .about-hero-container {
+        max-height: 300px;
+        margin-bottom: 1.5rem;
+      }
+      
+      .contact-info {
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      
+      /* Badge flotante */
+      .license-badge {
+        right: 10px !important;
+        bottom: 10px !important;
+        width: 180px;
+        height: 90px;
+      }
+      
+      .badge-front img {
+        height: 40px !important;
+      }
+      
+      .badge-text {
+        font-size: 1rem !important;
+      }
+      
+      .badge-back {
+        font-size: 0.9rem !important;
+      }
+    }
+    
+    @media (max-width: 375px) {
+      /* Logo más pequeño */
+      .logo-img {
+        height: 50px !important;
+      }
+      .hamburger {
+        font-size: 0;
+        padding: 0.9rem 1.2rem;
+      }
+      .hamburger svg {
+        width: 34px;
+        height: 34px;
+      }
+      
+      /* Texto principal más pequeño */
+      .main-content h1 {
+        font-size: 1.6rem !important;
+      }
+      
+      .main-content h2 {
+        font-size: 1.3rem !important;
+      }
+      
+      .about-hero-container {
+        max-height: 250px;
+      }
+      
+      /* Badge flotante más pequeño */
+      .license-badge {
+        width: 150px;
+        height: 75px;
+        right: 8px !important;
+        bottom: 8px !important;
+      }
+      
+      .badge-front img {
+        height: 35px !important;
+      }
+      
+      .badge-text {
+        font-size: 0.9rem !important;
+      }
+      
+      .badge-back {
+        font-size: 0.8rem !important;
+      }
+      
+      .tips-content {
+        padding: 1.5rem;
+      }
+      
+      .tips-content h2 {
+        font-size: 1.3rem !important;
+      }
+    }
+
+    /* Ultra móviles pequeños (hasta 320px) */
+    @media (max-width: 320px) {
+      /* Logo aún más pequeño */
+      .logo-img {
+        height: 45px !important;
+      }
+      .hamburger {
+        font-size: 0;
+        padding: 0.8rem 1rem;
+      }
+      .hamburger svg {
+        width: 32px;
+        height: 32px;
+      }
+      
+      /* Títulos aún más pequeños */
+      .main-content h1 {
+        font-size: 1.4rem !important;
+      }
+
+      .main-content h2 {
+        font-size: 1.2rem !important;
+      }
+
+      /* Ajustar textos largos */
+      p, span, a {
+        font-size: 0.95rem !important;
+      }
+
+      /* Badge flotante aún más pequeño */
+      .license-badge {
+        width: 130px;
+        height: 65px;
+        right: 6px !important;
+        bottom: 6px !important;
+      }
+
+      .badge-front img {
+        height: 30px !important;
+      }
+
+      .badge-text {
+        font-size: 0.8rem !important;
+      }
+
+      .badge-back {
+        font-size: 0.7rem !important;
+      }
     }
   </style>
 </head>
-<body>
 
+<body>
   <header class="main-header">
-    <div class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px;">
+    <a href="index.html" class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px; text-decoration: none;">
       <img src="assets/images/logo.png" alt="Butterfly Child Care logo" 
            class="logo-img animate__animated animate__fadeIn" 
            style="height: 120px; opacity: 1; background: none;"/>
@@ -347,9 +680,16 @@
            class="animate__animated animate__fadeIn animate__delay-0-5s">
         Butterfly <span style="display: block;">Child Care</span>
       </div>
-    </div>
+    </a>
     
-    <button class="hamburger" id="hamburger">&#9776;</button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <svg id="hamburgerIcon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="7" x2="21" y2="7"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="17" x2="21" y2="17"></line>
+      </svg>
+    </button>
+    
     <nav class="nav-menu" id="navMenu">
       <ul>
         <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-0-5s">Home</a></li>
@@ -418,36 +758,15 @@
     </div>
   </footer>
 
-  <!-- Badge premium animado -->
-  <div style="position: fixed; 
-              right: 40px; 
-              bottom: 40px; 
-              background: linear-gradient(145deg, #ffffff, #f9f5ff); 
-              padding: 22px 28px; 
-              border-radius: 18px; 
-              display: flex; 
-              align-items: center; 
-              gap: 18px; 
-              box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18); 
-              z-index: 1000;
-              border: none;
-              transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-              cursor: pointer;"
-       class="animate__animated animate__fadeInRight animate__delay-1s hover-grow">
-    
-    <img src="assets/images/california-license.png" alt="Licensed" 
-         style="height: 80px; 
-                width: auto; 
-                filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));">
-    
-    <div style="font-family: 'Poppins', sans-serif;">
-      <div style="font-size: 1.8rem; 
-                  font-weight: 700; 
-                  color: #4b0082; 
-                  line-height: 1.2; 
-                  letter-spacing: 0.3px;
-                  text-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        Licensed & Insured
+  <!-- Reemplazar este código en la página About -->
+  <div class="license-badge">
+    <div class="badge-inner">
+      <div class="badge-front">
+        <img src="assets/images/california-license.png" alt="Licensed" />
+        <div class="badge-text">Licensed & Insured</div>
+      </div>
+      <div class="badge-back">
+        <div class="license-number">License #214005909</div>
       </div>
     </div>
   </div>
@@ -461,46 +780,68 @@
       }
     }
     
-    // Animación al hacer scroll
+    // DOM Ready - Versión optimizada para móviles
     document.addEventListener('DOMContentLoaded', function() {
+      // ===== Menú Hamburguesa =====
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+  
+      if (window.innerWidth <= 767) {
+        hamburger.style.display = 'block'; // Mostrar botón
+  
+        hamburger.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+          this.classList.toggle('active');
+        });
+  
+        // Cerrar menú al hacer clic en enlaces
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+          });
+        });
+      }
+  
+      // ===== Animaciones al Scroll =====
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
-      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const element = entry.target;
             const animationType = element.getAttribute('data-animate');
             element.style.opacity = '1';
-            
+  
             if (animationType === 'fadeInUp') {
               element.style.transform = 'translateY(0)';
             }
-            
+  
             observer.unobserve(element);
           }
         });
       }, { threshold: 0.1 });
-      
+  
       animateElements.forEach(element => {
         observer.observe(element);
       });
-      
-      // Efecto hover para el badge
-      const badge = document.querySelector('div[style*="position: fixed"]');
-      
-      badge.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.05) translateY(-5px)';
-        this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
-      });
-      
-      badge.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-        this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
-      });
-      
-      // Click en el badge para ir al contacto
-      badge.addEventListener('click', function() {
-        window.location.href = 'contact.html';
+  
+      // ===== Badge Flotante =====
+      const licenseBadge = document.querySelector('.license-badge');
+      if (licenseBadge) {
+        licenseBadge.addEventListener('click', function() {
+          this.classList.toggle('flipped');
+        });
+      }
+  
+      // ===== Ajustar dinámicamente al cambiar tamaño de pantalla =====
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 767) {
+          hamburger.style.display = 'none';
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+        } else {
+          hamburger.style.display = 'block';
+        }
       });
     });
   </script>
