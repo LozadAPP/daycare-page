@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Photo Gallery – Butterfly Home Child Care | Licensed Daycare in Terra Linda, San Rafael</title>
   <meta name="description" content="Explore our photo gallery showcasing daily activities, happy children, and our nurturing environment at Butterfly Home Child Care in San Rafael.">
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <style>
-    html, body {
-      overflow-x: hidden;
+    @media (hover: none) {
+    .hover-grow:active {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
     }
-    
-    /* Animaciones personalizadas (consistentes con services.html) */
+    }
+    /* Animaciones personalizadas */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
@@ -37,7 +41,122 @@
       75% { transform: translate(-10px, -15px) rotate(-5deg); }
       100% { transform: translate(0, 0) rotate(0deg); }
     }
-    
+    .license-badge {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      width: 200px;
+      height: 100px;
+      perspective: 1000px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .badge-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .license-badge .badge-inner {
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    /* Solo girar si tiene la clase flipped (NO con hover) */
+    .license-badge.flipped .badge-inner {
+      transform: rotateY(180deg);
+    }
+
+    .badge-front, .badge-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #ffffff, #f9f5ff);
+      box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18);
+      backface-visibility: hidden;
+    }
+
+    .badge-front {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .badge-front img {
+      height: 50px;
+      width: auto;
+    }
+
+    .badge-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4b0082;
+      text-align: center;
+    }
+
+    .badge-back {
+      transform: rotateY(180deg);
+      background: #8e54e9;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      justify-content: center;
+      align-items: center;
+    }
+    .hamburger {
+      background: #8e54e9; /* fondo morado */
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: none; /* oculto en escritorio */
+      z-index: 1001;
+    }
+    .hamburger:hover {
+      background: #6a11cb;
+      transform: scale(1.05);
+    }
+    .hamburger svg {
+      width: 32px;
+      height: 32px;
+    }
+    /* Estilos para el menú activo */
+    .nav-menu .active {
+      color: #ff7eb9;
+      font-weight: 600;
+      position: relative;
+      opacity: 1 !important;
+      animation: none !important;
+    }
+
+    .nav-menu .active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #ff7eb9;
+    }
+
+    .nav-menu a {
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #8e54e9;
+      transform: translateY(-2px);
+    }
     .animate-float {
       animation: float 4s ease-in-out infinite;
     }
@@ -58,6 +177,14 @@
     .delay-2 { animation-delay: 0.6s; }
     .delay-3 { animation-delay: 0.9s; }
     .delay-4 { animation-delay: 1.2s; }
+    
+    /* Delays personalizados para el menú */
+    .animate__delay-1-5s {
+      animation-delay: 1.5s !important;
+    }
+    .animate__delay-2-5s {
+      animation-delay: 2.5s !important;
+    }
     
     /* Efecto hover para tarjetas */
     .hover-grow {
@@ -82,53 +209,6 @@
     [data-animate="fadeInUp"] {
       opacity: 1;
       transform: translateY(0);
-    }
-    
-    /* Hero Section */
-    .hero {
-      position: relative;
-      min-height: 40vh;
-      max-height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('assets/images/gallery-hero-bg.jpg') center/cover no-repeat;
-      background-attachment: fixed;
-      filter: brightness(0.7);
-      z-index: 0;
-    }
-
-    .hero-content {
-      text-align: center;
-      width: 100%;
-      z-index: 2;
-      padding: 2rem;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      color: white;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      margin-bottom: 1rem;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .hero p {
-      font-size: 1.5rem;
-      color: white;
-      max-width: 700px;
-      margin: 0 auto;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     }
     
     /* Animación de botón */
@@ -157,9 +237,55 @@
       left: 100%;
     }
     
-    /* Estilos específicos para la galería */
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 30vh;
+      max-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/images/gallery-hero-bg.jpg') center/cover no-repeat;
+      filter: brightness(0.7);
+      z-index: 0;
+    }
+
+    .hero-content {
+      text-align: center;
+      width: 100%;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: white;
+      max-width: 700px;
+      margin: 0 auto;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    /* Estilos para la galería */
     .gallery-section {
-      padding: 6rem 1rem;
+      padding: 3rem 1rem;
       background: white;
     }
     
@@ -171,8 +297,8 @@
     .gallery-title {
       font-family: 'Poppins', sans-serif;
       color: #5a2d9a;
-      font-size: 2.4rem;
-      margin-bottom: 3rem;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
       text-align: center;
       position: relative;
     }
@@ -188,36 +314,32 @@
       background: linear-gradient(to right, #8e54e9, #6a11cb);
     }
     
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 1rem;
+    /* Carrusel de imágenes */
+    .gallery-carousel {
+      width: 100%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      -webkit-overflow-scrolling: touch;
     }
     
     .gallery-item {
+      flex: 0 0 85%;
+      scroll-snap-align: center;
       position: relative;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      transition: all 0.4s ease;
       aspect-ratio: 4/3;
-    }
-    
-    .gallery-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
     }
     
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    
-    .gallery-item:hover img {
-      transform: scale(1.1);
+      display: block;
     }
     
     .gallery-caption {
@@ -227,26 +349,21 @@
       right: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
       color: white;
-      padding: 2rem 1.5rem 1.5rem;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
+      padding: 1.5rem 1rem 1rem;
       font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
     }
     
-    .gallery-item:hover .gallery-caption {
-      transform: translateY(0);
-    }
-    
-    .gallery-category-title {
+    .category-title {
       font-family: 'Poppins', sans-serif;
       color: #5a2d9a;
-      font-size: 2rem;
-      margin: 4rem 0 2rem;
+      font-size: 1.5rem;
+      margin: 2.5rem 0 1.5rem;
       text-align: center;
       position: relative;
     }
     
-    .gallery-category-title::after {
+    .category-title::after {
       content: '';
       position: absolute;
       bottom: -8px;
@@ -257,7 +374,7 @@
       background: linear-gradient(to right, #8e54e9, #6a11cb);
     }
     
-    /* Lightbox styles */
+    /* Lightbox para imágenes */
     .lightbox {
       display: none;
       position: fixed;
@@ -272,79 +389,55 @@
     }
     
     .lightbox-content {
-      max-width: 90%;
+      width: 90%;
       max-height: 90%;
       position: relative;
     }
     
     .lightbox img {
-      max-width: 100%;
-      max-height: 90vh;
+      width: 100%;
+      max-height: 80vh;
       border-radius: 8px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+      object-fit: contain;
     }
     
     .lightbox-caption {
       color: white;
       text-align: center;
       margin-top: 1rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
     
     .lightbox-close, .lightbox-prev, .lightbox-next {
       position: absolute;
       color: white;
-      font-size: 2.5rem;
+      font-size: 2rem;
       cursor: pointer;
       user-select: none;
+      padding: 1rem;
     }
     
     .lightbox-close {
-      top: 20px;
-      right: 30px;
+      top: 10px;
+      right: 10px;
     }
     
     .lightbox-prev {
-      left: 30px;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
     }
     
     .lightbox-next {
-      right: 30px;
-    }
-    
-    /* Estilos para el menú activo */
-    .nav-menu .active {
-      color: #ff7eb9;
-      font-weight: 600;
-      position: relative;
-      opacity: 1 !important;
-      animation: none !important;
-    }
-    
-    .nav-menu .active::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: #ff7eb9;
-    }
-    
-    .nav-menu a {
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-menu a:hover {
-      color: #8e54e9;
-      transform: translateY(-2px);
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
     }
     
     /* Sección de testimonio */
     .testimonial-section {
       background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);
-      padding: 6rem 1rem;
+      padding: 3rem 1rem;
     }
     
     .testimonial-container {
@@ -355,8 +448,8 @@
     .testimonial-title {
       font-family: 'Poppins', sans-serif;
       color: #5a2d9a;
-      font-size: 2.4rem;
-      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
       text-align: center;
       position: relative;
     }
@@ -375,7 +468,7 @@
     .testimonial-content {
       background: white;
       border-radius: 16px;
-      padding: 3rem;
+      padding: 2rem;
       box-shadow: 0 8px 30px rgba(146, 123, 255, 0.1);
       max-width: 800px;
       margin: 0 auto;
@@ -383,9 +476,9 @@
     }
     
     .testimonial-text {
-      font-size: 1.15rem;
+      font-size: 1rem;
       color: #555;
-      line-height: 1.8;
+      line-height: 1.7;
       margin-bottom: 1.5rem;
       font-style: italic;
     }
@@ -398,44 +491,319 @@
     
     .testimonial-quote {
       position: absolute;
-      font-size: 5rem;
+      font-size: 3rem;
       color: rgba(142, 84, 233, 0.1);
       font-family: serif;
     }
     
     .testimonial-quote.open {
-      top: 20px;
-      left: 30px;
+      top: 10px;
+      left: 20px;
     }
     
     .testimonial-quote.close {
-      bottom: 20px;
-      right: 30px;
+      bottom: 10px;
+      right: 20px;
     }
     
-    @media (max-width: 768px) {
+    /* CTA Section */
+    .cta-section {
+      padding: 4rem 1rem;
+      background: linear-gradient(135deg, #8e54e9, #6a11cb);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/images/dots-pattern.png') center/cover;
+      opacity: 0.1;
+    }
+    
+    .cta-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .cta-title {
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .cta-text {
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: white;
+      color: #6a11cb;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Media Queries para móvil */
+    @media (max-width: 1024px) {
+      .logo-img {
+        height: 80px !important;
+      }
+      .hamburger {
+        font-size: 0; /* ya no necesitamos texto */
+        padding: 1rem 1.5rem;
+      }
+      .hamburger svg {
+        width: 36px;
+        height: 36px;
+      }
       .hero h1 {
-        font-size: 2.5rem;
+        font-size: 1.8rem !important;
       }
       
       .hero p {
-        font-size: 1.2rem;
+        font-size: 1rem !important;
       }
       
       .gallery-title, .testimonial-title {
-        font-size: 2rem;
+        font-size: 1.6rem !important;
       }
       
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      .license-badge {
+        right: 20px !important;
+        bottom: 20px !important;
+      }
+    }
+
+    /* Móvil (hasta 767px) */
+    @media (max-width: 767px) {
+      /* Header */
+      .hamburger {
+        font-size: 0;
+        padding: 1rem 1.5rem;
+        display: block;
+      }
+      .hamburger svg {
+        width: 38px;
+        height: 38px;
+      }
+      .logo-area {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+      }
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+      .logo-img {
+        height: 60px !important;
+        margin: 0 auto !important;
+      }
+      
+      /* Menú Hamburguesa */
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 100; 
+      }
+      
+      .nav-menu.active {
+        display: block;
+      }
+      
+      .nav-menu ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      /* Hero Section */
+      .hero {
+        min-height: 25vh;
+        max-height: 250px;
+      }
+      
+      .hero h1 {
+        font-size: 1.6rem !important;
+      }
+      
+      .hero p {
+        font-size: 0.95rem !important;
+      }
+      
+      /* Gallery Items */
+      .gallery-item {
+        flex: 0 0 90%;
+      }
+      
+      /* Testimonial Section */
+      .testimonial-content {
+        padding: 1.5rem;
+      }
+      
+      .testimonial-title {
+        font-size: 1.5rem !important;
+      }
+      
+      /* Badge flotante */
+      .license-badge {
+        right: 10px !important;
+        bottom: 10px !important;
+        width: 180px;
+        height: 90px;
+      }
+      
+      .badge-front img {
+        height: 40px !important;
+      }
+      
+      .badge-text {
+        font-size: 1rem !important;
+      }
+      
+      .badge-back {
+        font-size: 0.9rem !important;
+      }
+    }
+    
+    @media (max-width: 375px) {
+      /* Logo más pequeño */
+      .logo-img {
+        height: 50px !important;
+      }
+      .hamburger {
+        font-size: 0;
+        padding: 0.9rem 1.2rem;
+      }
+      .hamburger svg {
+        width: 34px;
+        height: 34px;
+      }
+      
+      /* Texto principal más pequeño */
+      .hero h1 {
+        font-size: 1.5rem !important;
+      }
+      
+      .hero p {
+        font-size: 0.9rem !important;
+      }
+      
+      .gallery-title, .testimonial-title, .cta-title {
+        font-size: 1.4rem !important;
+      }
+      
+      /* Badge flotante más pequeño */
+      .license-badge {
+        width: 150px;
+        height: 75px;
+        right: 8px !important;
+        bottom: 8px !important;
+      }
+      
+      .badge-front img {
+        height: 35px !important;
+      }
+      
+      .badge-text {
+        font-size: 0.9rem !important;
+      }
+      
+      .badge-back {
+        font-size: 0.8rem !important;
       }
       
       .testimonial-content {
-        padding: 2rem;
+        padding: 1.2rem;
       }
       
       .testimonial-quote {
-        font-size: 3rem;
+        font-size: 2.5rem;
+      }
+      
+      .gallery-item {
+        flex: 0 0 95%;
+      }
+    }
+
+    /* Ultra móviles pequeños (hasta 320px) */
+    @media (max-width: 320px) {
+      /* Logo aún más pequeño */
+      .logo-img {
+        height: 45px !important;
+      }
+      .hamburger {
+        font-size: 0;
+        padding: 0.8rem 1rem;
+      }
+      .hamburger svg {
+        width: 32px;
+        height: 32px;
+      }
+      
+      /* Títulos aún más pequeños */
+      .hero h1 {
+        font-size: 1.3rem !important;
+      }
+
+      .gallery-title, .testimonial-title, .cta-title {
+        font-size: 1.2rem !important;
+      }
+
+      /* Ajustar textos largos */
+      p, span, a {
+        font-size: 0.95rem !important;
+      }
+
+      /* Badge flotante aún más pequeño */
+      .license-badge {
+        width: 130px;
+        height: 65px;
+        right: 6px !important;
+        bottom: 6px !important;
+      }
+
+      .badge-front img {
+        height: 30px !important;
+      }
+
+      .badge-text {
+        font-size: 0.8rem !important;
+      }
+
+      .badge-back {
+        font-size: 0.7rem !important;
+      }
+      
+      .testimonial-quote {
+        font-size: 2rem;
+      }
+      
+      .gallery-caption {
+        padding: 1rem 0.8rem 0.8rem;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -443,7 +811,7 @@
 
 <body>
   <header class="main-header">
-    <div class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px;">
+    <a href="index.html" class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px; text-decoration: none;">
       <img src="assets/images/logo.png" alt="Butterfly Child Care logo" 
            class="logo-img animate__animated animate__fadeIn" 
            style="height: 120px; opacity: 1; background: none;"/>
@@ -458,11 +826,17 @@
            class="animate__animated animate__fadeIn animate__delay-0-5s">
         Butterfly <span style="display: block;">Child Care</span>
       </div>
-    </div>
+    </a>
     
-    <button class="hamburger" id="hamburger">&#9776;</button>
-  
-    <nav class="nav-menu" id="navMenu"> 
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <svg id="hamburgerIcon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="7" x2="21" y2="7"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="17" x2="21" y2="17"></line>
+      </svg>
+    </button>
+    
+    <nav class="nav-menu" id="navMenu">
       <ul>
         <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-0-5s">Home</a></li>
         <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-0-7s">About Us</a></li>
@@ -472,14 +846,10 @@
       </ul>
     </nav>
   </header>
-  
+
   <main>
     <!-- Hero Section -->
     <section class="hero">
-      <!-- Elementos decorativos animados -->
-      <div class="animate-butterfly" style="position: absolute; top: 20%; left: 15%; width: 50px; height: 50px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.7; z-index: 1;"></div>
-      <div class="animate-butterfly" style="position: absolute; top: 30%; right: 20%; width: 40px; height: 40px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.5; z-index: 1; animation-delay: 1s;"></div>
-      
       <div class="hero-content animate__animated animate__fadeInUp">
         <h1>
           Our <span style="color: #ffb8d9;">Gallery</span>
@@ -495,93 +865,96 @@
       <div class="gallery-container">
         <h2 class="gallery-title animate__animated animate__fadeIn">Captured Moments of Joy</h2>
         
-        <div class="gallery-grid">
-          <!-- Grupo 1: Actividades Educativas -->
-          <h3 class="gallery-category-title animate__animated animate__fadeIn">Learning Adventures</h3>
-          
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp">
+        <!-- Carrusel de Actividades Educativas -->
+        <h3 class="category-title animate__animated animate__fadeIn">Learning Adventures</h3>
+        <div class="gallery-carousel">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/learning1.jpg" alt="Children engaged in reading activities">
             <div class="gallery-caption">Story time with our favorite books</div>
           </div>
           
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.2s">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/learning2.jpg" alt="Kids exploring science concepts">
             <div class="gallery-caption">Exploring science with hands-on experiments</div>
           </div>
           
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.4s">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/learning3.jpg" alt="Children working on art projects">
             <div class="gallery-caption">Creative expression through art</div>
           </div>
-          
-          <!-- Grupo 2: Juego al Aire Libre -->
-          <h3 class="gallery-category-title animate__animated animate__fadeIn" style="grid-column: 1 / -1; margin-top: 4rem;">Outdoor Fun</h3>
-          
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp">
+        </div>
+        
+        <!-- Carrusel de Juego al Aire Libre -->
+        <h3 class="category-title animate__animated animate__fadeIn">Outdoor Fun</h3>
+        <div class="gallery-carousel">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/outdoor1.jpg" alt="Children playing in playground">
             <div class="gallery-caption">Adventures in our safe playground</div>
           </div>
           
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.2s">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/outdoor2.jpg" alt="Kids enjoying water play">
             <div class="gallery-caption">Splashing fun on hot summer days</div>
           </div>
           
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.4s">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/outdoor3.jpg" alt="Children exploring nature">
             <div class="gallery-caption">Nature exploration in our backyard</div>
           </div>
-          
-          <!-- Grupo 3: Celebraciones -->
-          <h3 class="gallery-category-title animate__animated animate__fadeIn" style="grid-column: 1 / -1; margin-top: 4rem;">Special Celebrations</h3>
-          
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp">
+        </div>
+        
+        <!-- Carrusel de Celebraciones -->
+        <h3 class="category-title animate__animated animate__fadeIn">Special Celebrations</h3>
+        <div class="gallery-carousel">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/celebration1.jpg" alt="Birthday party celebration">
             <div class="gallery-caption">Birthday celebrations with friends</div>
           </div>
           
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.2s">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/celebration2.jpg" alt="Holiday performance">
             <div class="gallery-caption">Holiday performances and shows</div>
           </div>
           
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.4s">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/celebration3.jpg" alt="Cultural celebration">
             <div class="gallery-caption">Learning about different cultures</div>
           </div>
-          
-          <!-- Grupo 4: Momentos Tranquilos -->
-          <h3 class="gallery-category-title animate__animated animate__fadeIn" style="grid-column: 1 / -1; margin-top: 4rem;">Quiet Moments</h3>
-          
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp">
+        </div>
+        
+        <!-- Carrusel de Momentos Tranquilos -->
+        <h3 class="category-title animate__animated animate__fadeIn">Quiet Moments</h3>
+        <div class="gallery-carousel">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/quiet1.jpg" alt="Child napping">
             <div class="gallery-caption">Peaceful nap time</div>
           </div>
           
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.2s">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/quiet2.jpg" alt="Children reading quietly">
             <div class="gallery-caption">Quiet reading corner</div>
           </div>
           
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.4s">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/quiet3.jpg" alt="Puzzle time">
             <div class="gallery-caption">Focus during puzzle time</div>
           </div>
-          
-          <!-- Grupo 5: Comidas y Nutrición -->
-          <h3 class="gallery-category-title animate__animated animate__fadeIn" style="grid-column: 1 / -1; margin-top: 4rem;">Nutrition & Meals</h3>
-          
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp">
+        </div>
+        
+        <!-- Carrusel de Comidas y Nutrición -->
+        <h3 class="category-title animate__animated animate__fadeIn">Nutrition & Meals</h3>
+        <div class="gallery-carousel">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/meal1.jpg" alt="Children eating healthy snacks">
             <div class="gallery-caption">Healthy snacks we prepare</div>
           </div>
           
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.2s">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/meal2.jpg" alt="Kids helping with food prep">
             <div class="gallery-caption">Little chefs helping with food prep</div>
           </div>
           
-          <div class="gallery-item animate__animated animate__fadeIn" data-animate="fadeInUp" data-animate-delay="0.4s">
+          <div class="gallery-item" data-animate="fadeInUp">
             <img src="assets/images/gallery/meal3.jpg" alt="Family style dining">
             <div class="gallery-caption">Family-style dining experience</div>
           </div>
@@ -617,17 +990,17 @@
     </section>
 
     <!-- CTA Section -->
-    <section style="padding: 6rem 1rem; background: linear-gradient(135deg, #8e54e9, #6a11cb); position: relative; overflow: hidden;">
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/images/dots-pattern.png') center/cover; opacity: 0.1;"></div>
+    <section class="cta-section">
+      <div class="cta-pattern"></div>
       
-      <div style="max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 2;" data-animate="fadeIn">
-        <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+      <div class="cta-content" data-animate="fadeIn">
+        <h2 class="cta-title">
           See Our World in Person
         </h2>
-        <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; line-height: 1.6; margin-bottom: 2.5rem;">
+        <p class="cta-text">
           The photos capture just a glimpse of our daily joy. Schedule a tour to experience our nurturing environment firsthand.
         </p>
-        <a href="contact.html" class="btn-glow" style="display: inline-block; padding: 1.2rem 3rem; background: white; color: #6a11cb; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+        <a href="contact.html" class="cta-button btn-glow">
           Schedule a Tour
         </a>
       </div>
@@ -644,35 +1017,14 @@
   </footer>
 
   <!-- Badge premium animado -->
-  <div style="position: fixed; 
-              right: 40px; 
-              bottom: 40px; 
-              background: linear-gradient(145deg, #ffffff, #f9f5ff); 
-              padding: 22px 28px; 
-              border-radius: 18px; 
-              display: flex; 
-              align-items: center; 
-              gap: 18px; 
-              box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18); 
-              z-index: 1000;
-              border: none;
-              transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-              cursor: pointer;"
-       class="animate__animated animate__fadeInRight animate__delay-1s hover-grow">
-    
-    <img src="assets/images/california-license.png" alt="Licensed" 
-         style="height: 80px; 
-                width: auto; 
-                filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));">
-    
-    <div style="font-family: 'Poppins', sans-serif;">
-      <div style="font-size: 1.8rem; 
-                  font-weight: 700; 
-                  color: #4b0082; 
-                  line-height: 1.2; 
-                  letter-spacing: 0.3px;
-                  text-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        Licensed & Insured
+  <div class="license-badge">
+    <div class="badge-inner">
+      <div class="badge-front">
+        <img src="assets/images/california-license.png" alt="Licensed" />
+        <div class="badge-text">Licensed & Insured</div>
+      </div>
+      <div class="badge-back">
+        <div class="license-number">License #214005909</div>
       </div>
     </div>
   </div>
@@ -686,62 +1038,60 @@
       }
     }
     
-    // Animación al hacer scroll
+    // DOM Ready - Versión optimizada para móviles
     document.addEventListener('DOMContentLoaded', function() {
-      const animateElements = document.querySelectorAll('[data-animate]');
-
+      // ===== Menú Hamburguesa =====
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+  
+      if (window.innerWidth <= 767) {
+        hamburger.style.display = 'block'; // Mostrar botón
+  
+        hamburger.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+          this.classList.toggle('active');
+        });
+  
+        // Cerrar menú al hacer clic en enlaces
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+          });
+        });
+      }
+  
+      // ===== Animaciones al Scroll =====
+      const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const element = entry.target;
             const animationType = element.getAttribute('data-animate');
-
-            element.classList.add('animate__animated');
-
-            if (animationType === 'fadeInUp') {
-              element.classList.add('animate__fadeInUp');
-            } else if (animationType === 'fadeIn') {
-              element.classList.add('animate__fadeIn');
-            }
-
             element.style.opacity = '1';
+  
+            if (animationType === 'fadeInUp') {
+              element.style.transform = 'translateY(0)';
+            }
+  
             observer.unobserve(element);
           }
         });
       }, { threshold: 0.1 });
-
+  
       animateElements.forEach(element => {
         observer.observe(element);
       });
-
-      // Efecto hover para el badge
-      const badge = document.querySelector('div[style*="position: fixed"]');
-      
-      if (badge) {
-        badge.addEventListener('mouseenter', function() {
-          this.style.transform = 'scale(1.05) translateY(-5px)';
-          this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
-        });
-
-        badge.addEventListener('mouseleave', function() {
-          this.style.transform = 'scale(1)';
-          this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
-        });
-
-        badge.addEventListener('click', function() {
-          window.location.href = 'contact.html';
+  
+      // ===== Badge Flotante =====
+      const licenseBadge = document.querySelector('.license-badge');
+      if (licenseBadge) {
+        licenseBadge.addEventListener('click', function() {
+          this.classList.toggle('flipped');
         });
       }
-
-      // Menú hamburguesa
-      const hamburger = document.getElementById('hamburger');
-      const navMenu = document.getElementById('navMenu');
-
-      hamburger.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-      });
-
-      // Lightbox functionality
+  
+      // ===== Lightbox functionality =====
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
       const lightboxCaption = document.getElementById('lightbox-caption');
@@ -751,27 +1101,39 @@
       
       const galleryItems = document.querySelectorAll('.gallery-item');
       let currentImageIndex = 0;
-      const images = [];
-      const captions = [];
+      let currentCategoryIndex = 0;
+      const allImages = [];
+      const allCaptions = [];
       
-      // Populate images and captions arrays
-      galleryItems.forEach((item, index) => {
-        const img = item.querySelector('img');
-        const caption = item.querySelector('.gallery-caption');
+      // Organizar imágenes por categorías
+      const categories = document.querySelectorAll('.gallery-carousel');
+      categories.forEach(category => {
+        const categoryImages = [];
+        const categoryCaptions = [];
         
-        images.push(img.src);
-        captions.push(caption.textContent);
-        
-        item.addEventListener('click', () => {
-          currentImageIndex = index;
-          openLightbox();
+        const items = category.querySelectorAll('.gallery-item');
+        items.forEach(item => {
+          const img = item.querySelector('img');
+          const caption = item.querySelector('.gallery-caption');
+          
+          categoryImages.push(img.src);
+          categoryCaptions.push(caption.textContent);
+          
+          item.addEventListener('click', () => {
+            currentCategoryIndex = Array.from(categories).indexOf(category);
+            currentImageIndex = Array.from(items).indexOf(item);
+            openLightbox();
+          });
         });
+        
+        allImages.push(categoryImages);
+        allCaptions.push(categoryCaptions);
       });
       
       function openLightbox() {
         lightbox.style.display = 'flex';
-        lightboxImg.src = images[currentImageIndex];
-        lightboxCaption.textContent = captions[currentImageIndex];
+        lightboxImg.src = allImages[currentCategoryIndex][currentImageIndex];
+        lightboxCaption.textContent = allCaptions[currentCategoryIndex][currentImageIndex];
         document.body.style.overflow = 'hidden';
       }
       
@@ -781,15 +1143,15 @@
       }
       
       function showPrevImage() {
-        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-        lightboxImg.src = images[currentImageIndex];
-        lightboxCaption.textContent = captions[currentImageIndex];
+        currentImageIndex = (currentImageIndex - 1 + allImages[currentCategoryIndex].length) % allImages[currentCategoryIndex].length;
+        lightboxImg.src = allImages[currentCategoryIndex][currentImageIndex];
+        lightboxCaption.textContent = allCaptions[currentCategoryIndex][currentImageIndex];
       }
       
       function showNextImage() {
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        lightboxImg.src = images[currentImageIndex];
-        lightboxCaption.textContent = captions[currentImageIndex];
+        currentImageIndex = (currentImageIndex + 1) % allImages[currentCategoryIndex].length;
+        lightboxImg.src = allImages[currentCategoryIndex][currentImageIndex];
+        lightboxCaption.textContent = allCaptions[currentCategoryIndex][currentImageIndex];
       }
       
       lightboxClose.addEventListener('click', closeLightbox);
@@ -813,6 +1175,17 @@
           } else if (e.key === 'ArrowRight') {
             showNextImage();
           }
+        }
+      });
+  
+      // ===== Ajustar dinámicamente al cambiar tamaño de pantalla =====
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 767) {
+          hamburger.style.display = 'none';
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+        } else {
+          hamburger.style.display = 'block';
         }
       });
     });
