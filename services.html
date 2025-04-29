@@ -2,17 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Our Services – Butterfly Home Child Care | Licensed Daycare in Terra Linda, San Rafael</title>
   <meta name="description" content="Discover our comprehensive childcare services at Butterfly Home Child Care in San Rafael. We offer nurturing care, educational programs, nutritious meals, and a safe environment for children ages 6 months to 5 years.">
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <style>
     html, body {
       overflow-x: hidden;
-    }    /* Animaciones personalizadas (consistentes con index.html) */
+    }
+
+    @media (hover: none) {
+    .hover-grow:active {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    }
+
+    .gallery-img.animate__animated {
+      opacity: 0;
+      animation-fill-mode: both;
+    }
+    .gallery-img.animate__animated.animate__fadeInUp {
+      opacity: 1;
+    }
+    /* Animaciones personalizadas */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
@@ -35,7 +53,240 @@
       75% { transform: translate(-10px, -15px) rotate(-5deg); }
       100% { transform: translate(0, 0) rotate(0deg); }
     }
-    
+    /* Animación de rebote */
+    @keyframes bounceRight {
+      0%, 100% { transform: translateY(-50%) translateX(0); }
+      50% { transform: translateY(-50%) translateX(8px); }
+    }
+    @keyframes bounceArrow {
+      0%, 100% {
+        transform: translateY(-50%) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(6px);
+      }
+    }
+    .image-with-arrow {
+      position: relative;
+      display: inline-block;
+    }
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+
+    .lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 2.8rem;
+      color: white;
+      background: rgba(0,0,0,0.6);
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10001;
+      transition: transform 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.2);
+      background: rgba(255,255,255,0.2);
+    }
+    .scroll-arrow {
+      position: absolute;
+      top: 50%;
+      right: 0; /* Fijo al borde derecho */
+      transform: translateY(-50%);
+      background: white;
+      padding: 6px;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      animation: bounceArrow 2s infinite;
+      z-index: 999; /* MUY ALTO para que quede encima de todo */
+      cursor: pointer;
+    }
+    .nanny-gallery {
+      flex: 1;
+      padding-bottom: 1rem;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden; /* evita barra permanente */
+    }
+
+    .nanny-gallery-inner {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1rem;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch; /* suaviza scroll en iOS */
+    }
+
+    .gallery-img {
+      flex: 0 0 auto;
+      width: 220px;
+      border-radius: 16px;
+      border: 6px solid white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      scroll-snap-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.05);
+    }
+    .license-badge {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      width: 200px;
+      height: 100px;
+      perspective: 1000px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+    /* Modo escritorio: vertical */
+    @media (min-width: 768px) {
+      .nanny-gallery-inner {
+        flex-direction: column;
+        overflow-x: hidden;
+        padding: 0;
+      }
+
+      .gallery-img {
+        width: 90%;
+        max-width: 300px;
+      }
+    }
+    .badge-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .license-badge .badge-inner {
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    /* Solo girar si tiene la clase flipped (NO con hover) */
+    .license-badge.flipped .badge-inner {
+      transform: rotateY(180deg);
+    }
+
+    .badge-front, .badge-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #ffffff, #f9f5ff);
+      box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18);
+      backface-visibility: hidden;
+    }
+
+    .badge-front {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .badge-front img {
+      height: 50px;
+      width: auto;
+    }
+
+    .badge-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4b0082;
+      text-align: center;
+    }
+
+    .badge-back {
+      transform: rotateY(180deg);
+      background: #8e54e9;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      justify-content: center;
+      align-items: center;
+    }
+    .hamburger {
+      background: #8e54e9; /* fondo morado */
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: none; /* oculto en escritorio */
+      z-index: 1001;
+    }
+    .hamburger:hover {
+      background: #6a11cb;
+      transform: scale(1.05);
+    }
+    .hamburger svg {
+      width: 32px;
+      height: 32px;
+    }
+    /* Estilos para el menú activo */
+    .nav-menu .active {
+      color: #ff7eb9;
+      font-weight: 600;
+      position: relative;
+      opacity: 1 !important;
+      animation: none !important;
+    }
+
+    .nav-menu .active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #ff7eb9;
+    }
+
+    .nav-menu a {
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #8e54e9;
+      transform: translateY(-2px);
+    }
     .animate-float {
       animation: float 4s ease-in-out infinite;
     }
@@ -57,6 +308,14 @@
     .delay-3 { animation-delay: 0.9s; }
     .delay-4 { animation-delay: 1.2s; }
     
+    /* Delays personalizados para el menú */
+    .animate__delay-1-5s {
+      animation-delay: 1.5s !important;
+    }
+    .animate__delay-2-5s {
+      animation-delay: 2.5s !important;
+    }
+    
     /* Efecto hover para tarjetas */
     .hover-grow {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -72,7 +331,9 @@
       opacity: 0;
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    
+    .hero-content[data-animate] {
+      opacity: 0;
+    }
     [data-animate="fadeIn"] {
       opacity: 1;
     }
@@ -81,52 +342,7 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* Agrega esto en la sección de estilos */
-    .hero {
-      position: relative;
-      min-height: 40vh; /* antes 60vh */
-      max-height: 400px; /* opcional para no exceder en pantallas grandes */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('assets/images/services-hero-bg.jpg') center/cover no-repeat;
-      background-attachment: fixed;
-      filter: brightness(0.7);
-      z-index: 0;
-    }
-
-    .hero-content {
-      text-align: center;
-      width: 100%;
-      z-index: 2;
-      padding: 2rem;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      color: white;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      margin-bottom: 1rem;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .hero p {
-      font-size: 1.5rem;
-      color: white;
-      max-width: 700px;
-      margin: 0 auto;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    }
+    
     /* Animación de botón */
     .btn-glow {
       position: relative;
@@ -154,8 +370,53 @@
     }
     
     /* Estilos específicos para services */
+    .hero {
+      position: relative;
+      min-height: 40vh;
+      max-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/images/services-hero-bg.jpg') center/cover no-repeat;
+      filter: brightness(0.7);
+      z-index: 0;
+    }
+
+    .hero-content {
+      text-align: center;
+      width: 100%;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: white;
+      max-width: 700px;
+      margin: 0 auto;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    
     .activity-section {
-      padding: 6rem 1rem;
+      padding: 3rem 1rem;
       background: white;
     }
     
@@ -165,7 +426,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 3rem;
+      gap: 2rem;
     }
     
     .activity-content {
@@ -183,7 +444,7 @@
     .activity-title {
       font-family: 'Poppins', sans-serif;
       color: #5a2d9a;
-      font-size: 2.4rem;
+      font-size: 1.8rem;
       margin-bottom: 1.5rem;
       position: relative;
     }
@@ -199,10 +460,10 @@
     }
     
     .activity-description {
-      font-size: 1.15rem;
+      font-size: 1rem;
       color: #555;
-      line-height: 1.8;
-      margin-bottom: 2rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
     }
     
     .activity-image img {
@@ -212,97 +473,24 @@
       box-shadow: 0 15px 40px rgba(0,0,0,0.1);
     }
     
-    .service-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 30px rgba(146, 123, 255, 0.1);
-      border: 1px solid rgba(75, 0, 130, 0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: #8e54e9;
-    }
-    
-    .service-feature {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-    }
-    
-    .service-feature i {
-      color: #ff7eb9;
-      margin-right: 1rem;
-      font-size: 1.2rem;
-      margin-top: 0.2rem;
-    }
-    
-    .pricing-table {
-      width: 100%;
-      border-collapse: collapse;
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(142, 84, 233, 0.3), transparent);
       margin: 2rem 0;
-    }
-    
-    .pricing-table th, .pricing-table td {
-      padding: 1rem;
-      text-align: left;
-      border-bottom: 1px solid #eee;
-    }
-    
-    .pricing-table th {
-      background-color: #f9f0ff;
-      color: #5a2d9a;
-    }
-    
-    .pricing-table tr:hover {
-      background-color: #f9f7ff;
     }
     
     .highlight-box {
       background: linear-gradient(to right, #f9f0ff, #e6f9ff);
       border-left: 4px solid #8e54e9;
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: 8px;
-      margin: 2rem 0;
+      margin: 1.5rem 0;
     }
     
-    /* Estilos para el menú activo */
-    .nav-menu .active {
-      color: #ff7eb9;
-      font-weight: 600;
-      position: relative;
-      opacity: 1 !important;
-      animation: none !important;
-    }
-    
-    .nav-menu .active::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: #ff7eb9;
-    }
-    
-    .nav-menu a {
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-menu a:hover {
-      color: #8e54e9;
-      transform: translateY(-2px);
-    }
-    
-    /* Sección de niñeras */
     .nanny-section {
       background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);
-      padding: 6rem 1rem;
+      padding: 3rem 1rem;
     }
     
     .nanny-container {
@@ -313,8 +501,8 @@
     .nanny-title {
       font-family: 'Poppins', sans-serif;
       color: #5a2d9a;
-      font-size: 2.4rem;
-      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
       text-align: center;
       position: relative;
     }
@@ -333,18 +521,124 @@
     .nanny-content {
       background: white;
       border-radius: 16px;
-      padding: 3rem;
+      padding: 2rem;
       box-shadow: 0 8px 30px rgba(146, 123, 255, 0.1);
     }
     
     .nanny-text {
-      font-size: 1.15rem;
+      font-size: 1rem;
       color: #555;
-      line-height: 1.8;
+      line-height: 1.7;
       margin-bottom: 1.5rem;
     }
-    
-    @media (max-width: 768px) {
+
+    /* Media Queries para móvil */
+    @media (max-width: 1024px) {
+      .logo-img {
+        height: 80px !important;
+      }
+      .hamburger {
+        font-size: 0; /* ya no necesitamos texto */
+        padding: 1rem 1.5rem;
+      }
+      .hamburger svg {
+        width: 36px;
+        height: 36px;
+      }
+      .hero h1 {
+        font-size: 2.2rem !important;
+      }
+      
+      .hero p {
+        font-size: 1.1rem !important;
+      }
+      
+      .activity-title {
+        font-size: 1.6rem !important;
+      }
+      
+      .license-badge {
+        right: 20px !important;
+        bottom: 20px !important;
+      }
+    }
+
+    /* Móvil (hasta 767px) */
+    @media (max-width: 767px) {
+      .nanny-container {
+        flex-direction: column !important;
+      }
+
+      .nanny-gallery {
+        order: -1 !important; /* Pone la galería antes que el texto */
+        margin-bottom: 1.5rem;
+      }
+
+      .nanny-content {
+        order: 2;
+      }
+      /* Header */
+      .hamburger {
+        font-size: 0;
+        padding: 1rem 1.5rem;
+        display: block;
+      }
+      .hamburger svg {
+        width: 38px;
+        height: 38px;
+      }
+      .logo-area {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+      }
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+      .logo-img {
+        height: 60px !important;
+        margin: 0 auto !important;
+      }
+      
+      /* Menú Hamburguesa */
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 100; 
+      }
+      
+      .nav-menu.active {
+        display: block;
+      }
+      
+      .nav-menu ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      /* Hero Section */
+      .hero {
+        min-height: 30vh;
+        max-height: 300px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem !important;
+      }
+      
+      .hero p {
+        font-size: 1rem !important;
+      }
+      
+      /* Activity Sections */
       .activity-container {
         flex-direction: column;
       }
@@ -354,19 +648,162 @@
       }
       
       .activity-title {
-        font-size: 2rem;
+        font-size: 1.6rem !important;
+      }
+      
+      .activity-description {
+        font-size: 1rem !important;
+      }
+      
+      /* Nanny Section */
+      .nanny-content {
+        padding: 1.5rem;
+      }
+      
+      .nanny-title {
+        font-size: 1.6rem !important;
+      }
+      
+      /* Badge flotante */
+      .license-badge {
+        right: 10px !important;
+        bottom: 10px !important;
+        width: 180px;
+        height: 90px;
+      }
+      
+      .badge-front img {
+        height: 40px !important;
+      }
+      
+      .badge-text {
+        font-size: 1rem !important;
+      }
+      
+      .badge-back {
+        font-size: 0.9rem !important;
+      }
+    }
+    
+    @media (max-width: 375px) {
+      /* Logo más pequeño */
+      .logo-img {
+        height: 50px !important;
+      }
+      .hamburger {
+        font-size: 0;
+        padding: 0.9rem 1.2rem;
+      }
+      .hamburger svg {
+        width: 34px;
+        height: 34px;
+      }
+      
+      /* Texto principal más pequeño */
+      .hero h1 {
+        font-size: 1.6rem !important;
+      }
+      
+      .hero p {
+        font-size: 0.95rem !important;
+      }
+      
+      .activity-title {
+        font-size: 1.4rem !important;
+      }
+      
+      /* Badge flotante más pequeño */
+      .license-badge {
+        width: 150px;
+        height: 75px;
+        right: 8px !important;
+        bottom: 8px !important;
+      }
+      
+      .badge-front img {
+        height: 35px !important;
+      }
+      
+      .badge-text {
+        font-size: 0.9rem !important;
+      }
+      
+      .badge-back {
+        font-size: 0.8rem !important;
       }
       
       .nanny-content {
-        padding: 2rem;
+        padding: 1.2rem;
       }
+      
+      .nanny-title {
+        font-size: 1.4rem !important;
+      }
+    }
+
+    /* Ultra móviles pequeños (hasta 320px) */
+    @media (max-width: 320px) {
+      /* Logo aún más pequeño */
+      .logo-img {
+        height: 45px !important;
+      }
+      .hamburger {
+        font-size: 0;
+        padding: 0.8rem 1rem;
+      }
+      .hamburger svg {
+        width: 32px;
+        height: 32px;
+      }
+      
+      /* Títulos aún más pequeños */
+      .hero h1 {
+        font-size: 1.4rem !important;
+      }
+
+      .activity-title, .nanny-title {
+        font-size: 1.3rem !important;
+      }
+
+      /* Ajustar textos largos */
+      p, span, a {
+        font-size: 0.95rem !important;
+      }
+
+      /* Badge flotante aún más pequeño */
+      .license-badge {
+        width: 130px;
+        height: 65px;
+        right: 6px !important;
+        bottom: 6px !important;
+      }
+
+      .badge-front img {
+        height: 30px !important;
+      }
+
+      .badge-text {
+        font-size: 0.8rem !important;
+      }
+
+      .badge-back {
+        font-size: 0.7rem !important;
+      }
+    }
+    [data-animate], .hero-content[data-animate] {
+      visibility: hidden; /* 🔥 NUEVO: evitar parpadeo mientras carga */
+    }
+
+    [data-animate].animate__animated, 
+    .hero-content[data-animate].animate__animated {
+      visibility: visible; /* 🔥 Cuando ya tiene la animación lista */
     }
   </style>
 </head>
 
 <body>
   <header class="main-header">
-    <div class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px;">
+    <a href="index.html" class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px; text-decoration: none;">
       <img src="assets/images/logo.png" alt="Butterfly Child Care logo" 
            class="logo-img animate__animated animate__fadeIn" 
            style="height: 120px; opacity: 1; background: none;"/>
@@ -381,11 +818,17 @@
            class="animate__animated animate__fadeIn animate__delay-0-5s">
         Butterfly <span style="display: block;">Child Care</span>
       </div>
-    </div>
+    </a>
     
-    <button class="hamburger" id="hamburger">&#9776;</button>
-  
-    <nav class="nav-menu" id="navMenu"> 
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <svg id="hamburgerIcon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="7" x2="21" y2="7"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="17" x2="21" y2="17"></line>
+      </svg>
+    </button>
+    
+    <nav class="nav-menu" id="navMenu">
       <ul>
         <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-0-5s">Home</a></li>
         <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-0-7s">About Us</a></li>
@@ -395,15 +838,11 @@
       </ul>
     </nav>
   </header>
-  
+
   <main>
     <!-- Hero Section -->
-    <section class="hero">
-      <!-- Elementos decorativos animados -->
-      <div class="animate-butterfly" style="position: absolute; top: 20%; left: 15%; width: 50px; height: 50px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.7; z-index: 1;"></div>
-      <div class="animate-butterfly" style="position: absolute; top: 30%; right: 20%; width: 40px; height: 40px; background: url('assets/images/butterfly-icon.png') center/contain no-repeat; opacity: 0.5; z-index: 1; animation-delay: 1s;"></div>
-      
-      <div class="hero-content animate__animated animate__fadeInUp">
+    <section class="hero" data-animate-trigger>
+      <div class="hero-content" data-animate="fadeInUp">
         <h1>
           Our <span style="color: #ffb8d9;">Services</span>
         </h1>
@@ -413,131 +852,139 @@
       </div>
     </section>
 
-    <!-- Sección de Actividades 1 - Actividades Educativas -->
-    <section class="activity-section" data-animate-trigger>
-      <div class="activity-container">
-        <div class="activity-content" data-animate="fadeInUp">
-          <h2 class="activity-title">Early Childhood Education</h2>
-          <p class="activity-description">
-            At Butterfly Home Child Care, we offer a structured early education program that nurtures cognitive, language, and emotional development in a loving environment.
-          </p>
-          <p class="activity-description">
-            <strong>Program highlights:</strong> Literacy foundations through storytelling, early math skills with sensory activities, exploration of basic science concepts, and hands-on creative arts.
-          </p>
-          <p class="activity-description">
-            Our curriculum is age-appropriate and designed to foster curiosity, confidence, and a lifelong love for learning.
-          </p>
-        </div>
-        <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
-          <img src="assets/images/educational-activities.jpg" alt="Children engaged in educational activities" class="hover-grow" data-animate="fadeInUp">
-          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-            "Learning Through Play"
-          </div>
-        </div>
+<!-- Sección de Actividades 1 - Actividades Educativas -->
+<section class="activity-section" data-animate-trigger>
+  <div class="activity-container">
+    
+    <div class="activity-content" data-animate="fadeInUp">
+      <h2 class="activity-title">Early Childhood Education</h2>
+      <p class="activity-description">
+        At Butterfly Home Child Care, we offer a structured early education program that nurtures cognitive, language, and emotional development in a loving environment.
+      </p>
+      <p class="activity-description">
+        <strong>Program highlights:</strong> Literacy foundations through storytelling, early math skills with sensory activities, exploration of basic science concepts, and hands-on creative arts.
+      </p>
+      <p class="activity-description">
+        Our curriculum is age-appropriate and designed to foster curiosity, confidence, and a lifelong love for learning.
+      </p>
+    </div>
+
+    <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3s">
+      <img src="assets/images/creative-activities.jpg" alt="Children doing creative activities" class="hover-grow">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Sección de Actividades 2 - Actividades Creativas -->
+<section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
+  <div class="activity-container">
+
+    <div class="activity-image" data-animate="fadeInUp">
+      <img src="assets/images/creative-activities.jpg" alt="Children doing creative activities" class="hover-grow">
+    </div>
+
+    <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
+      <h2 class="activity-title">Creative Development</h2>
+      <p class="activity-description">
+        Creativity is essential for a child's growth. We provide daily opportunities for children to express themselves through art, music, storytelling, and imaginative play.
+      </p>
+      <p class="activity-description">
+        <strong>Creative services include:</strong> Sensory-based art projects, music and movement sessions, role-playing activities, and open-ended exploration with a variety of materials.
+      </p>
+      <p class="activity-description">
+        Every child's work is celebrated to encourage self-expression and build self-esteem.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Sección de Actividades 3 - Actividades Físicas -->
+<section class="activity-section" data-animate-trigger>
+  <div class="activity-container">
+
+    <div class="activity-content" data-animate="fadeInUp">
+      <h2 class="activity-title">Physical Wellness and Outdoor Play</h2>
+      <p class="activity-description">
+        Physical activity is a vital part of our daily schedule. Our outdoor and indoor activities promote strength, balance, coordination, and healthy habits.
+      </p>
+      <p class="activity-description">
+        <strong>Offered activities:</strong> Outdoor obstacle courses, group games, yoga for children, nature walks, and free play that encourages exploration and social interaction.
+      </p>
+      <p class="activity-description">
+        Our secure outdoor area allows children to safely enjoy physical activities year-round under staff supervision.
+      </p>
+    </div>
+
+    <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
+      <img src="assets/images/physical-activities.jpg" alt="Children playing outdoors" class="hover-grow">
+    </div>
+
+  </div>
+</section>
+
+<!-- Sección de Actividades 4 - Socialización -->
+<section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
+  <div class="activity-container">
+
+    <div class="activity-image" data-animate="fadeInUp">
+      <img src="assets/images/social-activities.jpg" alt="Children playing together" class="hover-grow">
+    </div>
+
+    <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
+      <h2 class="activity-title">Social and Emotional Development</h2>
+      <p class="activity-description">
+        We support children's emotional intelligence and social skills through structured group activities and positive role modeling.
+      </p>
+      <p class="activity-description">
+        <strong>Key elements include:</strong> Group story times, cooperative games, guided peer interactions, emotional recognition exercises, and empathy-building activities.
+      </p>
+      <p class="activity-description">
+        For our youngest children, we create strong bonds with consistent caregivers to foster trust, resilience, and security.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="nanny-section" data-animate-trigger>
+  <div class="nanny-container" style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: flex-start;">
+
+    <!-- Galería con flechas fijas -->
+    <div class="nanny-gallery" style="position: relative;">
+      
+      <!-- 🔙 Flecha Izquierda -->
+      <div id="arrow-scroll-left" class="scroll-arrow" style="left: 0; right: auto;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8e54e9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
       </div>
-    </section>
 
-    <!-- Sección de Actividades 2 - Actividades Creativas -->
-    <section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
-      <div class="activity-container">
-        <div class="activity-image" data-animate="fadeInUp">
-          <img src="assets/images/creative-activities.jpg" alt="Children doing creative activities" class="hover-grow" data-animate="fadeInUp">
-        </div>
-        <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
-          <h2 class="activity-title">Creative Development</h2>
-          <p class="activity-description">
-            Creativity is essential for a child's growth. We provide daily opportunities for children to express themselves through art, music, storytelling, and imaginative play.
-          </p>
-          <p class="activity-description">
-            <strong>Creative services include:</strong> Sensory-based art projects, music and movement sessions, role-playing activities, and open-ended exploration with a variety of materials.
-          </p>
-          <p class="activity-description">
-            Every child's work is celebrated to encourage self-expression and build self-esteem.
-          </p>
-        </div>
+      <!-- 🔜 Flecha Derecha -->
+      <div id="arrow-scroll-right" class="scroll-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8e54e9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
       </div>
-    </section>
 
-    <!-- Sección de Actividades 3 - Actividades Físicas -->
-    <section class="activity-section" data-animate-trigger>
-      <div class="activity-container">
-        <div class="activity-content" data-animate="fadeInUp">
-          <h2 class="activity-title">Physical Wellness and Outdoor Play</h2>
-          <p class="activity-description">
-            Physical activity is a vital part of our daily schedule. Our outdoor and indoor activities promote strength, balance, coordination, and healthy habits.
-          </p>
-          <p class="activity-description">
-            <strong>Offered activities:</strong> Outdoor obstacle courses, group games, yoga for children, nature walks, and free play that encourages exploration and social interaction.
-          </p>
-          <p class="activity-description">
-            Our secure outdoor area allows children to safely enjoy physical activities year-round under staff supervision.
-          </p>
-        </div>
-        <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
-          <img src="assets/images/physical-activities.jpg" alt="Children playing outdoors" class="hover-grow" data-animate="fadeInUp">
-          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-            "Active & Healthy"
-          </div>
-        </div>
+      <!-- Galería -->
+      <div class="nanny-gallery-inner">
+        <img src="assets/images/nanny-babysitter.jpg" alt="Nanny 1" class="gallery-img" />
+        <img src="assets/images/educational-activities.jpg" alt="Nanny 2" class="gallery-img" />
+        <img src="assets/images/creative-activities.jpg" alt="Nanny 3" class="gallery-img" />
+        <img src="assets/images/physical-activities.jpg" alt="Extra 1" class="gallery-img" />
+        <img src="assets/images/hero-bg.jpg" alt="Extra 2" class="gallery-img" />
+        <img src="assets/images/happy-children-playing.jpg" alt="Extra 3" class="gallery-img" />
+        <img src="assets/images/social-activities.jpg" alt="Extra 4" class="gallery-img" />
       </div>
-    </section>
+    </div>
 
-    <!-- Sección de Actividades 4 - Socialización -->
-    <section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
-      <div class="activity-container">
-        <div class="activity-image" data-animate="fadeInUp">
-          <img src="assets/images/social-activities.jpg" alt="Children playing together" class="hover-grow" data-animate="fadeInUp">
-        </div>
-        <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
-          <h2 class="activity-title">Social and Emotional Development</h2>
-          <p class="activity-description">
-            We support children's emotional intelligence and social skills through structured group activities and positive role modeling.
-          </p>
-          <p class="activity-description">
-            <strong>Key elements include:</strong> Group story times, cooperative games, guided peer interactions, emotional recognition exercises, and empathy-building activities.
-          </p>
-          <p class="activity-description">
-            For our youngest children, we create strong bonds with consistent caregivers to foster trust, resilience, and security.
-          </p>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="nanny-section" data-animate-trigger>
-      <div class="nanny-container" style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: flex-start;">
-    
-        <!-- Galería Vertical Mejorada -->
-        <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 2rem; align-items: center;">
-          <img src="assets/images/nanny-babysitter.jpg" alt="Nanny 1"
-               class="hover-grow animate__animated" data-animate="fadeInUp"
-               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
-    
-          <img src="assets/images/educational-activities.jpg" alt="Nanny 2"
-               class="hover-grow animate__animated" data-animate="fadeInUp"
-               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
-    
-          <img src="assets/images/creative-activities.jpg" alt="Nanny 3"
-               class="hover-grow animate__animated" data-animate="fadeInUp"
-               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
-    
-          <img src="assets/images/physical-activities.jpg" alt="Extra 1"
-               class="hover-grow animate__animated" data-animate="fadeInUp"
-               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
-    
-          <img src="assets/images/hero-bg.jpg" alt="Extra 2"
-               class="hover-grow animate__animated" data-animate="fadeInUp"
-               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
-    
-          <img src="assets/images/happy-children-playing.jpg" alt="Extra 3"
-               class="hover-grow animate__animated" data-animate="fadeInUp"
-               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
-    
-          <img src="assets/images/social-activities.jpg" alt="Extra 4"
-               class="hover-grow animate__animated" data-animate="fadeInUp"
-               style="width: 90%; max-width: 300px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
-        </div>
-    
         <!-- Contenido de texto -->
         <div class="nanny-content animate__animated animate__fadeInRight" style="flex: 2; min-width: 300px;">
     
@@ -595,8 +1042,7 @@
     
         </div>
       </div>
-    </section>
-
+    </section>    
   </main>
 
   <footer style="background-color: #333; color: white; padding: 3rem 1rem; text-align: center;">
@@ -609,105 +1055,150 @@
   </footer>
 
   <!-- Badge premium animado -->
-  <div style="position: fixed; 
-              right: 40px; 
-              bottom: 40px; 
-              background: linear-gradient(145deg, #ffffff, #f9f5ff); 
-              padding: 22px 28px; 
-              border-radius: 18px; 
-              display: flex; 
-              align-items: center; 
-              gap: 18px; 
-              box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18); 
-              z-index: 1000;
-              border: none;
-              transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-              cursor: pointer;"
-       class="animate__animated animate__fadeInRight animate__delay-1s hover-grow">
-    
-    <img src="assets/images/california-license.png" alt="Licensed" 
-         style="height: 80px; 
-                width: auto; 
-                filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));">
-    
-    <div style="font-family: 'Poppins', sans-serif;">
-      <div style="font-size: 1.8rem; 
-                  font-weight: 700; 
-                  color: #4b0082; 
-                  line-height: 1.2; 
-                  letter-spacing: 0.3px;
-                  text-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        Licensed & Insured
+  <div class="license-badge">
+    <div class="badge-inner">
+      <div class="badge-front">
+        <img src="assets/images/california-license.png" alt="Licensed" />
+        <div class="badge-text">Licensed & Insured</div>
+      </div>
+      <div class="badge-back">
+        <div class="license-number">License #214005909</div>
       </div>
     </div>
   </div>
 
   <script>
-    // Scroll suave
     function scrollToSection(selector) {
       const element = document.querySelector(selector);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    
-    // Animación al hacer scroll
-    document.addEventListener('DOMContentLoaded', function() {
-      const animateElements = document.querySelectorAll('[data-animate]');
-
+  
+    document.addEventListener('DOMContentLoaded', function () {
+      // ===== Menú Hamburguesa =====
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+  
+      function configurarMenuHamburguesa() {
+        if (window.innerWidth <= 767) {
+          hamburger.style.display = 'block';
+          hamburger.addEventListener('click', function () {
+            navMenu.classList.toggle('active');
+            this.classList.toggle('active');
+          });
+          document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+              navMenu.classList.remove('active');
+              hamburger.classList.remove('active');
+            });
+          });
+        } else {
+          hamburger.style.display = 'none';
+        }
+      }
+  
+      configurarMenuHamburguesa();
+      window.addEventListener('resize', configurarMenuHamburguesa);
+  
+      // ===== Animaciones en la galería =====
+      const galleryImages = document.querySelectorAll('img'); // Selecciona todas las imágenes
+      galleryImages.forEach((img, index) => {
+        img.classList.add('animate__animated', 'animate__fadeInUp');
+        img.style.animationDelay = `${index * 0.2}s`;
+      });
+  
+      // ===== Animaciones al hacer scroll =====
+      const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            const element = entry.target;
-            const animationType = element.getAttribute('data-animate');
-
-            element.classList.add('animate__animated');
-
-            if (animationType === 'fadeInUp') {
-              element.classList.add('animate__fadeInUp');
-            } else if (animationType === 'fadeIn') {
-              element.classList.add('animate__fadeIn');
-            }
-
-            element.style.opacity = '1';
-            observer.unobserve(element);
+            const el = entry.target;
+            const anim = el.getAttribute('data-animate');
+            const delay = el.getAttribute('data-animate-delay');
+            if (delay) el.style.animationDelay = delay;
+            el.classList.add('animate__animated', `animate__${anim}`);
+            observer.unobserve(el);
           }
         });
       }, { threshold: 0.1 });
-
-      animateElements.forEach(element => {
-        observer.observe(element);
-      });
-
-      // Efecto hover para el badge
-      const badge = document.querySelector('div[style*="position: fixed"]');
-      
-      if (badge) {
-        badge.addEventListener('mouseenter', function() {
-          this.style.transform = 'scale(1.05) translateY(-5px)';
-          this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
-        });
-
-        badge.addEventListener('mouseleave', function() {
-          this.style.transform = 'scale(1)';
-          this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
-        });
-
-        badge.addEventListener('click', function() {
-          window.location.href = 'contact.html';
+  
+      animateElements.forEach(el => observer.observe(el));
+  
+      // ===== Badge flotante con giro =====
+      const licenseBadge = document.querySelector('.license-badge');
+      if (licenseBadge) {
+        licenseBadge.addEventListener('click', function () {
+          this.classList.toggle('flipped');
         });
       }
+  
+      // ===== Flechas izquierda y derecha de la galería =====
+      const leftArrow = document.getElementById('arrow-scroll-left');
+      const rightArrow = document.getElementById('arrow-scroll-right');
+      const gallery = document.querySelector('.nanny-gallery-inner');
+  
+      function actualizarVisibilidadFlechas() {
+        if (!gallery) return;
+        leftArrow.style.display = gallery.scrollLeft > 0 ? 'block' : 'none';
+        rightArrow.style.display = gallery.scrollLeft + gallery.clientWidth < gallery.scrollWidth ? 'block' : 'none';
+      }
+  
+      if (gallery && leftArrow && rightArrow) {
+        leftArrow.addEventListener('click', () => {
+          gallery.scrollBy({ left: -250, behavior: 'smooth' });
+        });
+  
+        rightArrow.addEventListener('click', () => {
+          gallery.scrollBy({ left: 250, behavior: 'smooth' });
+        });
+  
+        gallery.addEventListener('scroll', actualizarVisibilidadFlechas);
+        window.addEventListener('resize', actualizarVisibilidadFlechas);
+        actualizarVisibilidadFlechas();
+      }
+  
+    // ===== Lightbox con botón de cerrar =====
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        const prevOverlay = document.querySelector('.lightbox-overlay');
+        if (prevOverlay) return;
 
-      // Menú hamburguesa
-      const hamburger = document.getElementById('hamburger');
-      const navMenu = document.getElementById('navMenu');
+        const overlay = document.createElement('div');
+        overlay.classList.add('lightbox-overlay');
 
-      hamburger.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
+        const enlargedImg = document.createElement('img');
+        enlargedImg.src = img.src;
+        enlargedImg.alt = img.alt;
+
+        const closeBtn = document.createElement('button');
+        closeBtn.classList.add('lightbox-close');
+        closeBtn.innerHTML = '&times;';
+
+        // Cerrar al hacer clic en la ❌
+        closeBtn.addEventListener('click', () => {
+          overlay.remove();
+        });
+
+        // Cerrar al hacer clic fuera de la imagen
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) {
+            overlay.remove();
+          }
+        });
+
+        overlay.appendChild(closeBtn);
+        overlay.appendChild(enlargedImg);
+        document.body.appendChild(overlay);
       });
     });
-
+    });
   </script>
+  
+  
+  
+  
+  
 
   <script src="js/main.js"></script>
 </body>

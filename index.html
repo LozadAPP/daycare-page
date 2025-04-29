@@ -289,11 +289,11 @@
     .badge-back {
       font-size: 0.9rem !important;
     }
-    .logo-area {
-      flex-direction: column !important;
-      padding-top: 10px !important;
-      text-align: center;
-      gap: 5px !important;
+    .license-badge {
+      right: 10px !important;
+      bottom: 10px !important;
+      width: 180px;
+      height: 90px;
     }
     svg {
       width: 30px;
@@ -344,9 +344,7 @@
     
 
     
-    div[style*="position: fixed"] img {
-      height: 50px !important;
-    }
+
     
 
   }
@@ -386,13 +384,6 @@
   }
 }
 
-  .badge-front img {
-      height: 35px !important;
-    }
-
-  .badge-back {
-      font-size: 0.8rem !important;
-    }
 
 /* Ultra móviles pequeños (hasta 320px) */
 @media (max-width: 320px) {
@@ -771,7 +762,7 @@
         observer.observe(element);
       });
   
-      // ===== Badge Flotante (ahora sí alterna bien) =====
+      // ===== Badge Flotante (giro al hacer clic) =====
       const licenseBadge = document.querySelector('.license-badge');
       if (licenseBadge) {
         licenseBadge.addEventListener('click', function() {
@@ -799,6 +790,40 @@
           badgeFloating.style.padding = '10px 15px';
         }
       }
+  
+      // ===== Lightbox para imágenes =====
+      const galleryImages = document.querySelectorAll('img'); // Aplica a todas las imágenes
+      galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+          const prevOverlay = document.querySelector('.lightbox-overlay');
+          if (prevOverlay) return; // Evitar abrir dos lightbox
+  
+          const overlay = document.createElement('div');
+          overlay.classList.add('lightbox-overlay');
+  
+          const enlargedImg = document.createElement('img');
+          enlargedImg.src = img.src;
+          enlargedImg.alt = img.alt;
+  
+          const closeBtn = document.createElement('button');
+          closeBtn.classList.add('lightbox-close');
+          closeBtn.innerHTML = '&times;';
+  
+          closeBtn.addEventListener('click', () => {
+            overlay.remove();
+          });
+  
+          overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+              overlay.remove();
+            }
+          });
+  
+          overlay.appendChild(closeBtn);
+          overlay.appendChild(enlargedImg);
+          document.body.appendChild(overlay);
+        });
+      });
   
       // ===== Ajustar dinámicamente al cambiar tamaño de pantalla =====
       window.addEventListener('resize', function() {
