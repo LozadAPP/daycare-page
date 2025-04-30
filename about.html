@@ -748,53 +748,105 @@
     </nav>
   </header>
 
-  <div class="about-container">
-    <main class="main-content" data-animate-trigger>
-      <h1 class="animate__animated animate__fadeIn">About Us</h1>
-      
-      <!-- Contenedor de imagen hero -->
-      <div class="about-hero-container">
-        <img src="assets/images/happy-children-playing.jpg" 
-             alt="Happy children at Butterfly Child Care" 
-             class="about-hero-image animate__animated animate__fadeInUp animate__delay-0-5s">
+<!-- Sección About Us (versión moderna y decorativa) -->
+<section class="about-section" style="position: relative; background: radial-gradient(circle at top left, #fffde7 0%, #e7f7ff 70%, #f1fff6 100%); padding: 6rem 1rem; overflow: hidden;" data-animate-trigger>
+
+  <!-- Decoraciones animadas flotantes -->
+  <div class="animate-float" style="position: absolute; top: 20px; right: 30px; width: 80px; height: 80px; background: url('assets/images/butterfly-decor.png') no-repeat center/contain; opacity: 0.12; z-index: 3;"></div>
+  <div class="animate-float" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; background: url('assets/images/juguete3.png') no-repeat center/contain; opacity: 0.1; z-index: 3;"></div>
+
+  <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+    <div style="background: linear-gradient(to bottom right, #f7fff8, #e8f9ff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(90, 180, 255, 0.1); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(0, 100, 180, 0.08);" data-animate-trigger>
+
+      <!-- Columna imagen -->
+      <div style="flex: 1; min-width: 300px; padding: 1rem; text-align: center;" data-animate="fadeInUp" data-animate-delay="0.2">
+        <div style="position: relative; display: inline-block;" class="hover-grow">
+          <img src="assets/images/happy-children-playing.jpg" alt="Happy children at Butterfly Child Care" style="max-width: 100%; border-radius: 16px; border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: rotate(-2deg);">
+        </div>
       </div>
-      
-      <div data-animate="fadeInUp">
-        <p>We are a licensed Family Home Childcare located in San Rafael.</p>
-        
-        <p>We are offering a safe and fun space for children to learn, grow, and develop life skills they will be able to take with them once they move on from our program.</p>
-        
-        <p>Caring for the children with love, heartfelt education, and patient guidelines, to develop the potential of children and to promote physical and mental development of children.</p>
+
+      <!-- Columna texto -->
+      <div style="flex: 1; min-width: 300px; padding: 2rem;" data-animate="fadeInUp" data-animate-delay="0.4">
+        <h1 style="font-family: 'Poppins', sans-serif; color: #2e5c83; font-size: 2.4rem; margin-bottom: 1.5rem; position: relative; display: inline-block;">
+          About Us
+          <span style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #85d8ff, #00b4db); border-radius: 4px;"></span>
+        </h1>
+
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.7; margin-bottom: 1.2rem; padding-left: 1.2rem; border-left: 4px solid #85d8ff;">
+          We are a licensed Family Home Childcare located in San Rafael.
+        </p>
+
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.7; margin-bottom: 1.2rem; padding-left: 1.2rem; border-left: 4px solid #85d8ff;">
+          We are offering a safe and fun space for children to learn, grow, and develop life skills they will be able to take with them once they move on from our program.
+        </p>
+
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.7; margin-bottom: 2rem; padding-left: 1.2rem; border-left: 4px solid #85d8ff;">
+          Caring for the children with love, heartfelt education, and patient guidelines, to develop the potential of children and to promote physical and mental development of children.
+        </p>
+
+        <hr class="section-divider" style="margin-top: 2rem; border-top: 2px dashed #b5e5f9;">
       </div>
+
+    </div>
+  </div>
+</section>
+
+
       
-      <hr class="section-divider">
-      
-      <div data-animate="fadeInUp" data-animate-delay="0.3">
-        <h2>Our Program</h2>
-        <p>In our program through our guidance, they will experience new opportunities for exploration and discovery. Different areas of early childhood development includes physical, emotional, social and cognitive development. Our play based curriculum includes dramatic play, craft/art, music, dance, reading.</p>
-        
-        <p>Children will grow up in a warm, home-style environment, and parents can go to work without worries.</p>
+<!-- Sección Program + Contacto + Tips con estilo visual actualizado -->
+<section class="program-section" style="padding: 6rem 1rem; background: radial-gradient(circle at center, #fffaf4 0%, #f4e8ff 100%); position: relative; overflow: hidden;" data-animate-trigger>
+
+  <!-- Decoración animada -->
+  <div class="animate-float" style="position: absolute; top: 30px; left: 30px; width: 100px; height: 100px; background: url('assets/images/butterfly-decor.png') no-repeat center/contain; opacity: 0.1; z-index: 1;"></div>
+  <div class="animate-float" style="position: absolute; bottom: 40px; right: 40px; width: 120px; height: 120px; background: url('assets/images/juguete3.png') no-repeat center/contain; opacity: 0.08; z-index: 1;"></div>
+
+  <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 2rem;">
+
+    <!-- Columna principal: Programa + Contacto -->
+    <div style="flex: 1 1 60%; min-width: 300px;" data-animate="fadeInUp" data-animate-delay="0.3">
+      <div style="background: linear-gradient(to bottom right, #fff0f7, #f3eaff); padding: 3rem; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(142, 84, 233, 0.1);">
+
+        <h2 style="font-size: 2.2rem; font-family: 'Poppins', sans-serif; color: #5a2d9a; margin-bottom: 1.5rem; position: relative;">
+          Our Program
+          <span style="position: absolute; bottom: -8px; left: 0; width: 80px; height: 4px; background: linear-gradient(to right, #ff7eb9, #8e54e9); border-radius: 2px;"></span>
+        </h2>
+
+        <p style="font-size: 1.15rem; color: #4b0082; line-height: 1.7; margin-bottom: 1.2rem; padding-left: 1rem; border-left: 4px solid #ffb8d9;">
+          In our program through our guidance, they will experience new opportunities for exploration and discovery. Different areas of early childhood development include physical, emotional, social, and cognitive development. Our play-based curriculum includes dramatic play, craft/art, music, dance, and reading.
+        </p>
+
+        <p style="font-size: 1.15rem; color: #4b0082; line-height: 1.7; padding-left: 1rem; border-left: 4px solid #ffb8d9;">
+          Children will grow up in a warm, home-style environment, and parents can go to work without worries.
+        </p>
+
+        <hr class="section-divider" style="margin: 2rem 0; border-top: 2px dashed #d8c3f2;">
+
+        <div data-animate="fadeInUp" data-animate-delay="0.6">
+          <h2 style="font-size: 2rem; font-family: 'Poppins', sans-serif; color: #5a2d9a; margin-bottom: 1rem;">Contact Us</h2>
+          <p style="font-size: 1.1rem; color: #4b0082;"><strong>Phone:</strong> 415-578-25-15</p>
+          <p style="font-size: 1.1rem; color: #4b0082;"><strong>E-mail:</strong> nayaraondina@outlook.com</p>
+        </div>
       </div>
-      
-      <hr class="section-divider">
-      
-      <div class="contact-info animate__animated animate__fadeIn" data-animate-delay="0.6">
-        <h2>Contact Us</h2>
-        <p><strong>Phone:</strong> 415-578-25-15</p>
-        <p><strong>E-mail:</strong> nayaraondina@outlook.com</p>
-      </div>
-    </main>
-    
-    <aside class="tips-sidebar hover-grow">
-      <div class="tips-image-container">
-        <img src="assets/images/tips-image.jpg" alt="Parenting Tips" class="tips-image">
-      </div>
-      <div class="tips-content">
-        <h2>T I P S &nbsp; F O R &nbsp; Y O U</h2>
-        <p>Choosing a childcare provider can be one of the most important decisions parents can make, particularly during the years before a child starts kindergarten. The number of available options can be overwhelming, and it is easy to be tempted to go with the first recommendation from a friend or neighbor. But experts warn that a childcare solution that works for one family might not work for yours. Here are some tips to help you find the right fit for your family.</p>
+    </div>
+
+    <!-- Columna lateral: Tips -->
+    <aside class="tips-sidebar hover-grow" style="flex: 1 1 35%; min-width: 280px;" data-animate="fadeInUp" data-animate-delay="0.5">
+      <div style="background: linear-gradient(to bottom right, #f3eaff, #fffafc); padding: 2rem; border-radius: 24px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); border: 1px solid rgba(142, 84, 233, 0.08);">
+
+        <div class="tips-image-container" style="margin-bottom: 1.5rem;">
+          <img src="assets/images/tips-image.jpg" alt="Parenting Tips" class="tips-image" style="width: 100%; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
+        </div>
+
+        <div class="tips-content">
+          <h2 style="font-size: 1.5rem; font-family: 'Poppins', sans-serif; color: #8e54e9; margin-bottom: 1rem;">TIPS FOR YOU</h2>
+          <p style="font-size: 1.05rem; color: #4b0082; line-height: 1.6;">
+            Choosing a childcare provider can be one of the most important decisions parents can make, particularly during the years before a child starts kindergarten. Here are some tips to help you find the right fit for your family.
+          </p>
+        </div>
       </div>
     </aside>
   </div>
+</section>
 
   <footer style="background-color: #333; color: white; padding: 3rem 1rem; text-align: center;">
     <div style="max-width: 1000px; margin: 0 auto;" class="animate__animated animate__fadeIn">
@@ -856,11 +908,11 @@
           if (entry.isIntersecting) {
             const element = entry.target;
             const animationType = element.getAttribute('data-animate');
+            const animationDelay = element.getAttribute('data-animate-delay') || '0s';
+            element.classList.add('animate__animated', `animate__${animationType}`);
+            element.style.animationDelay = animationDelay;
             element.style.opacity = '1';
-  
-            if (animationType === 'fadeInUp') {
-              element.style.transform = 'translateY(0)';
-            }
+
   
             observer.unobserve(element);
           }
