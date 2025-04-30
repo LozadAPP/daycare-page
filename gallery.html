@@ -326,30 +326,28 @@
     }
     
     .gallery-item {
-      flex: 0 0 360px;
-      height: 270px;
+      flex: 0 0 380px; /* más ancho */
+      height: 280px;    /* más alto */
       border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: #f9f9ff; /* fondo neutro para imágenes verticales */
+      background: #fff;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
-    .gallery-item:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
-    }
-
     .gallery-item img {
       max-width: 100%;
       max-height: 100%;
-      object-fit: contain; /* 👈 asegura que imágenes verticales se vean completas */
+      object-fit: contain; /* 🔁 cambio importante para que respete proporciones */
       display: block;
       transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.14);
     }
     .gallery-item:hover img {
       transform: scale(1.02);
