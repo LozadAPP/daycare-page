@@ -469,24 +469,27 @@
       box-shadow: 0 5px 20px rgba(0,0,0,0.2);
     }
     
+    /* Hamburger menu styles */
     .hamburger {
-  background: #ff7eb9;
-  border: none;
-  padding: 0.8rem 1.2rem;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: none;
-  z-index: 1001;
-}
-.hamburger:hover {
-  background: #ff58a5;
-  transform: scale(1.05);
-}
-.hamburger svg {
-  stroke: white;
-}
-
+      background: #8e54e9; /* fondo morado */
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: none; /* oculto en escritorio */
+      z-index: 1001;
+    }
+    
+    .hamburger:hover {
+      background: #6a11cb;
+      transform: scale(1.05);
+    }
+    
+    .hamburger svg {
+      width: 32px;
+      height: 32px;
+    }
     
     /* License badge styles */
     .license-badge {
@@ -1022,11 +1025,16 @@
         <div class="hours-grid">
           <div class="hours-card animate__animated animate__fadeInUp">
             <div class="hours-day">Monday - Friday</div>
-            <div class="hours-time">8:00 AM - 5:30 PM</div>
+            <div class="hours-time">7:30 AM - 6:00 PM</div>
+          </div>
+          
+          <div class="hours-card animate__animated animate__fadeInUp" data-animate-delay="0.2s">
+            <div class="hours-day">Saturday</div>
+            <div class="hours-time">By Appointment</div>
           </div>
           
           <div class="hours-card animate__animated animate__fadeInUp" data-animate-delay="0.4s">
-            <div class="hours-day">Saturday and Sunday</div>
+            <div class="hours-day">Sunday</div>
             <div class="hours-time">Closed</div>
           </div>
         </div>
