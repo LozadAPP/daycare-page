@@ -19,15 +19,14 @@ body {
 
 /* Header */
 .main-header {
-  background-color: #ffdef0;
+  background: linear-gradient(to right, #fff0f5, #e0d4ff); /* cambio sutil y elegante */
+  padding: 1rem 1.5rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 1.5rem 3rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 header {
@@ -108,12 +107,21 @@ footer {
 
 /* Botón hamburguesa */
 .hamburger {
-  display: none;
-  font-size: 2rem;
-  background: none;
+  background: #ff7eb9; /* rosa fuerte que destaca */
   border: none;
-  color: #4b0082;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  display: none;
+  z-index: 1001;
+}
+.hamburger:hover {
+  background: #ff58a5;
+  transform: scale(1.05);
+}
+.hamburger svg {
+  stroke: white; /* ícono blanco para buen contraste */
 }
 
 /* Estilos generales del menú */
@@ -170,10 +178,15 @@ footer {
   }
 
   .main-header {
-    padding: 1.5rem 1.5rem;
-    flex-direction: row;
+    background: linear-gradient(to right, #fff0f5, #e0d4ff); /* mismo degradado que en escritorio */
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
+    flex-direction: row;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   }
+  
 }
 
 /*Estilos para la página de Inicio (index.html)*/
