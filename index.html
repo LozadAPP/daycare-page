@@ -12,7 +12,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <style>
-
+    @media (hover: none) {
+    .hover-grow:active {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    }
     /* Animaciones personalizadas */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
@@ -148,7 +153,24 @@
       justify-content: center;
       align-items: center;
     }
-
+    .hamburger {
+      background: #8e54e9; /* fondo morado */
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: none; /* oculto en escritorio */
+      z-index: 1001;
+    }
+    .hamburger:hover {
+      background: #6a11cb;
+      transform: scale(1.05);
+    }
+    .hamburger svg {
+      width: 32px;
+      height: 32px;
+    }
     /* Estilos para el menú activo */
     .nav-menu .active {
       color: #ff7eb9;
@@ -254,25 +276,231 @@
     .btn-glow:hover::after {
       left: 100%;
     }
+    @media (max-width: 1024px) {
+    .logo-img {
+      height: 80px !important;
+    }
+    .hamburger {
+      font-size: 0; /* ya no necesitamos texto */
+      padding: 1rem 1.5rem;
+    }
+    .hamburger svg {
+      width: 36px;
+      height: 36px;
+    }
+    .hero {
+      min-height: 50vh !important;
+    }
+    
+    .about-section, .testimonials, .cta-section, .highlights {
+      padding: 3rem 1rem !important;
+    }
+    .license-badge {
+      right: 20px !important;
+      bottom: 20px !important;
+    }
+  }
+
+  /* Móvil (hasta 767px) */
+  @media (max-width: 767px) {
+    /* Header */
+    .hamburger {
+      font-size: 0;
+      padding: 1rem 1.5rem;
+    }
+    .hamburger svg {
+      width: 38px;
+      height: 38px;
+    }
+    .license-badge {
+      right: 10px !important;
+      bottom: 10px !important;
+      width: 180px;
+      height: 90px;
+    }
+    .badge-front img {
+      height: 40px !important;
+    }
+
+    .badge-text {
+      font-size: 1rem !important;
+    }
+
+    .badge-back {
+      font-size: 0.9rem !important;
+    }
+    .license-badge {
+      right: 10px !important;
+      bottom: 10px !important;
+      width: 180px;
+      height: 90px;
+    }
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+    .logo-img {
+      height: 60px !important;
+      margin: 0 auto !important;
+    }
+    
+    /* Menú Hamburguesa */
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    
+    .nav-menu.active {
+      display: block;
+    }
+    
+    .nav-menu ul {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    /* Hero */
+    .hero {
+      min-height: 40vh !important;
+    }
+    
+    /* Sección About */
+    .about-section > div > div {
+      flex-direction: column !important;
+      padding: 1.5rem !important;
+    }
+    
+    /* Testimonios */
+    .testimonials > div > div {
+      grid-template-columns: 1fr !important;
+    }
+    
+
+    
+
+    
+
+  }
+  @media (max-width: 375px) {
+  /* Logo más pequeño */
+  .logo-img {
+    height: 50px !important;
+  }
+  .hamburger {
+    font-size: 0;
+    padding: 0.9rem 1.2rem;
+  }
+  .hamburger svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .hero {
+    min-height: 35vh !important;
+  }
+  /* Botones más estrechos */
+  .btn-glow {
+    padding: 0.8rem 2rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Ajustar paddings generales */
+  .about-section > div > div,
+  .cta-section > div > div {
+    padding: 1rem !important;
+  }
 
 
 
+  div[style*="position: fixed"] img {
+    height: 40px !important;
+  }
+}
+
+
+/* Ultra móviles pequeños (hasta 320px) */
+@media (max-width: 320px) {
+  /* Logo aún más pequeño */
+  .logo-img {
+    height: 45px !important;
+  }
+  .license-badge {
+    width: 130px;
+    height: 65px;
+    right: 6px !important;
+    bottom: 6px !important;
+  }
+  .badge-front img {
+    height: 30px !important;
+  }
 
 
 
+  .badge-back {
+    font-size: 0.7rem !important;
+  }
+  .hamburger {
+    font-size: 0;
+    padding: 0.8rem 1rem;
+  }
+  .hamburger svg {
+    width: 32px;
+    height: 32px;
+  }
+  .hero {
+    min-height: 30vh !important;
+  }
+  /* Títulos aún más pequeños */
+  [style*="font-size: 2.2rem"],
+  [style*="font-size: 2.4rem"],
+  [style*="font-size: 2.5rem"] {
+    font-size: 1.4rem !important;
+  }
+
+  /* Botones más pequeños */
+  .btn-glow {
+    padding: 0.6rem 1.8rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Ajustar textos largos */
+  p, span, a {
+    font-size: 0.95rem !important;
+  }
+
+
+  div[style*="position: fixed"] img {
+    height: 35px !important;
+  }
+}
   </style>
 </head>
 
 <body>
   <header class="main-header">
-    <a href="index.html" class="logo-area">
-      <img src="assets/images/logo.png" alt="Butterfly Child Care icon"
-           class="logo-img" />
+    <a href="index.html" class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px; text-decoration: none;">
+      <img src="assets/images/logo.png" alt="Butterfly Child Care logo" 
+           class="logo-img animate__animated animate__fadeIn" 
+           style="height: 120px; opacity: 1; background: none;"/>
       
-      <img src="assets/images/butterfly-letras.png" alt="Butterfly Child Care logo"
-           class="logo-title-img" />
+      <div style="font-family: 'Poppins', cursive; 
+                  font-style: italic;
+                  font-weight: 600;
+                  font-size: 2.2rem;
+                  color: #4b0082;
+                  line-height: 1.1;
+                  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);"
+           class="animate__animated animate__fadeIn animate__delay-0-5s">
+        Butterfly <span style="display: block;">Child Care</span>
+      </div>
     </a>
-    
     
     
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
