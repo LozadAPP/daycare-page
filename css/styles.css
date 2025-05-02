@@ -85,7 +85,9 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 3rem;
+  height: 100px; /* Limita la altura total */
+  padding: 0 2rem; /* Espaciado horizontal sin aumentar vertical */
+  overflow: hidden; /* Evita que crezca si las imágenes son grandes */
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
@@ -101,11 +103,16 @@ a:hover {
 }
 
 .logo-img {
-  height: 120px;
-  opacity: 1;
+  height: 80px;
   background: none;
+  opacity: 1;
 }
-
+/* Texto Butterfly Child Care */
+.logo-text-img {
+  height: 190px;
+  width: auto;
+  max-width: 280px;
+}
 .logo-text {
   font-family: 'Poppins', cursive; 
   font-style: italic;
@@ -466,6 +473,70 @@ a:hover {
 .delay-3 { animation-delay: 0.9s; }
 .delay-4 { animation-delay: 1.2s; }
 
+/* Media queries para hover en dispositivos táctiles */
+@media (hover: none) {
+  .hover-grow:active {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+  }
+}
+
+/* Efecto hover para tarjetas */
+.hover-grow {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-grow:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+[data-animate] {
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity, transform;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-animate].animate__animated {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Animación de botón */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 15px rgba(142, 84, 233, 0.5);
+}
+
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255,255,255,0.2);
+  transform: rotate(30deg);
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover::after {
+  left: 100%;
+}
+
+/* Delays personalizados para el menú */
+.animate__delay-1-5s {
+  animation-delay: 1.5s !important;
+}
+.animate__delay-2-5s {
+  animation-delay: 2.5s !important;
+}
+
 /* =============================================
    MEDIA QUERIES - RESPONSIVE DESIGN
    ============================================= */
@@ -568,6 +639,11 @@ a:hover {
   .badge-back {
     font-size: 0.9rem !important;
   }
+
+  .logo-area img[alt="Butterfly Child Care Text Logo"] {
+    height: 75px !important;
+    max-width: 240px !important;
+  }
 }
 
 /* Small Mobile (375px) */
@@ -597,6 +673,10 @@ a:hover {
   .about-section > div > div,
   .cta-section > div > div {
     padding: 1rem !important;
+  }
+
+  div[style*="position: fixed"] img {
+    height: 40px !important;
   }
 }
 
@@ -645,5 +725,9 @@ a:hover {
   
   p, span, a {
     font-size: 0.95rem !important;
+  }
+
+  div[style*="position: fixed"] img {
+    height: 35px !important;
   }
 }
