@@ -314,7 +314,7 @@ a:hover {
 
 /* Hamburger Menu */
 .hamburger {
-  display: flex !important;
+  display: none; /* Por defecto oculto */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -682,6 +682,47 @@ a:hover {
 
 /* Mobile (767px) */
 @media (max-width: 767px) {
+/* License badge en móvil - solo fondo blanco para el ícono */
+.license-badge {
+  right: 12px !important;
+  bottom: 12px !important;
+  width: 170px !important;
+  height: 85px !important;
+  padding: 0.6rem !important;
+  border-radius: 16px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none !important;
+  background: #ffffff !important; /* fondo sólido */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.badge-front {
+  flex-direction: row !important;
+  gap: 10px !important;
+}
+
+/* Fondo blanco solo para el icono */
+.badge-front img {
+  height: 42px !important;
+  width: auto !important;
+  border-radius: 50%;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+
+.badge-text {
+  font-size: 1rem !important;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: left;
+  line-height: 1.2;
+}
+
+
 
   /* Header adjustments - más compacto */
   .main-header {
@@ -740,33 +781,9 @@ a:hover {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: 0 3px 10px rgba(255, 126, 185, 0.3);
   z-index: 1001;
-  margin-left: 0.5rem;
+  margin-right: 1rem; /* Aleja el botón del borde derecho */
+  margin-left: auto;  /* Empuja el botón hacia la derecha pero controlado */
 }
-
-.hamburger:hover {
-  background: linear-gradient(145deg, #8e54e9, #6a11cb);
-  transform: scale(1.08);
-  box-shadow: 0 5px 15px rgba(142, 84, 233, 0.4);
-}
-
-.hamburger svg {
-  width: 26px;
-  height: 26px;
-  stroke: white;
-  stroke-width: 2.3px;
-  transition: transform 0.4s ease; /* Aumenta la duración y suaviza la transición */
-}
-/* Cuando el menú está activo */
-.nav-menu.active ~ .hamburger svg {
-  transform: rotate(90deg);
-}
-
-/* Cuando el menú está inactivo (estado normal) */
-.nav-menu:not(.active) ~ .hamburger svg {
-  transform: rotate(0deg);
-}
-
-
 /* Menú de Navegación - Versión con colores optimizados */
 .nav-menu {
   display: none;
@@ -811,16 +828,6 @@ a:hover {
   box-shadow: 0 3px 8px rgba(0,0,0,0.03);
   transition: all 0.25s ease-in-out;
 }
-
-
-.nav-menu a:hover,
-.nav-menu a:focus {
-  color: #fff;
-  background: linear-gradient(to right, #ff7eb9, #ff5ca1);
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(255, 126, 185, 0.25);
-}
-
 
 .nav-menu .active {
   color: white;
@@ -872,23 +879,6 @@ a:hover {
   .testimonials > div > div {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
-  }
-  
-  /* License badge más compacto */
-  .license-badge {
-    right: 10px !important;
-    bottom: 10px !important;
-    width: 150px;
-    height: 75px;
-  }
-  
-  .badge-front img {
-    height: 32px !important;
-  }
-  
-  .badge-text {
-    font-size: 0.9rem !important;
-    padding: 0 0.5rem;
   }
   
   .badge-back {
