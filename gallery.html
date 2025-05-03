@@ -19,17 +19,15 @@
     <a href="index.html" class="logo-area">
       <img src="assets/images/logo.png" alt="Butterfly Icon" 
            class="logo-img animate__animated animate__fadeIn" />
-      
+  
       <img src="assets/images/butterfly-letras.png" alt="Butterfly Child Care Text Logo"
            class="logo-text-img animate__animated animate__fadeIn animate__delay-0-5s" />
     </a>
   
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="7" x2="21" y2="7"></line>
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="17" x2="21" y2="17"></line>
-      </svg>
+      <span class="hamburger-line top"></span>
+      <span class="hamburger-line middle"></span>
+      <span class="hamburger-line bottom"></span>
     </button>
   
     <nav class="nav-menu" id="navMenu">
@@ -42,6 +40,7 @@
       </ul>
     </nav>
   </header>
+  
   
 
   <main>
@@ -172,7 +171,6 @@
 
     <!-- Lightbox para imágenes -->
     <div id="lightbox" class="lightbox">
-      <span class="lightbox-close">&times;</span>
       <span class="lightbox-prev">&#10094;</span>
       <span class="lightbox-next">&#10095;</span>
       <div class="lightbox-content">
@@ -238,38 +236,64 @@
   </div>
 
   <script>
-    // Scroll suave
     function scrollToSection(selector) {
       const element = document.querySelector(selector);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    
-    // DOM Ready - Versión optimizada para móviles
-    document.addEventListener('DOMContentLoaded', function() {
-      // ===== Menú Hamburguesa =====
+  
+    document.addEventListener('DOMContentLoaded', function () {
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
+      const menuOverlay = document.createElement('div');
+      menuOverlay.className = 'menu-overlay';
+      document.body.appendChild(menuOverlay);
   
-      if (window.innerWidth <= 767) {
-        hamburger.style.display = 'block'; // Mostrar botón
-  
-        hamburger.addEventListener('click', function() {
-          navMenu.classList.toggle('active');
-          this.classList.toggle('active');
-        });
-  
-        // Cerrar menú al hacer clic en enlaces
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-          link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-          });
-        });
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
       }
   
-      // ===== Animaciones al Scroll =====
+      function setupMenu() {
+        if (window.innerWidth <= 767) {
+          hamburger.style.display = 'flex';
+          hamburger.setAttribute('aria-expanded', 'false');
+  
+          hamburger.addEventListener('click', toggleMenu);
+          menuOverlay.addEventListener('click', toggleMenu);
+  
+          document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+              if (navMenu.classList.contains('active')) {
+                toggleMenu();
+              }
+            });
+          });
+        } else {
+          hamburger.style.display = 'none';
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+          menuOverlay.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      }
+  
+      setupMenu();
+  
+      window.addEventListener('resize', () => {
+        setupMenu();
+        if (window.innerWidth > 767) {
+          menuOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+  
+      // ===== Animaciones al scroll
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -291,89 +315,86 @@
         observer.observe(element);
       });
   
-      // ===== Badge Flotante =====
+      // ===== Badge Flotante
       const licenseBadge = document.querySelector('.license-badge');
       if (licenseBadge) {
-        licenseBadge.addEventListener('click', function() {
+        licenseBadge.addEventListener('click', function () {
           this.classList.toggle('flipped');
         });
       }
   
-      // ===== Lightbox functionality =====
+      // ===== Lightbox de galería
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
       const lightboxCaption = document.getElementById('lightbox-caption');
       const lightboxClose = document.querySelector('.lightbox-close');
       const lightboxPrev = document.querySelector('.lightbox-prev');
       const lightboxNext = document.querySelector('.lightbox-next');
-      
+  
       const galleryItems = document.querySelectorAll('.gallery-item');
       let currentImageIndex = 0;
       let currentCategoryIndex = 0;
       const allImages = [];
       const allCaptions = [];
-      
-      // Organizar imágenes por categorías
+  
       const categories = document.querySelectorAll('.gallery-carousel');
       categories.forEach(category => {
         const categoryImages = [];
         const categoryCaptions = [];
-        
+  
         const items = category.querySelectorAll('.gallery-item');
         items.forEach(item => {
           const img = item.querySelector('img');
           const caption = item.querySelector('.gallery-caption');
-          
+  
           categoryImages.push(img.src);
           categoryCaptions.push(caption.textContent);
-          
+  
           item.addEventListener('click', () => {
             currentCategoryIndex = Array.from(categories).indexOf(category);
             currentImageIndex = Array.from(items).indexOf(item);
             openLightbox();
           });
         });
-        
+  
         allImages.push(categoryImages);
         allCaptions.push(categoryCaptions);
       });
-      
+  
       function openLightbox() {
         lightbox.style.display = 'flex';
         lightboxImg.src = allImages[currentCategoryIndex][currentImageIndex];
         lightboxCaption.textContent = allCaptions[currentCategoryIndex][currentImageIndex];
         document.body.style.overflow = 'hidden';
       }
-      
+  
       function closeLightbox() {
         lightbox.style.display = 'none';
         document.body.style.overflow = 'auto';
       }
-      
+  
       function showPrevImage() {
         currentImageIndex = (currentImageIndex - 1 + allImages[currentCategoryIndex].length) % allImages[currentCategoryIndex].length;
         lightboxImg.src = allImages[currentCategoryIndex][currentImageIndex];
         lightboxCaption.textContent = allCaptions[currentCategoryIndex][currentImageIndex];
       }
-      
+  
       function showNextImage() {
         currentImageIndex = (currentImageIndex + 1) % allImages[currentCategoryIndex].length;
         lightboxImg.src = allImages[currentCategoryIndex][currentImageIndex];
         lightboxCaption.textContent = allCaptions[currentCategoryIndex][currentImageIndex];
       }
-      
+  
       lightboxClose.addEventListener('click', closeLightbox);
       lightboxPrev.addEventListener('click', showPrevImage);
       lightboxNext.addEventListener('click', showNextImage);
-      
-      // Close lightbox when clicking outside the image
+  
       lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
           closeLightbox();
         }
       });
-      
-      // Keyboard navigation
+  
       document.addEventListener('keydown', (e) => {
         if (lightbox.style.display === 'flex') {
           if (e.key === 'Escape') {
@@ -385,20 +406,9 @@
           }
         }
       });
-  
-      // ===== Ajustar dinámicamente al cambiar tamaño de pantalla =====
-      window.addEventListener('resize', function() {
-        if (window.innerWidth > 767) {
-          hamburger.style.display = 'none';
-          navMenu.classList.remove('active');
-          hamburger.classList.remove('active');
-        } else {
-          hamburger.style.display = 'block';
-        }
-      });
     });
   </script>
-
+  
   <script src="js/main.js"></script>
 </body>
 </html>

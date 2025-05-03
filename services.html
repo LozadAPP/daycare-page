@@ -18,17 +18,15 @@
     <a href="index.html" class="logo-area">
       <img src="assets/images/logo.png" alt="Butterfly Icon" 
            class="logo-img animate__animated animate__fadeIn" />
-      
+  
       <img src="assets/images/butterfly-letras.png" alt="Butterfly Child Care Text Logo"
            class="logo-text-img animate__animated animate__fadeIn animate__delay-0-5s" />
     </a>
   
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="7" x2="21" y2="7"></line>
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="17" x2="21" y2="17"></line>
-      </svg>
+      <span class="hamburger-line top"></span>
+      <span class="hamburger-line middle"></span>
+      <span class="hamburger-line bottom"></span>
     </button>
   
     <nav class="nav-menu" id="navMenu">
@@ -41,6 +39,7 @@
       </ul>
     </nav>
   </header>
+  
   
 
   <main>
@@ -284,39 +283,56 @@
     }
   
     document.addEventListener('DOMContentLoaded', function () {
-      // ===== Menú Hamburguesa =====
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
+      const menuOverlay = document.createElement('div');
+      menuOverlay.className = 'menu-overlay';
+      document.body.appendChild(menuOverlay);
   
-      function configurarMenuHamburguesa() {
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+      }
+  
+      function setupMenu() {
         if (window.innerWidth <= 767) {
-          hamburger.style.display = 'block';
-          hamburger.addEventListener('click', function () {
-            navMenu.classList.toggle('active');
-            this.classList.toggle('active');
-          });
+          hamburger.style.display = 'flex';
+          hamburger.setAttribute('aria-expanded', 'false');
+  
+          hamburger.addEventListener('click', toggleMenu);
+          menuOverlay.addEventListener('click', toggleMenu);
+  
           document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
-              navMenu.classList.remove('active');
-              hamburger.classList.remove('active');
+              if (navMenu.classList.contains('active')) {
+                toggleMenu();
+              }
             });
           });
         } else {
           hamburger.style.display = 'none';
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+          menuOverlay.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
         }
       }
   
-      configurarMenuHamburguesa();
-      window.addEventListener('resize', configurarMenuHamburguesa);
+      setupMenu();
   
-      // ===== Animaciones en la galería =====
-      const galleryImages = document.querySelectorAll('img'); // Selecciona todas las imágenes
-      galleryImages.forEach((img, index) => {
-        img.classList.add('animate__animated', 'animate__fadeInUp');
-        img.style.animationDelay = `${index * 0.2}s`;
+      window.addEventListener('resize', () => {
+        setupMenu();
+        if (window.innerWidth > 767) {
+          menuOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
       });
   
-      // ===== Animaciones al hacer scroll =====
+      // ===== Animaciones por scroll
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -333,7 +349,7 @@
   
       animateElements.forEach(el => observer.observe(el));
   
-      // ===== Badge flotante con giro =====
+      // ===== Badge flotante
       const licenseBadge = document.querySelector('.license-badge');
       if (licenseBadge) {
         licenseBadge.addEventListener('click', function () {
@@ -341,7 +357,7 @@
         });
       }
   
-      // ===== Flechas izquierda y derecha de la galería =====
+      // ===== Flechas de galería
       const leftArrow = document.getElementById('arrow-scroll-left');
       const rightArrow = document.getElementById('arrow-scroll-right');
       const gallery = document.querySelector('.nanny-gallery-inner');
@@ -366,40 +382,45 @@
         actualizarVisibilidadFlechas();
       }
   
-    // ===== Lightbox con botón de cerrar =====
-    galleryImages.forEach(img => {
-      img.addEventListener('click', () => {
-        const prevOverlay = document.querySelector('.lightbox-overlay');
-        if (prevOverlay) return;
-
-        const overlay = document.createElement('div');
-        overlay.classList.add('lightbox-overlay');
-
-        const enlargedImg = document.createElement('img');
-        enlargedImg.src = img.src;
-        enlargedImg.alt = img.alt;
-
-        const closeBtn = document.createElement('button');
-        closeBtn.classList.add('lightbox-close');
-        closeBtn.innerHTML = '&times;';
-
-        // Cerrar al hacer clic en la ❌
-        closeBtn.addEventListener('click', () => {
-          overlay.remove();
-        });
-
-        // Cerrar al hacer clic fuera de la imagen
-        overlay.addEventListener('click', (e) => {
-          if (e.target === overlay) {
+      // ===== Lightbox
+      const galleryImages = document.querySelectorAll('img:not(.logo-img):not(.logo-text-img)');
+      galleryImages.forEach((img, index) => {
+        img.classList.add('animate__animated', 'animate__fadeInUp');
+        img.style.animationDelay = `${index * 0.2}s`;
+  
+        img.addEventListener('click', () => {
+          const prevOverlay = document.querySelector('.lightbox-overlay');
+          if (prevOverlay) return;
+  
+          const overlay = document.createElement('div');
+          overlay.classList.add('lightbox-overlay');
+  
+          const enlargedImg = document.createElement('img');
+          enlargedImg.src = img.src;
+          enlargedImg.alt = img.alt;
+  
+          const closeBtn = document.createElement('button');
+          closeBtn.classList.add('lightbox-close');
+          closeBtn.innerHTML = '&times;';
+  
+          closeBtn.addEventListener('click', () => {
             overlay.remove();
-          }
+            document.body.style.overflow = '';
+          });
+  
+          overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+              overlay.remove();
+              document.body.style.overflow = '';
+            }
+          });
+  
+          overlay.appendChild(closeBtn);
+          overlay.appendChild(enlargedImg);
+          document.body.appendChild(overlay);
+          document.body.style.overflow = 'hidden';
         });
-
-        overlay.appendChild(closeBtn);
-        overlay.appendChild(enlargedImg);
-        document.body.appendChild(overlay);
       });
-    });
     });
   </script>
   

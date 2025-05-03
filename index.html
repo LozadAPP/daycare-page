@@ -16,25 +16,21 @@
 
 <body>
   <header class="main-header">
-    <a href="index.html" class="logo-area" style="background: none; display: flex; align-items: center; gap: 15px; text-decoration: none;">
+    <a href="index.html" class="logo-area">
       <img src="assets/images/logo.png" alt="Butterfly Icon" 
-      class="logo-img animate__animated animate__fadeIn" 
-      style="height: 80px; opacity: 1; background: none;" />
- 
+           class="logo-img animate__animated animate__fadeIn" />
+  
       <img src="assets/images/butterfly-letras.png" alt="Butterfly Child Care Text Logo"
-      class="logo-text-img animate__animated animate__fadeIn animate__delay-0-5s" />
- 
+           class="logo-text-img animate__animated animate__fadeIn animate__delay-0-5s" />
     </a>
-    
-    
-    
+  
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-  <svg id="hamburgerIcon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="3" y1="7" x2="21" y2="7"></line>
-    <line x1="3" y1="12" x2="21" y2="12"></line>
-    <line x1="3" y1="17" x2="21" y2="17"></line>
-  </svg>
-</button>    <nav class="nav-menu" id="navMenu">
+      <span class="hamburger-line top"></span>
+      <span class="hamburger-line middle"></span>
+      <span class="hamburger-line bottom"></span>
+    </button>
+  
+    <nav class="nav-menu" id="navMenu">
       <ul>
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-0-5s">About Us</a></li>
@@ -44,6 +40,7 @@
       </ul>
     </nav>
   </header>
+  
   <main>
     <section class="hero" style="position: relative; min-height: 70vh; background: url('assets/images/hero-bg.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; overflow: hidden;">
       <!-- Elementos decorativos animados -->
@@ -304,7 +301,6 @@
   </footer>
 
   <script>
-    // Scroll suave (se mantiene igual)
     function scrollToSection(selector) {
       const element = document.querySelector(selector);
       if (element) {
@@ -312,86 +308,96 @@
       }
     }
   
-    // DOM Ready - Versión optimizada para móviles
-    document.addEventListener('DOMContentLoaded', function() {
-      // ===== Menú Hamburguesa =====
+    document.addEventListener('DOMContentLoaded', function () {
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
+      const menuOverlay = document.createElement('div');
+      menuOverlay.className = 'menu-overlay';
+      document.body.appendChild(menuOverlay);
   
-      if (window.innerWidth <= 767) {
-        hamburger.style.display = 'block'; // Mostrar botón
-  
-        hamburger.addEventListener('click', function() {
-          navMenu.classList.toggle('active');
-          this.classList.toggle('active');
-        });
-  
-        // Cerrar menú al hacer clic en enlaces
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-          link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-          });
-        });
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
       }
   
-      // ===== Animaciones al Scroll =====
+      function setupMenu() {
+        if (window.innerWidth <= 767) {
+          hamburger.style.display = 'flex';
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.addEventListener('click', toggleMenu);
+          menuOverlay.addEventListener('click', toggleMenu);
+  
+          document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+              if (navMenu.classList.contains('active')) {
+                toggleMenu();
+              }
+            });
+          });
+        } else {
+          hamburger.style.display = 'none';
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+          menuOverlay.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      }
+  
+      setupMenu();
+  
+      window.addEventListener('resize', () => {
+        setupMenu();
+        if (window.innerWidth > 767) {
+          menuOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+  
+      // Animaciones al hacer scroll
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-          const element = entry.target;
-          const animationType = element.getAttribute('data-animate');
-          const animationDelay = element.getAttribute('data-animate-delay') || '0s';
-
-          element.classList.add('animate__animated', `animate__${animationType}`);
-          element.style.setProperty('--animate-delay', animationDelay);
-          element.style.opacity = '1';
-
-          observer.unobserve(element);
-        }
+            const element = entry.target;
+            const animationType = element.getAttribute('data-animate');
+            const animationDelay = element.getAttribute('data-animate-delay') || '0s';
+  
+            element.classList.add('animate__animated', `animate__${animationType}`);
+            element.style.animationDelay = animationDelay;
+            element.style.opacity = '1';
+  
+            observer.unobserve(element);
+          }
         });
       }, { threshold: 0.1 });
   
-      animateElements.forEach(element => {
-        observer.observe(element);
-      });
+      animateElements.forEach(element => observer.observe(element));
   
-      // ===== Badge Flotante (giro al hacer clic) =====
+      // Badge flotante
       const licenseBadge = document.querySelector('.license-badge');
       if (licenseBadge) {
-        licenseBadge.addEventListener('click', function() {
+        licenseBadge.addEventListener('click', function () {
           this.classList.toggle('flipped');
         });
       }
   
       const badgeFloating = document.querySelector('div[style*="position: fixed"]');
-      if (badgeFloating) {
-        // Hover para desktop
-        badgeFloating.addEventListener('mouseenter', function() {
-          this.style.transform = 'scale(1.05) translateY(-5px)';
-          this.style.boxShadow = '0 15px 40px rgba(106, 17, 203, 0.25)';
-        });
-  
-        badgeFloating.addEventListener('mouseleave', function() {
-          this.style.transform = 'scale(1)';
-          this.style.boxShadow = '0 12px 35px rgba(106, 17, 203, 0.18)';
-        });
-  
-        // Redimensionar en móviles
-        if (window.innerWidth <= 767) {
-          badgeFloating.style.right = '10px';
-          badgeFloating.style.bottom = '10px';
-          badgeFloating.style.padding = '10px 15px';
-        }
+      if (badgeFloating && window.innerWidth <= 767) {
+        badgeFloating.style.right = '10px';
+        badgeFloating.style.bottom = '10px';
+        badgeFloating.style.padding = '10px 15px';
       }
   
-      // ===== Lightbox para imágenes =====
-      const galleryImages = document.querySelectorAll('img'); // Aplica a todas las imágenes
+      // Lightbox
+      const galleryImages = document.querySelectorAll('img:not(.logo-img):not(.logo-text-img)');
       galleryImages.forEach(img => {
         img.addEventListener('click', () => {
           const prevOverlay = document.querySelector('.lightbox-overlay');
-          if (prevOverlay) return; // Evitar abrir dos lightbox
+          if (prevOverlay) return;
   
           const overlay = document.createElement('div');
           overlay.classList.add('lightbox-overlay');
@@ -406,29 +412,21 @@
   
           closeBtn.addEventListener('click', () => {
             overlay.remove();
+            document.body.style.overflow = '';
           });
   
           overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
               overlay.remove();
+              document.body.style.overflow = '';
             }
           });
   
           overlay.appendChild(closeBtn);
           overlay.appendChild(enlargedImg);
           document.body.appendChild(overlay);
+          document.body.style.overflow = 'hidden';
         });
-      });
-  
-      // ===== Ajustar dinámicamente al cambiar tamaño de pantalla =====
-      window.addEventListener('resize', function() {
-        if (window.innerWidth > 767) {
-          hamburger.style.display = 'none';
-          navMenu.classList.remove('active');
-          hamburger.classList.remove('active');
-        } else {
-          hamburger.style.display = 'block';
-        }
       });
     });
   </script>
