@@ -393,7 +393,18 @@
       }
   
       // Lightbox
-      const galleryImages = document.querySelectorAll('img:not(.logo-img):not(.logo-text-img)');
+      const excludedImages = [
+        'california-license.png',
+        'butterfly-letras.png',
+        'parentwoman.jpg',
+        'butterfly-logo-title.png',
+        'logo-white.png',
+        'logo.png'
+      ];
+
+      const galleryImages = Array.from(document.querySelectorAll('img')).filter(img => {
+        return !excludedImages.some(name => img.src.includes(name));
+      });
       galleryImages.forEach(img => {
         img.addEventListener('click', () => {
           const prevOverlay = document.querySelector('.lightbox-overlay');
