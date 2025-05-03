@@ -11,7 +11,521 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
+  <style>
+    @media (hover: none) {
+    .hover-grow:active {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    }
+    /* Animaciones personalizadas */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes butterflyFly {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(20px, -15px) rotate(5deg); }
+      50% { transform: translate(10px, -25px) rotate(0deg); }
+      75% { transform: translate(-10px, -15px) rotate(-5deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+    .license-badge {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      width: 200px;
+      height: 100px;
+      perspective: 1000px;
+      z-index: 1000;
+      cursor: pointer;
+    }
 
+    .badge-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .license-badge .badge-inner {
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    /* Solo girar si tiene la clase flipped (NO con hover) */
+    .license-badge.flipped .badge-inner {
+      transform: rotateY(180deg);
+    }
+
+    .badge-front, .badge-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #ffffff, #f9f5ff);
+      box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18);
+      backface-visibility: hidden;
+    }
+
+    .badge-front {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .badge-front img {
+      height: 50px;
+      width: auto;
+    }
+
+    .badge-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4b0082;
+      text-align: center;
+    }
+
+    .badge-back {
+      transform: rotateY(180deg);
+      background: #8e54e9;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    .animate-pulse {
+      animation: pulse 3s ease infinite;
+    }
+    
+    .animate-fade-in-up {
+      animation: fadeInUp 1s ease forwards;
+    }
+    
+    .animate-butterfly {
+      animation: butterflyFly 8s ease-in-out infinite;
+    }
+    
+    .delay-1 { animation-delay: 0.3s; }
+    .delay-2 { animation-delay: 0.6s; }
+    .delay-3 { animation-delay: 0.9s; }
+    .delay-4 { animation-delay: 1.2s; }
+    
+    /* Delays personalizados para el menú */
+    .animate__delay-1-5s {
+      animation-delay: 1.5s !important;
+    }
+    .animate__delay-2-5s {
+      animation-delay: 2.5s !important;
+    }
+    
+    /* Efecto hover para tarjetas */
+    .hover-grow {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-grow:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Efecto de aparición gradual */
+    [data-animate] {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    [data-animate="fadeIn"] {
+      opacity: 1;
+    }
+    
+    [data-animate="fadeInUp"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Animación de botón */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-glow:hover {
+      box-shadow: 0 0 15px rgba(142, 84, 233, 0.5);
+    }
+    
+    .btn-glow::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255,255,255,0.2);
+      transform: rotate(30deg);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-glow:hover::after {
+      left: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 30vh;
+      max-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/images/gallery-hero-bg.jpg') center/cover no-repeat;
+      filter: brightness(0.7);
+      z-index: 0;
+    }
+
+    .hero-content {
+      text-align: center;
+      width: 100%;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: white;
+      max-width: 700px;
+      margin: 0 auto;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    /* Estilos para la galería */
+    .gallery-section {
+      padding: 3rem 1rem;
+      background: white;
+    }
+    
+    .gallery-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .gallery-title {
+      font-family: 'Poppins', sans-serif;
+      color: #5a2d9a;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .gallery-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #8e54e9, #6a11cb);
+    }
+    
+    /* Carrusel de imágenes */
+    .gallery-carousel {
+      width: 100%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .gallery-item {
+      flex: 0 0 380px; /* más ancho */
+      height: 280px;    /* más alto */
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #fff;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-item img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* 🔁 cambio importante para que respete proporciones */
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.02);
+    }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(75, 0, 130, 0.8);
+      color: #fff;
+      padding: 0.9rem 1rem;
+      font-size: 1rem;
+      font-family: 'Nunito', sans-serif;
+      border-top-left-radius: 14px;
+    }
+    
+    .category-title {
+      font-family: 'Poppins', sans-serif;
+      color: #5a2d9a;
+      font-size: 1.5rem;
+      margin: 2.5rem 0 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .category-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, #8e54e9, #6a11cb);
+    }
+    
+    /* Lightbox para imágenes */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .lightbox-content {
+      width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+    
+    .lightbox img {
+      width: 100%;
+      max-height: 80vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    
+    .lightbox-caption {
+      color: white;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    
+    .lightbox-close, .lightbox-prev, .lightbox-next {
+      position: absolute;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      user-select: none;
+      padding: 1rem;
+    }
+    
+    .lightbox-close {
+      top: 10px;
+      right: 10px;
+    }
+    
+    .lightbox-prev {
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .lightbox-next {
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    /* Sección de testimonio */
+    .testimonial-section {
+      background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);
+      padding: 3rem 1rem;
+    }
+    
+    .testimonial-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-title {
+      font-family: 'Poppins', sans-serif;
+      color: #5a2d9a;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .testimonial-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #8e54e9, #6a11cb);
+    }
+    
+    .testimonial-content {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(146, 123, 255, 0.1);
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .testimonial-text {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    
+    .testimonial-author {
+      font-weight: 600;
+      color: #5a2d9a;
+      text-align: right;
+    }
+    
+    .testimonial-quote {
+      position: absolute;
+      font-size: 3rem;
+      color: rgba(142, 84, 233, 0.1);
+      font-family: serif;
+    }
+    
+    .testimonial-quote.open {
+      top: 10px;
+      left: 20px;
+    }
+    
+    .testimonial-quote.close {
+      bottom: 10px;
+      right: 20px;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 4rem 1rem;
+      background: linear-gradient(135deg, #8e54e9, #6a11cb);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/images/dots-pattern.png') center/cover;
+      opacity: 0.1;
+    }
+    
+    .cta-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .cta-title {
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .cta-text {
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: white;
+      color: #6a11cb;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+  </style>
 </head>
 
 <body>
@@ -34,14 +548,12 @@
       <ul>
         <li><a href="index.html" class="animate__animated animate__fadeIn animate__delay-0-5s">Home</a></li>
         <li><a href="about.html" class="animate__animated animate__fadeIn animate__delay-0-7s">About Us</a></li>
-        <li><a href="services.html" class="animate__animated animate__fadeIn animate__delay-0-9s">Services</a></li>
-        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="gallery.html" class="animate__animated animate__fadeIn animate__delay-0-9s">Gallery</a></li>
         <li><a href="contact.html" class="animate__animated animate__fadeIn animate__delay-1-1s">Contact</a></li>
       </ul>
     </nav>
   </header>
-  
-  
 
   <main>
     <!-- Hero Section -->
@@ -171,6 +683,7 @@
 
     <!-- Lightbox para imágenes -->
     <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
       <span class="lightbox-prev">&#10094;</span>
       <span class="lightbox-next">&#10095;</span>
       <div class="lightbox-content">
@@ -236,6 +749,7 @@
   </div>
 
   <script>
+    // Scroll suave
     function scrollToSection(selector) {
       const element = document.querySelector(selector);
       if (element) {
@@ -243,7 +757,9 @@
       }
     }
   
-    document.addEventListener('DOMContentLoaded', function () {
+    // DOM Ready - Versión optimizada para galería
+    document.addEventListener('DOMContentLoaded', function() {
+      // ===== Menú Hamburguesa =====
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
       const menuOverlay = document.createElement('div');
@@ -255,45 +771,23 @@
         navMenu.classList.toggle('active');
         menuOverlay.classList.toggle('active');
         document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-        hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
       }
   
-      function setupMenu() {
-        if (window.innerWidth <= 767) {
-          hamburger.style.display = 'flex';
-          hamburger.setAttribute('aria-expanded', 'false');
+      if (window.innerWidth <= 767) {
+        hamburger.style.display = 'flex';
+        hamburger.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
   
-          hamburger.addEventListener('click', toggleMenu);
-          menuOverlay.addEventListener('click', toggleMenu);
-  
-          document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-              if (navMenu.classList.contains('active')) {
-                toggleMenu();
-              }
-            });
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+          link.addEventListener('click', () => {
+            if (navMenu.classList.contains('active')) {
+              toggleMenu();
+            }
           });
-        } else {
-          hamburger.style.display = 'none';
-          navMenu.classList.remove('active');
-          hamburger.classList.remove('active');
-          menuOverlay.classList.remove('active');
-          hamburger.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        }
+        });
       }
   
-      setupMenu();
-  
-      window.addEventListener('resize', () => {
-        setupMenu();
-        if (window.innerWidth > 767) {
-          menuOverlay.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
-  
-      // ===== Animaciones al scroll
+      // ===== Animaciones al Scroll =====
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -315,76 +809,104 @@
         observer.observe(element);
       });
   
-      // ===== Badge Flotante
+      // ===== Badge Flotante =====
       const licenseBadge = document.querySelector('.license-badge');
       if (licenseBadge) {
-        licenseBadge.addEventListener('click', function () {
+        licenseBadge.addEventListener('click', function() {
           this.classList.toggle('flipped');
         });
       }
   
-      // ===== Lightbox de galería
-      const lightbox = document.getElementById('lightbox');
+      // ===== Lightbox Avanzado =====
+      const lightbox = document.createElement('div');
+      lightbox.id = 'lightbox';
+      lightbox.innerHTML = `
+        <div class="lightbox-content">
+          <span class="lightbox-close">&times;</span>
+          <img id="lightbox-img" class="lightbox-image">
+          <div id="lightbox-caption" class="lightbox-caption"></div>
+          <button class="lightbox-nav lightbox-prev">&#10094;</button>
+          <button class="lightbox-nav lightbox-next">&#10095;</button>
+        </div>
+      `;
+      document.body.appendChild(lightbox);
+  
       const lightboxImg = document.getElementById('lightbox-img');
       const lightboxCaption = document.getElementById('lightbox-caption');
       const lightboxClose = document.querySelector('.lightbox-close');
       const lightboxPrev = document.querySelector('.lightbox-prev');
       const lightboxNext = document.querySelector('.lightbox-next');
   
-      const galleryItems = document.querySelectorAll('.gallery-item');
       let currentImageIndex = 0;
       let currentCategoryIndex = 0;
-      const allImages = [];
-      const allCaptions = [];
+      const galleryData = [];
   
-      const categories = document.querySelectorAll('.gallery-carousel');
-      categories.forEach(category => {
-        const categoryImages = [];
-        const categoryCaptions = [];
+      // Organizar imágenes por categorías
+      document.querySelectorAll('.gallery-carousel').forEach((category, catIndex) => {
+        const categoryData = {
+          images: [],
+          captions: []
+        };
   
-        const items = category.querySelectorAll('.gallery-item');
-        items.forEach(item => {
+        category.querySelectorAll('.gallery-item').forEach((item, itemIndex) => {
           const img = item.querySelector('img');
-          const caption = item.querySelector('.gallery-caption');
-  
-          categoryImages.push(img.src);
-          categoryCaptions.push(caption.textContent);
+          const caption = item.querySelector('.gallery-caption') || { textContent: '' };
+          
+          categoryData.images.push({
+            src: img.src,
+            alt: img.alt
+          });
+          categoryData.captions.push(caption.textContent);
   
           item.addEventListener('click', () => {
-            currentCategoryIndex = Array.from(categories).indexOf(category);
-            currentImageIndex = Array.from(items).indexOf(item);
+            currentCategoryIndex = catIndex;
+            currentImageIndex = itemIndex;
             openLightbox();
           });
         });
   
-        allImages.push(categoryImages);
-        allCaptions.push(categoryCaptions);
+        galleryData.push(categoryData);
       });
   
       function openLightbox() {
         lightbox.style.display = 'flex';
-        lightboxImg.src = allImages[currentCategoryIndex][currentImageIndex];
-        lightboxCaption.textContent = allCaptions[currentCategoryIndex][currentImageIndex];
+        updateLightboxContent();
         document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', handleKeyDown);
       }
   
       function closeLightbox() {
         lightbox.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', handleKeyDown);
+      }
+  
+      function updateLightboxContent() {
+        const currentData = galleryData[currentCategoryIndex];
+        lightboxImg.src = currentData.images[currentImageIndex].src;
+        lightboxImg.alt = currentData.images[currentImageIndex].alt;
+        lightboxCaption.textContent = currentData.captions[currentImageIndex];
       }
   
       function showPrevImage() {
-        currentImageIndex = (currentImageIndex - 1 + allImages[currentCategoryIndex].length) % allImages[currentCategoryIndex].length;
-        lightboxImg.src = allImages[currentCategoryIndex][currentImageIndex];
-        lightboxCaption.textContent = allCaptions[currentCategoryIndex][currentImageIndex];
+        const currentCategory = galleryData[currentCategoryIndex];
+        currentImageIndex = (currentImageIndex - 1 + currentCategory.images.length) % currentCategory.images.length;
+        updateLightboxContent();
       }
   
       function showNextImage() {
-        currentImageIndex = (currentImageIndex + 1) % allImages[currentCategoryIndex].length;
-        lightboxImg.src = allImages[currentCategoryIndex][currentImageIndex];
-        lightboxCaption.textContent = allCaptions[currentCategoryIndex][currentImageIndex];
+        const currentCategory = galleryData[currentCategoryIndex];
+        currentImageIndex = (currentImageIndex + 1) % currentCategory.images.length;
+        updateLightboxContent();
       }
   
+      function handleKeyDown(e) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrevImage();
+        if (e.key === 'ArrowRight') showNextImage();
+      }
+  
+      // Event listeners
       lightboxClose.addEventListener('click', closeLightbox);
       lightboxPrev.addEventListener('click', showPrevImage);
       lightboxNext.addEventListener('click', showNextImage);
@@ -395,20 +917,21 @@
         }
       });
   
-      document.addEventListener('keydown', (e) => {
-        if (lightbox.style.display === 'flex') {
-          if (e.key === 'Escape') {
-            closeLightbox();
-          } else if (e.key === 'ArrowLeft') {
-            showPrevImage();
-          } else if (e.key === 'ArrowRight') {
-            showNextImage();
-          }
+      // ===== Responsive =====
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 767) {
+          hamburger.style.display = 'none';
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+          menuOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        } else {
+          hamburger.style.display = 'flex';
         }
       });
     });
   </script>
-  
+
   <script src="js/main.js"></script>
 </body>
 </html>

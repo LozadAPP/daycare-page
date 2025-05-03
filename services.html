@@ -11,6 +11,480 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
+  <style>
+    html, body {
+      overflow-x: hidden;
+    }
+
+    @media (hover: none) {
+    .hover-grow:active {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    }
+
+    .gallery-img.animate__animated {
+      opacity: 0;
+      animation-fill-mode: both;
+    }
+    .gallery-img.animate__animated.animate__fadeInUp {
+      opacity: 1;
+    }
+    /* Animaciones personalizadas */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes butterflyFly {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(20px, -15px) rotate(5deg); }
+      50% { transform: translate(10px, -25px) rotate(0deg); }
+      75% { transform: translate(-10px, -15px) rotate(-5deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+    /* Animación de rebote */
+    @keyframes bounceRight {
+      0%, 100% { transform: translateY(-50%) translateX(0); }
+      50% { transform: translateY(-50%) translateX(8px); }
+    }
+    @keyframes bounceArrow {
+      0%, 100% {
+        transform: translateY(-50%) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(6px);
+      }
+    }
+    .image-with-arrow {
+      position: relative;
+      display: inline-block;
+    }
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+
+    .lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 2.8rem;
+      color: white;
+      background: rgba(0,0,0,0.6);
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10001;
+      transition: transform 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.2);
+      background: rgba(255,255,255,0.2);
+    }
+    .scroll-arrow {
+      position: absolute;
+      top: 50%;
+      right: 0; /* Fijo al borde derecho */
+      transform: translateY(-50%);
+      background: white;
+      padding: 6px;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      animation: bounceArrow 2s infinite;
+      z-index: 999; /* MUY ALTO para que quede encima de todo */
+      cursor: pointer;
+    }
+    .nanny-gallery {
+      flex: 1;
+      padding-bottom: 1rem;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden; /* evita barra permanente */
+    }
+
+    .nanny-gallery-inner {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1rem;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch; /* suaviza scroll en iOS */
+    }
+
+    .gallery-img {
+      flex: 0 0 auto;
+      width: 220px;
+      border-radius: 16px;
+      border: 6px solid white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      scroll-snap-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.05);
+    }
+    .license-badge {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      width: 200px;
+      height: 100px;
+      perspective: 1000px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .badge-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .license-badge .badge-inner {
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    /* Solo girar si tiene la clase flipped (NO con hover) */
+    .license-badge.flipped .badge-inner {
+      transform: rotateY(180deg);
+    }
+
+    .badge-front, .badge-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #ffffff, #f9f5ff);
+      box-shadow: 0 12px 35px rgba(106, 17, 203, 0.18);
+      backface-visibility: hidden;
+    }
+
+    .badge-front {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .badge-front img {
+      height: 50px;
+      width: auto;
+    }
+
+    .badge-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4b0082;
+      text-align: center;
+    }
+
+    .badge-back {
+      transform: rotateY(180deg);
+      background: #8e54e9;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    .animate-pulse {
+      animation: pulse 3s ease infinite;
+    }
+    
+    .animate-fade-in-up {
+      animation: fadeInUp 1s ease forwards;
+    }
+    
+    .animate-butterfly {
+      animation: butterflyFly 8s ease-in-out infinite;
+    }
+    
+    .delay-1 { animation-delay: 0.3s; }
+    .delay-2 { animation-delay: 0.6s; }
+    .delay-3 { animation-delay: 0.9s; }
+    .delay-4 { animation-delay: 1.2s; }
+    
+    /* Delays personalizados para el menú */
+    .animate__delay-1-5s {
+      animation-delay: 1.5s !important;
+    }
+    .animate__delay-2-5s {
+      animation-delay: 2.5s !important;
+    }
+    
+    /* Efecto hover para tarjetas */
+    .hover-grow {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-grow:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Efecto de aparición gradual */
+    [data-animate] {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .hero-content[data-animate] {
+      opacity: 0;
+    }
+    [data-animate="fadeIn"] {
+      opacity: 1;
+    }
+    
+    [data-animate="fadeInUp"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Animación de botón */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-glow:hover {
+      box-shadow: 0 0 15px rgba(142, 84, 233, 0.5);
+    }
+    
+    .btn-glow::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255,255,255,0.2);
+      transform: rotate(30deg);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-glow:hover::after {
+      left: 100%;
+    }
+    
+    /* Estilos específicos para services */
+    .hero {
+      position: relative;
+      min-height: 40vh;
+      max-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/images/services-hero-bg.jpg') center/cover no-repeat;
+      filter: brightness(0.7);
+      z-index: 0;
+    }
+
+    .hero-content {
+      text-align: center;
+      width: 100%;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: white;
+      max-width: 700px;
+      margin: 0 auto;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    .activity-section {
+      padding: 3rem 1rem;
+      background: white;
+    }
+    
+    .activity-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .activity-content {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .activity-image {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .activity-title {
+      font-family: 'Poppins', sans-serif;
+      color: #5a2d9a;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .activity-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #8e54e9, #6a11cb);
+    }
+    
+    .activity-description {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .activity-image img {
+      max-width: 100%;
+      border-radius: 16px;
+      border: 8px solid white;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(142, 84, 233, 0.3), transparent);
+      margin: 2rem 0;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(to right, #f9f0ff, #e6f9ff);
+      border-left: 4px solid #8e54e9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    
+    .nanny-section {
+      background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);
+      padding: 3rem 1rem;
+    }
+    
+    .nanny-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .nanny-title {
+      font-family: 'Poppins', sans-serif;
+      color: #5a2d9a;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .nanny-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #8e54e9, #6a11cb);
+    }
+    
+    .nanny-content {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(146, 123, 255, 0.1);
+    }
+    
+    .nanny-text {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    [data-animate], .hero-content[data-animate] {
+      visibility: hidden; /* 🔥 NUEVO: evitar parpadeo mientras carga */
+    }
+
+    [data-animate].animate__animated, 
+    .hero-content[data-animate].animate__animated {
+      visibility: visible; /* 🔥 Cuando ya tiene la animación lista */
+    }
+  </style>
 </head>
 
 <body>
@@ -40,8 +514,6 @@
     </nav>
   </header>
   
-  
-
   <main>
     <!-- Hero Section -->
     <section class="hero" data-animate-trigger>
@@ -55,201 +527,290 @@
       </div>
     </section>
 
-<!-- Sección de Actividades 1 - Actividades Educativas -->
-<section class="activity-section" data-animate-trigger>
-  <div class="activity-container">
-    
-    <div class="activity-content" data-animate="fadeInUp">
-      <h2 class="activity-title">Early Childhood Education</h2>
-      <p class="activity-description">
-        At Butterfly Home Child Care, we offer a structured early education program that nurtures cognitive, language, and emotional development in a loving environment.
-      </p>
-      <p class="activity-description">
-        <strong>Program highlights:</strong> Literacy foundations through storytelling, early math skills with sensory activities, exploration of basic science concepts, and hands-on creative arts.
-      </p>
-      <p class="activity-description">
-        Our curriculum is age-appropriate and designed to foster curiosity, confidence, and a lifelong love for learning.
-      </p>
-    </div>
+<!-- Sección de Actividades Educativas con decoraciones visibles encima -->
+<section class="activity-section" style="position: relative; background: radial-gradient(circle at top right, #fff3f9 0%, #f5e7ff 70%, #f3f3ff 100%); padding: 6rem 1rem; overflow: hidden;" data-animate-trigger>
 
-    <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3s">
-      <img src="assets/images/creative-activities.jpg" alt="Children doing creative activities" class="hover-grow">
-    </div>
+  <!-- Decoraciones animadas -->
+  <div class="animate-float" style="position: absolute; top: 30px; right: 30px; width: 70px; height: 70px; background: url('assets/images/juguete3.png') no-repeat center/contain; opacity: 0.12; z-index: 3;"></div>
+  <div class="animate-float" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 90px; height: 90px; background: url('assets/images/child-handprint.png') no-repeat center/contain; opacity: 0.1; z-index: 3;"></div>
 
-  </div>
-</section>
+  <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+    <div style="background: linear-gradient(to bottom right, #fff8fc, #f3eaff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(142, 84, 233, 0.12); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.12);" data-animate-trigger>
 
-
-<!-- Sección de Actividades 2 - Actividades Creativas -->
-<section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
-  <div class="activity-container">
-
-    <div class="activity-image" data-animate="fadeInUp">
-      <img src="assets/images/creative-activities.jpg" alt="Children doing creative activities" class="hover-grow">
-    </div>
-
-    <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
-      <h2 class="activity-title">Creative Development</h2>
-      <p class="activity-description">
-        Creativity is essential for a child's growth. We provide daily opportunities for children to express themselves through art, music, storytelling, and imaginative play.
-      </p>
-      <p class="activity-description">
-        <strong>Creative services include:</strong> Sensory-based art projects, music and movement sessions, role-playing activities, and open-ended exploration with a variety of materials.
-      </p>
-      <p class="activity-description">
-        Every child's work is celebrated to encourage self-expression and build self-esteem.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-<!-- Sección de Actividades 3 - Actividades Físicas -->
-<section class="activity-section" data-animate-trigger>
-  <div class="activity-container">
-
-    <div class="activity-content" data-animate="fadeInUp">
-      <h2 class="activity-title">Physical Wellness and Outdoor Play</h2>
-      <p class="activity-description">
-        Physical activity is a vital part of our daily schedule. Our outdoor and indoor activities promote strength, balance, coordination, and healthy habits.
-      </p>
-      <p class="activity-description">
-        <strong>Offered activities:</strong> Outdoor obstacle courses, group games, yoga for children, nature walks, and free play that encourages exploration and social interaction.
-      </p>
-      <p class="activity-description">
-        Our secure outdoor area allows children to safely enjoy physical activities year-round under staff supervision.
-      </p>
-    </div>
-
-    <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3">
-      <img src="assets/images/physical-activities.jpg" alt="Children playing outdoors" class="hover-grow">
-    </div>
-
-  </div>
-</section>
-
-<!-- Sección de Actividades 4 - Socialización -->
-<section class="activity-section" style="background: linear-gradient(to bottom, #f9f7ff, #f0f9ff);" data-animate-trigger>
-  <div class="activity-container">
-
-    <div class="activity-image" data-animate="fadeInUp">
-      <img src="assets/images/social-activities.jpg" alt="Children playing together" class="hover-grow">
-    </div>
-
-    <div class="activity-content" data-animate="fadeInUp" data-animate-delay="0.3">
-      <h2 class="activity-title">Social and Emotional Development</h2>
-      <p class="activity-description">
-        We support children's emotional intelligence and social skills through structured group activities and positive role modeling.
-      </p>
-      <p class="activity-description">
-        <strong>Key elements include:</strong> Group story times, cooperative games, guided peer interactions, emotional recognition exercises, and empathy-building activities.
-      </p>
-      <p class="activity-description">
-        For our youngest children, we create strong bonds with consistent caregivers to foster trust, resilience, and security.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-<!-- Sección de Actividades 5 - Extended Care Services -->
-<section class="activity-section" data-animate-trigger>
-  <div class="activity-container">
-
-    <div class="activity-content" data-animate="fadeInUp">
-      <h2 class="activity-title">Extended Care Services</h2>
-      <p class="activity-description">
-        We also provide extended care services, including after-hours and overnight stays, to accommodate your schedule and ensure continuous support for your child.
-      </p>
-    </div>
-
-    <div class="activity-image" data-animate="fadeInUp" data-animate-delay="0.3s">
-      <img src="assets/images/extended-care.jpg" alt="Child resting during extended care" class="hover-grow">
-    </div>
-
-  </div>
-</section>
-
-
-<section class="nanny-section" data-animate-trigger>
-  <div class="nanny-container" style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: flex-start;">
-
-    <!-- Galería con flechas fijas -->
-    <div class="nanny-gallery" style="position: relative;">
-      
-      <!-- 🔙 Flecha Izquierda -->
-      <div id="arrow-scroll-left" class="scroll-arrow" style="left: 0; right: auto;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8e54e9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
+      <!-- Columna de texto -->
+      <div style="flex: 1; min-width: 300px; padding: 2rem;" data-animate="fadeInUp" data-animate-delay="0.2">
+        <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.3; position: relative;">
+          <span style="color: #ff7eb9;">Early Childhood</span><br>Education Program
+        </h2>
+        <p style="font-size: 1.15rem; color: #4b0082; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #ffb8d9;">
+          At Butterfly Home Child Care, we offer a structured early education program that nurtures cognitive, language, and emotional development in a loving environment.
+        </p>
+        <p style="font-size: 1.15rem; color: #4b0082; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #ffb8d9;">
+          <strong>Program highlights:</strong> Literacy foundations through storytelling, early math skills with sensory activities, exploration of basic science concepts, and hands-on creative arts.
+        </p>
+        <p style="font-size: 1.15rem; color: #4b0082; line-height: 1.8; padding-left: 1.5rem; border-left: 4px solid #ffb8d9;">
+          Our curriculum is age-appropriate and designed to foster curiosity, confidence, and a lifelong love for learning.
+        </p>
       </div>
 
-      <!-- 🔜 Flecha Derecha -->
-      <div id="arrow-scroll-right" class="scroll-arrow">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8e54e9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </div>
-
-      <!-- Galería -->
-      <div class="nanny-gallery-inner">
-        <img src="assets/images/nanny-babysitter.jpg" alt="Nanny 1" class="gallery-img" />
-        <img src="assets/images/educational-activities.jpg" alt="Nanny 2" class="gallery-img" />
-        <img src="assets/images/creative-activities.jpg" alt="Nanny 3" class="gallery-img" />
-        <img src="assets/images/physical-activities.jpg" alt="Extra 1" class="gallery-img" />
-        <img src="assets/images/hero-bg.jpg" alt="Extra 2" class="gallery-img" />
-        <img src="assets/images/happy-children-playing.jpg" alt="Extra 3" class="gallery-img" />
-        <img src="assets/images/social-activities.jpg" alt="Extra 4" class="gallery-img" />
-      </div>
-    </div>
-
-        <!-- Contenido de texto -->
-        <div class="nanny-content animate__animated animate__fadeInRight" style="flex: 2; min-width: 300px;">
-    
-          <h2 class="nanny-title">Nannies and Babysitters</h2>
-    
-          <p class="nanny-text">
-            <strong>"The best and biggest benefit to hiring a nanny or babysitter is convenience,"</strong> says Katie Bugbee, senior managing editor and parenting expert for Care.com.
-          </p>
-    
-          <p class="nanny-text">
-            "Daycare teachers can help you as nannies or babysitters on weekends, holidays, vacations, or whenever you need them after daycare hours."
-          </p>
-    
-          <hr class="section-divider">
-    
-    
-          <p class="nanny-text">
-            "Depending on where you live, a nanny for two children can often be less expensive than two kids in daycare," says Bugbee.
-          </p>
-    
-          <hr class="section-divider">
-    
-          <h3 style="color: #8e54e9; font-size: 1.6rem; margin: 2rem 0 1rem;">Questions to Consider</h3>
-          <ul style="color: #555; line-height: 1.8; padding-left: 1.5rem; list-style: none;">
-            <li style="margin-bottom: 1rem;"><i style="color: #8e54e9;">✔️</i> How often will we need a sitter?</li>
-            <li style="margin-bottom: 1rem;"><i style="color: #8e54e9;">✔️</i> How flexible do their hours need to be?</li>
-            <li style="margin-bottom: 1rem;"><i style="color: #8e54e9;">✔️</i> Will we need the sitter to drive the kids?</li>
-            <li style="margin-bottom: 1rem;"><i style="color: #8e54e9;">✔️</i> What additional tasks might we expect?</li>
-            <li style="margin-bottom: 1rem;"><i style="color: #8e54e9;">✔️</i> What certifications should they have?</li>
-            <li style="margin-bottom: 1rem;"><i style="color: #8e54e9;">✔️</i> What energy level fits our family?</li>
-            <li><i style="color: #8e54e9;">✔️</i> How much experience is required?</li>
-          </ul>
-    
-          <hr class="section-divider">
-          <h3 style="color: #8e54e9; font-size: 1.6rem; margin: 2rem 0 1rem;">Important Considerations</h3>
-          <p class="nanny-text">
-            Working with the daycare teachers as a babysitter is a benefit for everyone because it's not difficult for the child to live with the teachers (outside of daycare hours) since they are together all week, and this guarantees a good relationship and a lot of trust.
-          </p>
-          
-
-          
-    
+      <!-- Columna de imagen -->
+      <div style="flex: 1; min-width: 300px; padding: 1rem; text-align: center;" data-animate="fadeInUp" data-animate-delay="0.5">
+        <div style="position: relative; display: inline-block;" class="hover-grow">
+          <img src="assets/images/creative-activities.jpg" alt="Children doing creative activities" style="max-width: 100%; border-radius: 16px; border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: rotate(-2deg);">
+          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #ffb8d9; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(5deg);">
+            Learn & Explore
+          </div>
         </div>
       </div>
-    </section>    
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Sección de Actividades Creativas con diseño profesional y decoraciones -->
+<section class="activity-section" style="position: relative; background: radial-gradient(circle at top left, #f9f7ff 0%, #eaf5ff 70%, #f4f0ff 100%); padding: 6rem 1rem; overflow: hidden;" data-animate-trigger>
+
+  <!-- Decoraciones flotantes -->
+  <div class="animate-float" style="position: absolute; top: 20px; left: 20px; width: 70px; height: 70px; background: url('assets/images/butterfly-decor.png') no-repeat center/contain; opacity: 0.12; z-index: 3;"></div>
+  <div class="animate-float" style="position: absolute; bottom: 30px; right: 50%; transform: translateX(50%); width: 100px; height: 100px; background: url('assets/images/juguete3.png') no-repeat center/contain; opacity: 0.08; z-index: 3;"></div>
+
+  <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+    <div style="background: linear-gradient(to bottom right, #ffffff, #f3f8ff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(0, 100, 180, 0.08); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.08);" data-animate-trigger>
+
+      <!-- Columna de texto -->
+      <div style="flex: 1; min-width: 300px; padding: 2rem;" data-animate="fadeInUp" data-animate-delay="0.2">
+        <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.3; position: relative;">
+          <span style="color: #85d8ff;">Creative</span><br>Development
+        </h2>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #85d8ff;">
+          Creativity is essential for a child's growth. We provide daily opportunities for children to express themselves through art, music, storytelling, and imaginative play.
+        </p>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #85d8ff;">
+          <strong>Creative services include:</strong> Sensory-based art projects, music and movement sessions, role-playing activities, and open-ended exploration with a variety of materials.
+        </p>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; padding-left: 1.5rem; border-left: 4px solid #85d8ff;">
+          Every child's work is celebrated to encourage self-expression and build self-esteem.
+        </p>
+      </div>
+
+      <!-- Columna de imagen -->
+      <div style="flex: 1; min-width: 300px; padding: 1rem; text-align: center;" data-animate="fadeInUp" data-animate-delay="0.5">
+        <div style="position: relative; display: inline-block;" class="hover-grow">
+          <img src="assets/images/creative-activities.jpg" alt="Children doing creative activities" style="max-width: 100%; border-radius: 16px; border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: rotate(-2deg);">
+          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #85d8ff; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(5deg);">
+            "Create & Shine"
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Actividades Físicas y Outdoor Play con estilo visual mejorado -->
+<section class="activity-section" style="position: relative; background: radial-gradient(circle at bottom right, #f0f9ff 0%, #e9fff6 70%, #fffef9 100%); padding: 6rem 1rem; overflow: hidden;" data-animate-trigger>
+
+  <!-- Decoraciones visuales flotantes -->
+  <div class="animate-float" style="position: absolute; top: 25px; right: 20px; width: 80px; height: 80px; background: url('assets/images/butterfly-decor.png') no-repeat center/contain; opacity: 0.12; z-index: 3;"></div>
+  <div class="animate-float" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; background: url('assets/images/juguete2.png') no-repeat center/contain; opacity: 0.08; z-index: 3;"></div>
+
+  <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+    <div style="background: linear-gradient(to bottom right, #f0fdfc, #eafff1); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(0, 100, 180, 0.08); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.08);" data-animate-trigger>
+
+      <!-- Columna de texto -->
+      <div style="flex: 1; min-width: 300px; padding: 2rem;" data-animate="fadeInUp" data-animate-delay="0.2">
+        <h2 style="font-family: 'Poppins', sans-serif; color: #2e7d58; font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.3; position: relative;">
+          <span style="color: #55d4ae;">Outdoor Fun &</span><br>Physical Wellness
+        </h2>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #55d4ae;">
+          Physical activity is a vital part of our daily schedule. Our outdoor and indoor activities promote strength, balance, coordination, and healthy habits.
+        </p>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #55d4ae;">
+          <strong>Offered activities:</strong> Obstacle courses, yoga for children, nature walks, group games, and supervised free play in a safe, open-air environment.
+        </p>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; padding-left: 1.5rem; border-left: 4px solid #55d4ae;">
+          Our secure outdoor area allows children to safely enjoy physical activities year-round under staff supervision.
+        </p>
+      </div>
+
+      <!-- Columna de imagen -->
+      <div style="flex: 1; min-width: 300px; padding: 1rem; text-align: center;" data-animate="fadeInUp" data-animate-delay="0.5">
+        <div style="position: relative; display: inline-block;" class="hover-grow">
+          <img src="assets/images/physical-activities.jpg" alt="Children playing outdoors" style="max-width: 100%; border-radius: 16px; border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: rotate(-2deg);">
+          <div class="animate-pulse" style="position: absolute; bottom: -20px; left: -20px; background: #55d4ae; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(-5deg);">
+            "Move & Grow"
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Sección de Socialización y Desarrollo Emocional con estilo mejorado -->
+<section class="activity-section" style="position: relative; background: radial-gradient(circle at bottom left, #f4e8ff 0%, #fefaff 70%, #f9f9f9 100%); padding: 6rem 1rem; overflow: hidden;" data-animate-trigger>
+
+  <!-- Decoraciones flotantes -->
+  <div class="animate-float" style="position: absolute; top: 25px; left: 20px; width: 90px; height: 90px; background: url('assets/images/child-handprint.png') no-repeat center/contain; opacity: 0.1; z-index: 3;"></div>
+  <div class="animate-float" style="position: absolute; bottom: 25px; right: 25px; width: 100px; height: 100px; background: url('assets/images/butterfly-decor.png') no-repeat center/contain; opacity: 0.1; z-index: 3;"></div>
+
+  <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+    <div style="background: linear-gradient(to bottom right, #fff7fc, #f2eaff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(142, 84, 233, 0.08); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.08);" data-animate-trigger>
+
+      <!-- Columna de imagen -->
+      <div style="flex: 1; min-width: 300px; padding: 1rem; text-align: center;" data-animate="fadeInUp" data-animate-delay="0.2">
+        <div style="position: relative; display: inline-block;" class="hover-grow">
+          <img src="assets/images/social-activities.jpg" alt="Children playing together" style="max-width: 100%; border-radius: 16px; border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: rotate(-2deg);">
+          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #d493ff; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(5deg);">
+            "Together We Grow"
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna de texto -->
+      <div style="flex: 1; min-width: 300px; padding: 2rem;" data-animate="fadeInUp" data-animate-delay="0.4">
+        <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.3; position: relative;">
+          <span style="color: #d493ff;">Social & Emotional</span><br>Development
+        </h2>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #d493ff;">
+          We support children's emotional intelligence and social skills through structured group activities and positive role modeling.
+        </p>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #d493ff;">
+          <strong>Key elements include:</strong> Story time, cooperative games, guided interactions, emotional recognition and empathy-building exercises.
+        </p>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; padding-left: 1.5rem; border-left: 4px solid #d493ff;">
+          Our youngest learners form close bonds with consistent caregivers to build trust, resilience, and confidence.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Sección de Extended Care Services con diseño profesional -->
+<section class="activity-section" style="position: relative; background: radial-gradient(circle at top right, #fefaff 0%, #eaf6ff 70%, #f7fcff 100%); padding: 6rem 1rem; overflow: hidden;" data-animate-trigger>
+
+  <!-- Decoraciones flotantes -->
+  <div class="animate-float" style="position: absolute; top: 20px; left: 25px; width: 80px; height: 80px; background: url('assets/images/butterfly-decor.png') no-repeat center/contain; opacity: 0.1; z-index: 3;"></div>
+  <div class="animate-float" style="position: absolute; bottom: 30px; right: 25px; width: 90px; height: 90px; background: url('assets/images/moon-stars.png') no-repeat center/contain; opacity: 0.08; z-index: 3;"></div>
+
+  <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+    <div style="background: linear-gradient(to bottom right, #f8faff, #eef4ff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(90, 180, 255, 0.08); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.08);" data-animate-trigger>
+
+      <!-- Columna de texto -->
+      <div style="flex: 1; min-width: 300px; padding: 2rem;" data-animate="fadeInUp" data-animate-delay="0.2">
+        <h2 style="font-family: 'Poppins', sans-serif; color: #2e5c83; font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.3; position: relative;">
+          <span style="color: #85d8ff;">Extended</span><br>Care Services
+        </h2>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #85d8ff;">
+          We offer extended care options including after-hours and overnight stays to help support your family’s unique schedule and provide continuous, reliable care.
+        </p>
+        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; padding-left: 1.5rem; border-left: 4px solid #85d8ff;">
+          Your child will remain in a peaceful, nurturing environment, guided by the same loving caregivers they know and trust.
+        </p>
+      </div>
+
+      <!-- Columna de imagen -->
+      <div style="flex: 1; min-width: 300px; padding: 1rem; text-align: center;" data-animate="fadeInUp" data-animate-delay="0.5">
+        <div style="position: relative; display: inline-block;" class="hover-grow">
+          <img src="assets/images/extended-care.jpg" alt="Child resting during extended care" style="max-width: 100%; border-radius: 16px; border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.08); transform: rotate(-1.5deg);">
+          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #85d8ff; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(4deg);">
+            "Peaceful Nights"
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Sección Nannies and Babysitters unificada y mejorada -->
+<section class="nanny-section" style="position: relative; background: radial-gradient(circle at top left, #fefaff 0%, #eaf4ff 70%, #f5faff 100%); padding: 6rem 1rem; overflow: hidden;" data-animate-trigger>
+  
+  <!-- Decoraciones flotantes -->
+  <div class="animate-float" style="position: absolute; top: 20px; right: 30px; width: 80px; height: 80px; background: url('assets/images/butterfly-decor.png') no-repeat center/contain; opacity: 0.08; z-index: 3;"></div>
+  <div class="animate-float" style="position: absolute; bottom: 30px; left: 30px; width: 90px; height: 90px; background: url('assets/images/child-handprint.png') no-repeat center/contain; opacity: 0.06; z-index: 3;"></div>
+
+  <!-- Contenedor principal -->
+  <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+    <div style="background: linear-gradient(to bottom right, #fdf9ff, #f3f8ff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 35px rgba(142, 84, 233, 0.08); border: 1px solid rgba(142, 84, 233, 0.1); display: flex; flex-wrap: wrap; gap: 2rem;" data-animate-trigger>
+
+      <!-- Galería de imágenes a la izquierda -->
+      <div class="nanny-gallery animate__animated animate__fadeInLeft" style="flex: 1 1 45%; min-width: 300px; position: relative;">
+        
+        <!-- Flecha Izquierda -->
+        <div id="arrow-scroll-left" class="scroll-arrow" style="left: 0;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8e54e9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </div>
+
+        <!-- Flecha Derecha -->
+        <div id="arrow-scroll-right" class="scroll-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8e54e9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+
+        <!-- Imágenes -->
+        <div class="nanny-gallery-inner">
+          <img src="assets/images/nanny-babysitter.jpg" alt="Nanny 1" class="gallery-img hover-grow" />
+          <img src="assets/images/educational-activities.jpg" alt="Nanny 2" class="gallery-img hover-grow" />
+          <img src="assets/images/creative-activities.jpg" alt="Nanny 3" class="gallery-img hover-grow" />
+          <img src="assets/images/physical-activities.jpg" alt="Extra 1" class="gallery-img hover-grow" />
+          <img src="assets/images/happy-children-playing.jpg" alt="Extra 2" class="gallery-img hover-grow" />
+        </div>
+      </div>
+
+      <!-- Cuadro de texto a la derecha -->
+      <div style="flex: 1 1 50%; min-width: 300px;" data-animate="fadeInUp">
+        <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.4rem; margin-bottom: 1.5rem;">Nannies and Babysitters</h2>
+
+        <p style="font-size: 1.15rem; color: #4b0082; line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; border-left: 4px solid #ffb8d9;">
+          <strong style="color: #8e54e9;">"The best and biggest benefit to hiring a nanny or babysitter is convenience,"</strong> says Katie Bugbee, senior managing editor and parenting expert for Care.com.
+        </p>
+
+        <p style="font-size: 1.15rem; color: #4b0082; line-height: 1.8;">
+          Daycare teachers can help you as nannies or babysitters on weekends, holidays, vacations, or whenever you need them after daycare hours.
+        </p>
+
+        <hr class="section-divider" style="margin: 2rem 0; border-top: 2px dashed #d8c3f2;">
+
+        <p style="font-size: 1.15rem; color: #4b0082;">
+          Depending on where you live, a nanny for two children can often be less expensive than two kids in daycare.
+        </p>
+
+        <hr class="section-divider" style="margin: 2rem 0; border-top: 2px dashed #d8c3f2;">
+
+        <h3 style="color: #8e54e9; font-size: 1.6rem; margin-bottom: 1rem;">Questions to Consider</h3>
+        <ul style="padding-left: 1.5rem; color: #555; line-height: 1.8; list-style: none;">
+          <li style="margin-bottom: 0.8rem;">✔️ How often will we need a sitter?</li>
+          <li style="margin-bottom: 0.8rem;">✔️ How flexible do their hours need to be?</li>
+          <li style="margin-bottom: 0.8rem;">✔️ Will we need the sitter to drive the kids?</li>
+          <li style="margin-bottom: 0.8rem;">✔️ What additional tasks might we expect?</li>
+          <li style="margin-bottom: 0.8rem;">✔️ What certifications should they have?</li>
+          <li style="margin-bottom: 0.8rem;">✔️ What energy level fits our family?</li>
+          <li>✔️ How much experience is required?</li>
+        </ul>
+
+        <hr class="section-divider" style="margin: 2rem 0; border-top: 2px dashed #d8c3f2;">
+
+        <h3 style="color: #8e54e9; font-size: 1.6rem; margin-bottom: 1rem;">Important Considerations</h3>
+        <p style="font-size: 1.15rem; color: #4b0082; line-height: 1.8;">
+          Working with the daycare teachers as babysitters is a benefit for everyone because it's not difficult for the child to live with the teachers outside of daycare hours. They already share a trusting relationship built throughout the week.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
   </main>
 
   <footer style="background-color: #333; color: white; padding: 3rem 1rem; text-align: center;">
@@ -283,6 +844,7 @@
     }
   
     document.addEventListener('DOMContentLoaded', function () {
+      // ===== Menú Hamburguesa Mejorado con Overlay =====
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
       const menuOverlay = document.createElement('div');
@@ -303,6 +865,7 @@
           hamburger.setAttribute('aria-expanded', 'false');
   
           hamburger.addEventListener('click', toggleMenu);
+  
           menuOverlay.addEventListener('click', toggleMenu);
   
           document.querySelectorAll('.nav-menu a').forEach(link => {
@@ -323,7 +886,6 @@
       }
   
       setupMenu();
-  
       window.addEventListener('resize', () => {
         setupMenu();
         if (window.innerWidth > 767) {
@@ -332,7 +894,14 @@
         }
       });
   
-      // ===== Animaciones por scroll
+      // ===== Animaciones en la galería =====
+      const galleryImages = document.querySelectorAll('img');
+      galleryImages.forEach((img, index) => {
+        img.classList.add('animate__animated', 'animate__fadeInUp');
+        img.style.animationDelay = `${index * 0.2}s`;
+      });
+  
+      // ===== Scroll Reveal para elementos animados =====
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -349,7 +918,7 @@
   
       animateElements.forEach(el => observer.observe(el));
   
-      // ===== Badge flotante
+      // ===== Badge flotante con giro =====
       const licenseBadge = document.querySelector('.license-badge');
       if (licenseBadge) {
         licenseBadge.addEventListener('click', function () {
@@ -357,7 +926,7 @@
         });
       }
   
-      // ===== Flechas de galería
+      // ===== Flechas para galería =====
       const leftArrow = document.getElementById('arrow-scroll-left');
       const rightArrow = document.getElementById('arrow-scroll-right');
       const gallery = document.querySelector('.nanny-gallery-inner');
@@ -382,12 +951,8 @@
         actualizarVisibilidadFlechas();
       }
   
-      // ===== Lightbox
-      const galleryImages = document.querySelectorAll('img:not(.logo-img):not(.logo-text-img)');
-      galleryImages.forEach((img, index) => {
-        img.classList.add('animate__animated', 'animate__fadeInUp');
-        img.style.animationDelay = `${index * 0.2}s`;
-  
+      // ===== Lightbox para imágenes =====
+      galleryImages.forEach(img => {
         img.addEventListener('click', () => {
           const prevOverlay = document.querySelector('.lightbox-overlay');
           if (prevOverlay) return;
@@ -415,20 +980,16 @@
             }
           });
   
+          document.body.style.overflow = 'hidden';
           overlay.appendChild(closeBtn);
           overlay.appendChild(enlargedImg);
           document.body.appendChild(overlay);
-          document.body.style.overflow = 'hidden';
         });
       });
     });
   </script>
   
   
-  
-  
-  
-
   <script src="js/main.js"></script>
 </body>
 </html>
