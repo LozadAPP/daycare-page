@@ -268,17 +268,21 @@
       height: 4px;
       background: linear-gradient(to right, #8e54e9, #6a11cb);
     }
-    
-    /* Carrusel de imágenes */
-    .gallery-carousel {
-      width: 100%;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      display: flex;
-      gap: 1rem;
-      padding: 1rem 0;
-      -webkit-overflow-scrolling: touch;
-    }
+    html, body {
+  overflow-x: hidden;
+}
+/* Corrige margen blanco al hacer scroll lateral */
+.gallery-carousel {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  gap: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
     
     .gallery-item {
       flex: 0 0 380px; /* más ancho */
