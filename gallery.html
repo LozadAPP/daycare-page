@@ -378,31 +378,56 @@
       font-size: 1rem;
     }
     
-    .lightbox-close, .lightbox-prev, .lightbox-next {
-      position: absolute;
-      color: white;
+    .lightbox-prev, .lightbox-next {
+      z-index: 1010; /* asegúrate que estén por encima */
+      background: rgba(0, 0, 0, 0.3); /* fondo oscuro para mejor visibilidad */
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
       font-size: 2rem;
-      cursor: pointer;
-      user-select: none;
-      padding: 1rem;
+      transition: background 0.3s ease;
     }
-    
+    .lightbox-prev:hover, .lightbox-next:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .lightbox img {
+  width: 100%;
+  max-height: 80vh;
+  border-radius: 8px;
+  object-fit: contain;
+  pointer-events: none; /* 👈 importante para que no bloquee flechas */
+}
+.lightbox-controls {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.2rem;
+}
+.lightbox-controls .lightbox-prev,
+.lightbox-controls .lightbox-next {
+  font-size: 2rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.lightbox-controls .lightbox-prev:hover,
+.lightbox-controls .lightbox-next:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
     .lightbox-close {
       top: 10px;
       right: 10px;
     }
     
-    .lightbox-prev {
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    
-    .lightbox-next {
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
     
     /* Sección de testimonio */
     .testimonial-section {
@@ -686,15 +711,18 @@
     </section>
 
     <!-- Lightbox para imágenes -->
-    <div id="lightbox" class="lightbox">
+    <div class="lightbox" id="lightbox">
       <span class="lightbox-close">&times;</span>
-      <span class="lightbox-prev">&#10094;</span>
-      <span class="lightbox-next">&#10095;</span>
       <div class="lightbox-content">
         <img id="lightbox-img" src="" alt="">
         <div id="lightbox-caption" class="lightbox-caption"></div>
+        <div class="lightbox-controls">
+          <span class="lightbox-prev">&#10094;</span>
+          <span class="lightbox-next">&#10095;</span>
+        </div>
       </div>
     </div>
+    
 
     <!-- Sección de Testimonio -->
     <section class="testimonial-section" data-animate-trigger>
@@ -822,18 +850,6 @@
       }
   
       // ===== Lightbox Avanzado =====
-      const lightbox = document.createElement('div');
-      lightbox.id = 'lightbox';
-      lightbox.innerHTML = `
-        <div class="lightbox-content">
-          <span class="lightbox-close">&times;</span>
-          <img id="lightbox-img" class="lightbox-image">
-          <div id="lightbox-caption" class="lightbox-caption"></div>
-          <button class="lightbox-nav lightbox-prev">&#10094;</button>
-          <button class="lightbox-nav lightbox-next">&#10095;</button>
-        </div>
-      `;
-      document.body.appendChild(lightbox);
   
       const lightboxImg = document.getElementById('lightbox-img');
       const lightboxCaption = document.getElementById('lightbox-caption');

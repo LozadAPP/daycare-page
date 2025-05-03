@@ -257,8 +257,19 @@
         });
       }
   
-      // ===== Lightbox para imágenes =====
-      const galleryImages = document.querySelectorAll('img:not(.logo-img):not(.logo-text-img)'); // Excluir logos
+        // ===== Lightbox para imágenes =====
+        const excludedImages = [
+          'california-license.png',
+          'butterfly-letras.png',
+          'butterfly-logo-title.png',
+          'logo-white.png',
+          'logo.png',
+          'tips-image.jpg' // exclusión específica para esta pantalla
+        ];
+
+        const galleryImages = Array.from(document.querySelectorAll('img')).filter(img => {
+          return !excludedImages.some(name => img.src.includes(name));
+        }); // Excluir logos y otros elementos no deseados
       galleryImages.forEach(img => {
         img.addEventListener('click', () => {
           const prevOverlay = document.querySelector('.lightbox-overlay');

@@ -895,8 +895,18 @@
         }
       });
   
-      // ===== Animaciones en la galería =====
-      const galleryImages = document.querySelectorAll('img');
+        // ===== Lightbox para imágenes =====
+      const excludedImages = [
+        'california-license.png',
+        'butterfly-letras.png',
+        'butterfly-logo-title.png',
+        'logo-white.png',
+        'logo.png',
+      ];
+
+      const galleryImages = Array.from(document.querySelectorAll('img')).filter(img => {
+        return !excludedImages.some(name => img.src.includes(name));
+      });
       galleryImages.forEach((img, index) => {
         img.classList.add('animate__animated', 'animate__fadeInUp');
         img.style.animationDelay = `${index * 0.2}s`;
