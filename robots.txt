@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://lozadapp.github.io/daycare-page/sitemap.xml
