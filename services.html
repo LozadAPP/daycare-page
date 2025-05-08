@@ -127,32 +127,39 @@
       z-index: 999; /* MUY ALTO para que quede encima de todo */
       cursor: pointer;
     }
-    .nanny-gallery {
-      flex: 1;
-      padding-bottom: 1rem;
-      width: 100%;
-      max-width: 100vw;
-      overflow-x: hidden; /* evita barra permanente */
-    }
-
     .nanny-gallery-inner {
       display: flex;
-      flex-direction: row;
-      gap: 1rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 1rem;
-      box-sizing: border-box;
-      -webkit-overflow-scrolling: touch; /* suaviza scroll en iOS */
+      flex-direction: column;
+      gap: 1rem; /* espacio más compacto */
+      max-width: 270px; /* más ancho */
+      margin: 0;
     }
+
+
+
+
+
+.scroll-arrow {
+  display: none !important;
+}
+.nanny-gallery-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem; /* antes: 2rem */
+}
+
+
+
 
     .gallery-img {
       flex: 0 0 auto;
-      width: 220px;
+      width: 100%;
       border-radius: 16px;
       border: 6px solid white;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
       scroll-snap-align: center;
+      height: auto;
       transition: transform 0.3s ease;
     }
 
@@ -729,7 +736,6 @@
 
 
 <!-- Sección Nannies and Babysitters unificada y mejorada -->
-<!-- Sección Nannies and Babysitters unificada y mejorada -->
 <section class="nanny-section" style="position: relative; background: radial-gradient(circle at top left, #fefaff 0%, #eaf4ff 70%, #f5faff 100%); padding: 6rem 1rem; overflow: hidden;" data-animate-trigger>
   
   <!-- Decoraciones flotantes -->
@@ -738,10 +744,10 @@
 
   <!-- Contenedor principal -->
   <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
-    <div style="background: linear-gradient(to bottom right, #fdf9ff, #f3f8ff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 35px rgba(142, 84, 233, 0.08); border: 1px solid rgba(142, 84, 233, 0.1); display: flex; flex-wrap: wrap; gap: 2rem;" data-animate-trigger>
+    <div style="background: linear-gradient(to bottom right, #fdf9ff, #f3f8ff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 35px rgba(142, 84, 233, 0.08); border: 1px solid rgba(142, 84, 233, 0.1); display: flex; flex-wrap: wrap; gap: 0.5rem;" data-animate-trigger>
 
       <!-- Galería de imágenes a la izquierda -->
-      <div class="nanny-gallery animate__animated animate__fadeInLeft" style="flex: 1 1 45%; min-width: 300px; position: relative;">
+      <div class="nanny-gallery animate__animated animate__fadeInLeft" style="flex: 1; min-width: 320px; max-width: 500px; position: relative;">
         
         <!-- Flecha Izquierda - ESTILO CORREGIDO -->
         <div id="arrow-scroll-left" class="scroll-arrow" style="left: 0; right: auto;">
@@ -770,7 +776,7 @@
       </div>
 
       <!-- Cuadro de texto a la derecha -->
-      <div style="flex: 1 1 50%; min-width: 300px;" data-animate="fadeInUp">
+      <div style="flex: 2; min-width: 320px;" data-animate="fadeInUp">
         <h2 style="font-family: 'Poppins', sans-serif; color: #5a2d9a; font-size: 2.4rem; margin-bottom: 1.5rem;">Nannies and Babysitters</h2>
 
         <p style="font-size: 1.15rem; color: #4b0082; line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; border-left: 4px solid #ffb8d9;">
