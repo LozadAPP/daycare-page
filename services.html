@@ -282,9 +282,7 @@
       opacity: 0;
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .hero-content[data-animate] {
-      opacity: 0;
-    }
+
     [data-animate="fadeIn"] {
       opacity: 1;
     }
@@ -319,7 +317,9 @@
     .btn-glow:hover::after {
       left: 100%;
     }
-    
+        .hero-content[data-animate] {
+      opacity: 0;
+    }
     /* Estilos específicos para services */
     .hero {
       position: relative;
@@ -542,7 +542,7 @@
   <div class="animate-float" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 90px; height: 90px; background: url('assets/images/child-handprint.png') no-repeat center/contain; opacity: 0.1; z-index: 3;"></div>
 
   <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
-    <div style="background: linear-gradient(to bottom right, #fff8fc, #f3eaff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(142, 84, 233, 0.12); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.12);" data-animate-trigger>
+    <div style="background: linear-gradient(to bottom right, #c4ffbf, #f3eaff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(142, 84, 233, 0.12); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.12);" data-animate-trigger>
 
       <!-- Columna de texto -->
       <div style="flex: 1; min-width: 300px; padding: 2rem;" data-animate="fadeInUp" data-animate-delay="0.2">
@@ -583,7 +583,7 @@
   <div class="animate-float" style="position: absolute; bottom: 30px; right: 50%; transform: translateX(50%); width: 100px; height: 100px; background: url('assets/images/juguete3.png') no-repeat center/contain; opacity: 0.08; z-index: 3;"></div>
 
   <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
-    <div style="background: linear-gradient(to bottom right, #ffffff, #f3f8ff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(0, 100, 180, 0.08); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.08);" data-animate-trigger>
+    <div style="background: linear-gradient(to bottom right, #ffba92, #f3f8ff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(0, 100, 180, 0.08); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.08);" data-animate-trigger>
 
       <!-- Columna de texto -->
       <div style="flex: 1; min-width: 300px; padding: 2rem;" data-animate="fadeInUp" data-animate-delay="0.2">
@@ -705,17 +705,17 @@
   <div class="animate-float" style="position: absolute; bottom: 30px; right: 25px; width: 90px; height: 90px; background: url('assets/images/moon-stars.png') no-repeat center/contain; opacity: 0.08; z-index: 3;"></div>
 
   <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
-    <div style="background: linear-gradient(to bottom right, #f8faff, #eef4ff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(90, 180, 255, 0.08); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.08);" data-animate-trigger>
+    <div style="background: linear-gradient(to bottom right, #8fe9ff, #eef4ff); padding: 3rem; border-radius: 28px; box-shadow: 0 12px 40px rgba(90, 180, 255, 0.08); display: flex; flex-wrap: wrap; align-items: center; border: 1px solid rgba(75, 0, 130, 0.08);" data-animate-trigger>
 
       <!-- Columna de texto -->
       <div style="flex: 1; min-width: 300px; padding: 2rem;" data-animate="fadeInUp" data-animate-delay="0.2">
-        <h2 style="font-family: 'Poppins', sans-serif; color: #2e5c83; font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.3; position: relative;">
-          <span style="color: #85d8ff;">Extended</span><br>Care Services
+        <h2 style="font-family: 'Poppins', sans-serif; color: #e0a72d; font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.3; position: relative;">
+          <span style="color: #f09be2;">Extended</span><br>Care Services
         </h2>
-        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #85d8ff;">
+        <p style="font-size: 1.15rem; color: #000000; line-height: 1.8; margin-bottom: 1.2rem; padding-left: 1.5rem; border-left: 4px solid #85d8ff;">
           We offer extended care options including after-hours and overnight stays to help support your family’s unique schedule and provide continuous, reliable care.
         </p>
-        <p style="font-size: 1.15rem; color: #2c3e50; line-height: 1.8; padding-left: 1.5rem; border-left: 4px solid #85d8ff;">
+        <p style="font-size: 1.15rem; color: #000000; line-height: 1.8; padding-left: 1.5rem; border-left: 4px solid #85d8ff;">
           Your child will remain in a peaceful, nurturing environment, guided by the same loving caregivers they know and trust.
         </p>
       </div>
@@ -724,7 +724,7 @@
       <div style="flex: 1; min-width: 300px; padding: 1rem; text-align: center;" data-animate="fadeInUp" data-animate-delay="0.5">
         <div style="position: relative; display: inline-block;" class="hover-grow">
           <img src="assets/images/extended-care.jpg" alt="Child resting during extended care" style="max-width: 100%; border-radius: 16px; border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.08); transform: rotate(-1.5deg);">
-          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #85d8ff; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(4deg);">
+          <div class="animate-pulse" style="position: absolute; bottom: -20px; right: -20px; background: #a1a2f1; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(4deg);">
             "Peaceful Nights"
           </div>
         </div>
@@ -902,11 +902,77 @@
       });
   
       // ===== Animaciones en la galería =====
-      const galleryImages = document.querySelectorAll('img');
-      galleryImages.forEach((img, index) => {
-        img.classList.add('animate__animated', 'animate__fadeInUp');
-        img.style.animationDelay = `${index * 0.2}s`;
-      });
+// ===== Lightbox para imágenes con exclusiones específicas =====
+const excludedImages = [
+  'california-license.png',
+  'butterfly-letras.png',
+  'butterfly-logo-title.png',
+  'logo-white.png',
+  'logo.png',
+  'tips-image.jpg'
+];
+
+const allImages = Array.from(document.querySelectorAll('img'));
+const galleryImages = allImages.filter(img => {
+  return !excludedImages.some(name => img.src.includes(name));
+});
+
+galleryImages.forEach(img => {
+  img.addEventListener('click', () => {
+    const prevOverlay = document.querySelector('.lightbox-overlay');
+    if (prevOverlay) return;
+
+    const overlay = document.createElement('div');
+    overlay.classList.add('lightbox-overlay');
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    `;
+
+    const enlargedImg = document.createElement('img');
+    enlargedImg.src = img.src;
+    enlargedImg.alt = img.alt;
+    enlargedImg.classList.add('lightbox-image');
+
+    const closeBtn = document.createElement('button');
+    closeBtn.classList.add('lightbox-close');
+    closeBtn.innerHTML = '&times;';
+    closeBtn.setAttribute('aria-label', 'Close image');
+    closeBtn.style.cssText = `
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2.5rem;
+      background: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+    `;
+
+    closeBtn.addEventListener('click', () => {
+      overlay.remove();
+      document.body.style.overflow = '';
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.remove();
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.body.style.overflow = 'hidden';
+    overlay.appendChild(closeBtn);
+    overlay.appendChild(enlargedImg);
+    document.body.appendChild(overlay);
+  });
+});
+
   
       // ===== Scroll Reveal para elementos animados =====
       const animateElements = document.querySelectorAll('[data-animate-trigger] [data-animate]');

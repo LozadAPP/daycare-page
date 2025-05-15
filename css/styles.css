@@ -112,30 +112,24 @@ a:hover {
 .logo-area {
   display: flex;
   align-items: center;
-  gap: 15px;
-  text-decoration: none;
-  background: none;
+  gap: 0; /* Sin separación */
 }
+
+
 
 /* Añade estas reglas específicas para los logos */
 .logo-img {
   height: 80px;
-  animation: fadeIn 1s ease-in-out both;
-  /* Animación adicional para el logo principal si quieres */
-  animation: 
-    fadeIn 1s ease-in-out both,
-    float 4s ease-in-out 1s infinite; /* Flotar después de aparecer */
+  opacity: 0;
 }
 
-/* Texto Butterfly Child Care */
 .logo-text-img {
   height: 190px;
   width: auto;
   max-width: 280px;
-  animation: 
-    fadeIn 1s ease-in-out 0.5s both, /* Delay de 0.5s */
-    pulse 3s ease-in-out 1.5s infinite; /* Pulsar después de aparecer */
+  opacity: 0;
 }
+
 /* Keyframes específicos para los logos */
 @keyframes logoEntrance {
   0% {
@@ -161,23 +155,12 @@ a:hover {
     transform: translateX(0);
   }
 }
-/* Aplicar las animaciones específicas solo a los logos */
-.logo-area .logo-img {
-  animation: logoEntrance 1s ease-out both;
-}
 
 .logo-area .logo-text-img {
   animation: textEntrance 0.8s ease-out 0.3s both;
 }
 
-/* Efecto hover para los logos */
-.logo-area:hover .logo-img {
-  animation: float 3s ease-in-out infinite;
-}
 
-.logo-area:hover .logo-text-img {
-  animation: pulse 2s ease-in-out infinite;
-}
 .logo-text {
   font-family: 'Poppins', cursive; 
   font-style: italic;
@@ -438,15 +421,16 @@ a:hover {
 }
 
 .about-card {
-  background: linear-gradient(to bottom right, #fff8fc, #f3eaff);
+  background: linear-gradient(to bottom right, #2f940d, #be130d);
   padding: 3rem;
   border-radius: 28px;
-  box-shadow: 0 12px 40px rgba(142, 84, 233, 0.12);
+  box-shadow: 0 12px 40px rgba(106, 17, 203, 0.12);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  border: 1px solid rgba(75, 0, 130, 0.12);
+  border: 1px solid rgba(106, 17, 203, 0.1);
 }
+
 
 /* Testimonials Section */
 .testimonials {
